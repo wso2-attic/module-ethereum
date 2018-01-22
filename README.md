@@ -98,12 +98,12 @@ The Ethereum connector supports unimplemented RPC API functions via `remoteProce
   ```
 ## Running samples
 
-- Copy `connector-ethereum/component/samples/ethereum/samples.bal` file and paste it into `<ballerina-tools>/bin` folder.
+- Copy `connector-ethereum/component/samples/ethereum/sample.bal` file and paste it into `<ballerina-tools>/bin` folder.
 - Run the following commands to execute the sample.
 
-`bin$ ./ballerina run samples.bal <URI> <JSONRPCVersion> <NetworkID>`
+`bin$ ./ballerina run sample.bal <URI> <JSONRPCVersion> <NetworkID>`
 - eg:
-`bin$ ./ballerina run samples.bal http://localhost:8080 2.0 1999`
+`bin$ ./ballerina run sample.bal http://localhost:8080 2.0 1999`
 
         
 

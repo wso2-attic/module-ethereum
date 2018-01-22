@@ -88,7 +88,7 @@ Default JSON-RPC endpoints:
 
 The Ethereum connector supports unimplemented RPC API functions via `remoteProcedureCall()`. 
 ```java
-  response, e = ethereumConnector.remoteProcedureCall(JSONRPCVersion, networkId, "method_name", []);
+  response, e = ethereumConnector.remoteProcedureCall(JSONRPCVersion, networkId, "method_name", [params]);
   if (e == null) {
     JSONResponse = response.getJsonPayload();
     println(JSONResponse.result.toString());

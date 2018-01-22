@@ -1054,7 +1054,7 @@ Sends a whisper message.
   - `to`: `DATA`, 60 Bytes - (optional) The identity of the receiver. When present whisper will encrypt the message so that only the receiver can decrypt it.
   - `topics`: `Array of DATA` - Array of `DATA` topics, for the receiver to identify messages.
   - `payload`: `DATA` - The payload of the message.
-  - `priority`: `QUANTITY` - The integer of the priority in a rang from ... (?).
+  - `priority`: `QUANTITY` - The integer of the priority in a rang from ... .
   - `ttl`: `QUANTITY` - integer of the time to live in seconds.
 
 
@@ -1133,7 +1133,7 @@ Adds identities to a group
 
 ##### Returns
 
-`Boolean` - returns `true` if the identity was successfully added to the group, otherwise `false` (?).
+`Boolean` - returns `true` if the identity was successfully added to the group, otherwise `false`.
 
 ##### Related Ethereum Documentation
 
@@ -1199,15 +1199,15 @@ Polling method for whisper filters. Returns new messages since the last call of 
 
 `Array` - Array of messages received since last poll:
 
-  - `hash`: `DATA`, 32 Bytes (?) - The hash of the message.
+  - `hash`: `DATA`, 32 Bytes - The hash of the message.
   - `from`: `DATA`, 60 Bytes - The sender of the message, if a sender was specified.
   - `to`: `DATA`, 60 Bytes - The receiver of the message, if a receiver was specified.
-  - `expiry`: `QUANTITY` - Integer of the time in seconds when this message should expire (?).
-  - `ttl`: `QUANTITY` -  Integer of the time the message should float in the system in seconds (?).
+  - `expiry`: `QUANTITY` - Integer of the time in seconds when this message should expire.
+  - `ttl`: `QUANTITY` -  Integer of the time the message should float in the system in seconds.
   - `sent`: `QUANTITY` -  Integer of the unix timestamp when the message was sent.
   - `topics`: `Array of DATA` - Array of `DATA` topics the message contained.
   - `payload`: `DATA` - The payload of the message.
-  - `workProved`: `QUANTITY` - Integer of the work this message required before it was send (?).
+  - `workProved`: `QUANTITY` - Integer of the work this message required before it was send.
 
 ##### Related Ethereum Documentation
 

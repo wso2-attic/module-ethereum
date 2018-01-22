@@ -774,7 +774,7 @@ public connector ClientConnector (string URI) {
 
 function constructRequest(string jsonRPCVersion, int id, string method, json params)(http:Request){
     http:Request request = {};
-    request.setHeader("'Content-Type","application/json");
+    request.setHeader("Content-Type","application/json");
     request.setJsonPayload({"jsonrpc" : jsonRPCVersion, "id": id,  "method" : method, "params" : params});
     return request;
 }

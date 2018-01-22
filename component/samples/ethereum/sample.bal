@@ -83,5 +83,4 @@ public function main (string[] args) {
     } else {
         println(networkIdError);
     }
-
 }

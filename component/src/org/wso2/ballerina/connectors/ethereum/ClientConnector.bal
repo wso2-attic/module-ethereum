@@ -2,6 +2,66 @@ package org.wso2.ballerina.connectors.ethereum;
 
 import ballerina.net.http;
 
+string web3ClientVersionMethod = "web3_clientVersion";
+string web3Sha3Method = "web3_sha3";
+string netVersionMethod = "net_version";
+string netListeningMethod = "net_listening";
+string netPeerCountMethod = "net_peerCount";
+string ethProtocolVersionMethod = "eth_protocolVersion";
+string ethSyncingMethod = "eth_syncing";
+string ethCoinbaseMethod = "eth_coinbase";
+string ethMiningMethod = "eth_mining";
+string ethHashrateMethod = "eth_hashrate";
+string ethGasPriceMethod = "eth_gasPrice";
+string ethAccountsMethod = "eth_accounts";
+string ethBlockNumberMethod = "eth_blockNumber";
+string ethGetBalanceMethod = "eth_getBalance";
+string ethGetStorageAtMethod = "eth_getStorageAt";
+string ethGetTransactionCountMethod = "eth_getTransactionCount";
+string ethGetBlockTransactionCountByHashMethod = "eth_getBlockTransactionCountByHash";
+string ethGetBlockTransactionCountByNumberMethod = "eth_getBlockTransactionCountByNumber";
+string ethGetUncleCountByBlockHashMethod = "eth_getUncleCountByBlockHash";
+string ethGetUncleCountByBlockNumberMethod = "eth_getUncleCountByBlockNumber";
+string ethGetCodeMethod = "eth_getCode";
+string ethSignMethod = "eth_sign";
+string ethSendTransactionMethod = "eth_sendTransaction";
+string ethSendRawTransactionMethod = "eth_sendRawTransaction";
+string ethCallMethod = "eth_call";
+string ethEstimateGasMethod = "eth_estimateGas";
+string ethGetBlockByHashMethod = "eth_getBlockByHash";
+string ethGetBlockByNumberMethod = "eth_getBlockByNumber";
+string ethGetTransactionByHashMethod = "eth_getTransactionByHash";
+string ethGetTransactionByBlockHashAndIndexMethod = "eth_getTransactionByBlockHashAndIndex";
+string ethGetTransactionByBlockNumberAndIndexMethod = "eth_getTransactionByBlockNumberAndIndex";
+string ethGetTransactionReceiptMethod = "eth_getTransactionReceipt";
+string ethGetUncleByBlockHashAndIndexMethod = "eth_getUncleByBlockHashAndIndex";
+string ethGetUncleByBlockNumberAndIndexMethod = "eth_getUncleByBlockNumberAndIndex";
+string ethGetCompilersMethod = "eth_getCompilers";
+string ethCompileLLLMethod = "eth_compileLLL";
+string ethCompileSolidityMethod = "eth_compileSolidity";
+string ethCompileSerpentMethod = "eth_compileSerpent";
+string ethNewFilterMethod = "eth_newFilter";
+string ethNewBlockFilterMethod = "eth_newBlockFilter";
+string ethNewPendingTransactionFilterMethod = "eth_newPendingTransactionFilter";
+string ethUninstallFilterMethod = "eth_uninstallFilter";
+string ethGetFilterChangesMethod = "eth_getFilterChanges";
+string ethGetFilterLogsMethod = "eth_getFilterLogs";
+string ethGetLogsMethod = "eth_getLogs";
+string ethGetWorkMethod = "eth_getWork";
+string ethSubmitWorkMethod = "eth_submitWork";
+string ethSubmitHashrateMethod = "eth_submitHashrate";
+string shhPostMethod = "shh_post";
+string shhVersionMethod = "shh_version";
+string shhNewIdentityMethod = "shh_newIdentity";
+string shhHasIdentityMethod = "shh_hasIdentity";
+string shhNewGroupMethod = "shh_newGroup";
+string shhAddToGroupMethod = "shh_addToGroup";
+string shhNewFilterMethod = "shh_newFilter";
+string shhUninstallFilterMethod = "shh_uninstallFilter";
+string shhGetFilterChangesMethod = "shh_getFilterChanges";
+string shhGetMessagesMethod = "shh_getMessages";
+json emptyParams = [];
+
 @Description{ value : "Ethereum client connector."}
 @Param{ value : "URI: URI of the Ethereum JSON - RPC server."}
 public connector ClientConnector (string URI) {
@@ -18,7 +78,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action web3ClientVersion(string jsonRPCVersion, int id) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "web3_clientVersion", []));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, web3ClientVersionMethod, emptyParams));
         return response, e;
     }
 
@@ -30,7 +90,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action web3Sha3(string jsonRPCVersion, int id, string data) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "web3_sha3", [data]));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, web3Sha3Method, [data]));
         return response, e;
     }
 
@@ -46,7 +106,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action netVersion(string jsonRPCVersion, int id) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "net_version", []));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, netVersionMethod, emptyParams));
         return response, e;
     }
 
@@ -57,7 +117,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action netListening(string jsonRPCVersion, int id) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "net_listening", []));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, netListeningMethod, emptyParams));
         return response, e;
     }
 
@@ -68,7 +128,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action netPeerCount(string jsonRPCVersion, int id) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "net_peerCount", []));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, netPeerCountMethod, emptyParams));
         return response, e;
     }
 
@@ -79,7 +139,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action ethSyncing(string jsonRPCVersion, int id) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_syncing", []));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethSyncingMethod, emptyParams));
         return response, e;
     }
 
@@ -90,7 +150,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action ethCoinbase(string jsonRPCVersion, int id) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_coinbase", []));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethCoinbaseMethod, emptyParams));
         return response, e;
     }
 
@@ -101,7 +161,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action ethMining(string jsonRPCVersion, int id) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_mining", []));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethMiningMethod, emptyParams));
         return response, e;
     }
 
@@ -112,7 +172,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action ethHashrate(string jsonRPCVersion, int id) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_hashrate", []));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethHashrateMethod, emptyParams));
         return response, e;
     }
 
@@ -123,7 +183,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action ethGasPrice(string jsonRPCVersion, int id) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_gasPrice", []));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethGasPriceMethod, emptyParams));
         return response, e;
     }
 
@@ -134,7 +194,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action ethAccounts(string jsonRPCVersion, int id) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_accounts", []));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethAccountsMethod, emptyParams));
         return response, e;
     }
 
@@ -145,7 +205,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action ethBlockNumber(string jsonRPCVersion, int id) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_blockNumber", []));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethBlockNumberMethod, emptyParams));
         return response, e;
     }
 
@@ -159,7 +219,7 @@ public connector ClientConnector (string URI) {
     action ethGetBalance(string jsonRPCVersion, int id, string address, string block)
     (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_getBalance", [address, block]));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethGetBalanceMethod, [address, block]));
         return response, e;
     }
 
@@ -174,7 +234,7 @@ public connector ClientConnector (string URI) {
     action ethGetStorageAt(string jsonRPCVersion, int id, string address, string position, string block)
     (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_getStorageAt",
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethGetStorageAtMethod,
                                                             [address, position, block]));
         return response, e;
     }
@@ -189,7 +249,7 @@ public connector ClientConnector (string URI) {
     action ethGetTransactionCount(string jsonRPCVersion, int id, string address, string block)
     (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_getTransactionCount",
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethGetTransactionCountMethod,
                                                             [address, block]));
         return response, e;
     }
@@ -204,7 +264,7 @@ public connector ClientConnector (string URI) {
     action ethGetBlockTransactionCountByHash(string jsonRPCVersion, int id, string hash)
     (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_getBlockTransactionCountByHash",
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethGetBlockTransactionCountByHashMethod,
                                                             [hash]));
         return response, e;
     }
@@ -218,8 +278,8 @@ public connector ClientConnector (string URI) {
     action ethGetBlockTransactionCountByNumber(string jsonRPCVersion, int id, string block)
     (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_getBlockTransactionCountByNumber",
-                                                            [block]));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id,
+                                                            ethGetBlockTransactionCountByNumberMethod, [block]));
         return response, e;
     }
 
@@ -232,7 +292,7 @@ public connector ClientConnector (string URI) {
     action ethGetUncleCountByBlockHash(string jsonRPCVersion, int id, string hash)
     (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_getUncleCountByBlockHash",
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethGetUncleCountByBlockHashMethod,
                                                             [hash]));
         return response, e;
     }
@@ -246,7 +306,7 @@ public connector ClientConnector (string URI) {
     action ethGetUncleCountByBlockNumber(string jsonRPCVersion, int id, string block)
     (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_getUncleCountByBlockNumber",
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethGetUncleCountByBlockNumberMethod,
                                                             [block]));
         return response, e;
     }
@@ -261,7 +321,7 @@ public connector ClientConnector (string URI) {
     action ethGetCode(string jsonRPCVersion, int id, string address, string block)
     (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_getCode", [address, block]));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethGetCodeMethod, [address, block]));
         return response, e;
     }
 
@@ -275,7 +335,7 @@ public connector ClientConnector (string URI) {
     action ethSign(string jsonRPCVersion, int id, string address, string message)
     (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_sign", [address, message]));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethSignMethod, [address, message]));
         return response, e;
     }
 
@@ -295,7 +355,7 @@ public connector ClientConnector (string URI) {
     action ethSendTransaction(string jsonRPCVersion, int id, json transactionObject)
     (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_sendTransaction",
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethSendTransactionMethod,
                                                             [transactionObject]));
         return response, e;
     }
@@ -309,7 +369,7 @@ public connector ClientConnector (string URI) {
     action ethSendRawTransaction(string jsonRPCVersion, int id, string signedTransactionData)
     (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_sendRawTransaction",
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethSendRawTransactionMethod,
                                                             [signedTransactionData]));
         return response, e;
     }
@@ -331,7 +391,7 @@ public connector ClientConnector (string URI) {
     action ethCall(string jsonRPCVersion, int id, json transactionCallObject, string block)
     (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_call",
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethCallMethod,
                                                             [transactionCallObject, block]));
         return response, e;
     }
@@ -353,7 +413,7 @@ public connector ClientConnector (string URI) {
     action ethEstimateGas(string jsonRPCVersion, int id, json transactionCallObject, string block)
     (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_estimateGas",
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethEstimateGasMethod,
                                                             [transactionCallObject, block]));
         return response, e;
     }
@@ -369,7 +429,7 @@ public connector ClientConnector (string URI) {
     action ethGetBlockByHash(string jsonRPCVersion, int id, string hash, boolean fullTransaction)
     (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_getBlockByHash",
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethGetBlockByHashMethod,
                                                             [hash, fullTransaction]));
         return response, e;
     }
@@ -385,7 +445,7 @@ public connector ClientConnector (string URI) {
     action ethGetBlockByNumber(string jsonRPCVersion, int id, string block, boolean fullTransaction)
     (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_getBlockByNumber",
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethGetBlockByNumberMethod,
                                                             [block, fullTransaction]));
         return response, e;
     }
@@ -399,7 +459,7 @@ public connector ClientConnector (string URI) {
     action ethGetTransactionByHash(string jsonRPCVersion, int id, string hash)
     (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_getTransactionByHash", [hash]));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethGetTransactionByHashMethod, [hash]));
         return response, e;
     }
 
@@ -413,7 +473,8 @@ public connector ClientConnector (string URI) {
     action ethGetTransactionByBlockHashAndIndex(string jsonRPCVersion, int id, string hash, string position)
     (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_getTransactionByBlockHashAndIndex",
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id,
+                                                            ethGetTransactionByBlockHashAndIndexMethod,
                                                             [hash, position]));
         return response, e;
     }
@@ -427,7 +488,8 @@ public connector ClientConnector (string URI) {
     action ethGetTransactionReceipt(string jsonRPCVersion, int id, string hash)
     (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_getTransactionReceipt", [hash]));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id,
+                                                            ethGetTransactionReceiptMethod, [hash]));
         return response, e;
     }
 
@@ -441,7 +503,7 @@ public connector ClientConnector (string URI) {
     action ethGetUncleByBlockHashAndIndex (string jsonRPCVersion, int id, string hash, string position)
     (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_getUncleByBlockHashAndIndex",
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethGetUncleByBlockHashAndIndexMethod,
                                                             [hash, position]));
         return response, e;
     }
@@ -456,7 +518,7 @@ public connector ClientConnector (string URI) {
     action ethGetUncleByBlockNumberAndIndex(string jsonRPCVersion, int id, string block, string position)
     (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_getUncleByBlockNumberAndIndex",
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethGetUncleByBlockNumberAndIndexMethod,
                                                             [block, position]));
         return response, e;
     }
@@ -468,7 +530,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action ethGetCompilers(string jsonRPCVersion, int id) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_getCompilers", []));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethGetCompilersMethod, emptyParams));
         return response, e;
     }
 
@@ -480,7 +542,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action ethCompileSolidity(string jsonRPCVersion, int id, string source) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_compileSolidity", [source]));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethCompileSolidityMethod, [source]));
         return response, e;
     }
 
@@ -492,7 +554,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action ethCompileLLL(string jsonRPCVersion, int id, string source) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_compileLLL", [source]));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethCompileLLLMethod, [source]));
         return response, e;
     }
 
@@ -504,7 +566,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action ethCompileSerpent(string jsonRPCVersion, int id, string source) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_compileSerpent", [source]));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethCompileSerpentMethod, [source]));
         return response, e;
     }
 
@@ -516,7 +578,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action ethNewFilter(string jsonRPCVersion, int id, json filterOptions) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_newFilter", [filterOptions]));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethNewFilterMethod, [filterOptions]));
         return response, e;
     }
 
@@ -527,7 +589,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action ethNewBlockFilter(string jsonRPCVersion, int id) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_newBlockFilter", []));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethNewBlockFilterMethod, emptyParams));
         return response, e;
     }
 
@@ -538,7 +600,8 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action ethNewPendingTransactionFilter(string jsonRPCVersion, int id) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_newPendingTransactionFilter", []));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethNewPendingTransactionFilterMethod,
+                                                            emptyParams));
         return response, e;
     }
 
@@ -550,7 +613,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action ethUninstallFilter(string jsonRPCVersion, int id, string filterId) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_uninstallFilter", [filterId]));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethUninstallFilterMethod, [filterId]));
         return response, e;
     }
 
@@ -563,7 +626,7 @@ public connector ClientConnector (string URI) {
     action ethGetFilterChanges(string jsonRPCVersion, int id, string filterId)
     (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_getFilterChanges", [filterId]));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethGetFilterChangesMethod, [filterId]));
         return response, e;
     }
 
@@ -575,7 +638,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action ethGetFilterLogs(string jsonRPCVersion, int id, string filterId) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_getFilterLogs", [filterId]));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethGetFilterLogsMethod, [filterId]));
         return response, e;
     }
 
@@ -587,7 +650,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action ethGetLogs(string jsonRPCVersion, int id, json filterObject) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_getLogs", [filterObject]));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethGetLogsMethod, [filterObject]));
         return response, e;
     }
 
@@ -599,7 +662,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action ethGetWork(string jsonRPCVersion, int id) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_getWork", []));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethGetWorkMethod, emptyParams));
         return response, e;
     }
 
@@ -614,7 +677,7 @@ public connector ClientConnector (string URI) {
     action ethSubmitWork(string jsonRPCVersion, int id, string nonce, string powHash, string mixDigest)
     (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_submitWork",
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethSubmitWorkMethod,
                                                             [nonce, powHash, mixDigest]));
         return response, e;
     }
@@ -629,7 +692,7 @@ public connector ClientConnector (string URI) {
     action ethSubmitHashrate(string jsonRPCVersion, int id, string hashrate, string clientId)
     (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "eth_submitHashrate",
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethSubmitHashrateMethod,
                                                             [hashrate, clientId]));
         return response, e;
     }
@@ -641,7 +704,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action shhVersion(string jsonRPCVersion, int id) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "shh_version", []));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, shhVersionMethod, emptyParams));
         return response, e;
     }
 
@@ -653,7 +716,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action shhPost(string jsonRPCVersion, int id, json postObject) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "shh_post", [postObject]));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, shhPostMethod, [postObject]));
         return response, e;
     }
 
@@ -665,7 +728,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action shhNewIdentity(string jsonRPCVersion, int id, string address) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "shh_newIdentity", [address]));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, shhNewIdentityMethod, [address]));
         return response, e;
     }
 
@@ -677,7 +740,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action shhHasIdentity(string jsonRPCVersion, int id, string address) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "shh_hasIdentity", [address]));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, shhHasIdentityMethod, [address]));
         return response, e;
     }
 
@@ -688,7 +751,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action shhNewGroup(string jsonRPCVersion, int id) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "shh_newGroup", []));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, shhNewGroupMethod, emptyParams));
         return response, e;
     }
 
@@ -700,7 +763,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action shhAddToGroup(string jsonRPCVersion, int id, string address) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "shh_addToGroup", [address]));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, shhAddToGroupMethod, [address]));
         return response, e;
     }
 
@@ -714,7 +777,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action shhNewFilter(string jsonRPCVersion, int id, json filterOptions) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "shh_newFilter", [filterOptions]));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, shhNewFilterMethod, [filterOptions]));
         return response, e;
     }
 
@@ -726,7 +789,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action shhUninstallFilter(string jsonRPCVersion, int id, string filterId) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "shh_uninstallFilter", [filterId]));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, shhUninstallFilterMethod, [filterId]));
         return response, e;
     }
 
@@ -740,7 +803,7 @@ public connector ClientConnector (string URI) {
     action shhGetFilterChanges(string jsonRPCVersion, int id, string filterId)
     (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "shh_getFilterChanges", [filterId]));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, shhGetFilterChangesMethod, [filterId]));
         return response, e;
     }
 
@@ -752,7 +815,7 @@ public connector ClientConnector (string URI) {
     @Return{ value : "Error occured during HTTP client invocation." }
     action shhGetMessages(string jsonRPCVersion, int id, string filterId) (http:Response, http:HttpConnectorError) {
         http:Response response = {};
-        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, "shh_getMessages", [filterId]));
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, shhGetMessagesMethod, [filterId]));
         return response, e;
     }
 

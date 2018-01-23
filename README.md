@@ -8,7 +8,7 @@ The Ethereum connector allows you to access the Ethereum JSON RPC API through ba
 2. Extract ballerina-ethereum-0.95.0.zip and copy ballerina-ethereum-0.95.0.jar into the `<ballerina-tools>/bre/lib` folder.
 
 ##### Prerequisites
-1. Enable JSON RPC API in your Ethereum network by visiting [https://github.com/ethereum/wiki/wiki/JSON-RPC/](https://github.com/ethereum/wiki/wiki/JSON-RPC#javascript-api).
+1. Enable JSON RPC API in your Ethereum client node by visiting [https://github.com/ethereum/wiki/wiki/JSON-RPC/](https://github.com/ethereum/wiki/wiki/JSON-RPC#javascript-api).
 2. Identify the URI for the JSON RPC server. 
 Default JSON-RPC endpoints:
 
@@ -21,6 +21,27 @@ Default JSON-RPC endpoints:
 
 ## Working with Ethereum connector actions
 
+### Example
+
+All the actions return a `http:Response` and a `http:HttpConnectorError`. The `http:Response` consists a `json` payload. In the following section, provide you the details about the result of the `json` payload for each action under **Returns** sub heading.
+
+```java
+http:Response response = {};
+http:HttpConnectorError e;
+response, e = ethereumConnector.web3ClientVersion("2.0", 1999);
+if (e == null) {
+    json JSONResponse = response.getJsonPayload();
+    println(JSONResponse.toString());
+    println(JSONResponse.result.toString());
+} else {
+    println(e);
+}
+```
+```json
+{"jsonrpc":"2.0","id":1999,"result":"Geth/hostname/v1.7.3-stable-4bb3c89d/linux-amd64/go1.9"}
+```
+`Geth/hostname/v1.7.3-stable-4bb3c89d/linux-amd64/go1.9`
+
 ***
 #### web3_clientVersion
 
@@ -31,11 +52,11 @@ none
 
 ##### Returns
 
-`String` - The current client version
+- The current client version
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#web3_clientVersion
+https://github.com/ethereum/wiki/wiki/JSON-RPC#web3_clientversion
 
 ***
 
@@ -45,11 +66,11 @@ Returns Keccak-256 (*not* the standardized SHA3-256) of the given data.
 
 ##### Parameters
 
-1. `DATA` - the data to convert into a SHA3 hash
+1. `string` - the data to convert into a SHA3 hash
 
 ##### Returns
 
-`DATA` - The SHA3 result of the given string.
+ - The SHA3 result of the given string.
 
 ##### Related Ethereum Documentation
 
@@ -66,7 +87,7 @@ none
 
 ##### Returns
 
-`String` - The current network id.
+- The current network id.
 - `"1"`: Ethereum Mainnet
 - `"2"`: Morden Testnet  (deprecated)
 - `"3"`: Ropsten Testnet
@@ -88,7 +109,7 @@ none
 
 ##### Returns
 
-`Boolean` - `true` when listening, otherwise `false`.
+- `true` when listening, otherwise `false`.
 
 ##### Related Ethereum Documentation
 
@@ -105,11 +126,11 @@ none
 
 ##### Returns
 
-`QUANTITY` - integer of the number of connected peers.
+- integer of the number of connected peers.
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#net_peerCount
+https://github.com/ethereum/wiki/wiki/JSON-RPC#net_peercount
 
 ***
 
@@ -122,11 +143,11 @@ none
 
 ##### Returns
 
-`String` - The current ethereum protocol version
+- The current ethereum protocol version
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_protocolVersion
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_protocolversion
 
 ***
 
@@ -140,10 +161,10 @@ none
 
 ##### Returns
 
-`Object|Boolean`, An object with sync status data or `FALSE`, when not syncing:
-  - `startingBlock`: `QUANTITY` - The block at which the import started (will only be reset, after the sync reached his head)
-  - `currentBlock`: `QUANTITY` - The current block, same as eth_blockNumber
-  - `highestBlock`: `QUANTITY` - The estimated highest block
+- An object with sync status data or `FALSE`, when not syncing:
+  - `startingBlock`: The block at which the import started (will only be reset, after the sync reached his head)
+  - `currentBlock`: The current block, same as eth_blockNumber
+  - `highestBlock`: The estimated highest block
 
 ##### Related Ethereum Documentation
 
@@ -161,7 +182,7 @@ none
 
 ##### Returns
 
-`DATA`, 20 bytes - the current coinbase address.
+- 20 bytes - the current coinbase address.
 
 ##### Related Ethereum Documentation
 
@@ -178,7 +199,7 @@ none
 
 ##### Returns
 
-`Boolean` - returns `true` of the client is mining, otherwise `false`.
+- returns `true` of the client is mining, otherwise `false`.
 
 ##### Related Ethereum Documentation
 
@@ -195,7 +216,7 @@ none
 
 ##### Returns
 
-`QUANTITY` - number of hashes per second.
+- number of hashes per second.
 
 ##### Related Ethereum Documentation
 
@@ -212,11 +233,11 @@ none
 
 ##### Returns
 
-`QUANTITY` - integer of the current gas price in wei.
+- integer of the current gas price in wei.
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_gasPrice
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_gasprice
 
 ***
 
@@ -230,7 +251,7 @@ none
 
 ##### Returns
 
-`Array of DATA`, 20 Bytes - addresses owned by the client.
+- 20 Bytes - addresses owned by the client.
 
 ##### Related Ethereum Documentation
 
@@ -247,11 +268,11 @@ none
 
 ##### Returns
 
-`QUANTITY` - integer of the current block number the client is on.
+- integer of the current block number the client is on.
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_blockNumber
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_blocknumber
 
 ***
 
@@ -261,18 +282,18 @@ Returns the balance of the account of given address.
 
 ##### Parameters
 
-1. `DATA`, 20 Bytes - address to check for balance.
-2. `QUANTITY|TAG` - integer block number, or the string `"latest"`, `"earliest"` or `"pending"`.
+1. `string`, 20 Bytes - address to check for balance.
+2. `string` - integer block number, or the string `"latest"`, `"earliest"` or `"pending"`.
 
 
 ##### Returns
 
-`QUANTITY` - integer of the current balance in wei.
+- integer of the current balance in wei.
 
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getBalance
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getbalance
 
 ***
 
@@ -282,17 +303,17 @@ Returns the value from a storage position at a given address.
 
 ##### Parameters
 
-1. `DATA`, 20 Bytes - address of the storage.
-2. `QUANTITY` - integer of the position in the storage.
-3. `QUANTITY|TAG` - integer block number, or the string `"latest"`, `"earliest"` or `"pending"`.
+1. `string`, 20 Bytes - address of the storage.
+2. `string` - integer of the position in the storage.
+3. `string` - integer block number, or the string `"latest"`, `"earliest"` or `"pending"`.
 
 ##### Returns
 
-`DATA` - the value at this storage position.
+- the value at this storage position.
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getStorageAt
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getstorageat
 
 ***
 
@@ -303,17 +324,17 @@ Returns the number of transactions *sent* from an address.
 
 ##### Parameters
 
-1. `DATA`, 20 Bytes - address.
-2. `QUANTITY|TAG` - integer block number, or the string `"latest"`, `"earliest"` or `"pending"`.
+1. `string`, 20 Bytes - address.
+2. `string` - integer block number, or the string `"latest"`, `"earliest"` or `"pending"`.
 
 ##### Returns
 
-`QUANTITY` - integer of the number of transactions send from this address.
+- integer of the number of transactions send from this address.
 
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getTransactionCount
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_gettransactioncount
 
 ***
 
@@ -324,16 +345,16 @@ Returns the number of transactions in a block from a block matching the given bl
 
 ##### Parameters
 
-1. `DATA`, 32 Bytes - hash of a block
+1. `string`, 32 Bytes - hash of a block
 
 ##### Returns
 
-`QUANTITY` - integer of the number of transactions in this block.
+- integer of the number of transactions in this block.
 
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getBlockTransactionCountByHash
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getblocktransactioncountbyhash
 
 ***
 
@@ -344,12 +365,12 @@ Returns the number of transactions in a block matching the given block number.
 
 ##### Parameters
 
-1. `QUANTITY|TAG` - integer of a block number, or the string `"earliest"`, `"latest"` or `"pending"`.
+1. `string` - integer of a block number, or the string `"earliest"`, `"latest"` or `"pending"`.
 
 
 ##### Returns
 
-`QUANTITY` - integer of the number of transactions in this block.
+- integer of the number of transactions in this block.
 
 ##### Related Ethereum Documentation
 
@@ -364,16 +385,16 @@ Returns the number of uncles in a block from a block matching the given block ha
 
 ##### Parameters
 
-1. `DATA`, 32 Bytes - hash of a block
+1. `string`, 32 Bytes - hash of a block
 
 ##### Returns
 
-`QUANTITY` - integer of the number of uncles in this block.
+- integer of the number of uncles in this block.
 
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getUncleCountByBlockHash
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getunclecountbyblockhash
 
 ***
 
@@ -384,17 +405,17 @@ Returns the number of uncles in a block from a block matching the given block nu
 
 ##### Parameters
 
-1. `QUANTITY|TAG` - integer of a block number, or the string "latest", "earliest" or "pending".
+1. `string` - integer of a block number, or the string "latest", "earliest" or "pending".
 
 
 ##### Returns
 
-`QUANTITY` - integer of the number of uncles in this block.
+- integer of the number of uncles in this block.
 
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getUncleCountByBlockNumber
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getunclecountbyblocknumber
 
 ***
 
@@ -405,18 +426,18 @@ Returns code at a given address.
 
 ##### Parameters
 
-1. `DATA`, 20 Bytes - address
-2. `QUANTITY|TAG` - integer block number, or the string `"latest"`, `"earliest"` or `"pending"`.
+1. `string`, 20 Bytes - address
+2. `string` - integer block number, or the string `"latest"`, `"earliest"` or `"pending"`.
 
 
 ##### Returns
 
-`DATA` - the code from the given address.
+- the code from the given address.
 
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getCode
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getcode
 
 ***
 
@@ -427,12 +448,12 @@ The sign method calculates an Ethereum specific signature with.
 ##### Parameters
 account, message
 
-1. `DATA`, 20 Bytes - address
-2. `DATA`, N Bytes - message to sign
+1. `string`, 20 Bytes - address
+2. `string`, N Bytes - message to sign
 
 ##### Returns
 
-`DATA`: Signature
+`string`: Signature
 
 ##### Related Ethereum Documentation
 
@@ -446,24 +467,24 @@ Creates new message call transaction or a contract creation, if the data field c
 
 ##### Parameters
 
-1. `Object` - The transaction object
-  - `from`: `DATA`, 20 Bytes - The address the transaction is send from.
-  - `to`: `DATA`, 20 Bytes - (optional when creating new contract) The address the transaction is directed to.
-  - `gas`: `QUANTITY`  - (optional, default: 90000) Integer of the gas provided for the transaction execution. It will return unused gas.
-  - `gasPrice`: `QUANTITY`  - (optional, default: To-Be-Determined) Integer of the gasPrice used for each paid gas
-  - `value`: `QUANTITY`  - (optional) Integer of the value send with this transaction
-  - `data`: `DATA`  - The compiled code of a contract OR the hash of the invoked method signature and encoded parameters.
-  - `nonce`: `QUANTITY`  - (optional) Integer of a nonce. This allows to overwrite your own pending transactions that use the same nonce.
+1. `json` - The transaction object
+  - `from`: 20 Bytes - The address the transaction is send from.
+  - `to`: 20 Bytes - (optional when creating new contract) The address the transaction is directed to.
+  - `gas`: - (optional, default: 90000) Integer of the gas provided for the transaction execution. It will return unused gas.
+  - `gasPrice`: (optional, default: To-Be-Determined) Integer of the gasPrice used for each paid gas
+  - `value`: (optional) Integer of the value send with this transaction
+  - `data`: The compiled code of a contract OR the hash of the invoked method signature and encoded parameters.
+  - `nonce`: (optional) Integer of a nonce. This allows to overwrite your own pending transactions that use the same nonce.
 
 
 ##### Returns
 
-`DATA`, 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available.
+- 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available.
 
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_sendTransaction
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_sendtransaction
 
 ***
 
@@ -473,16 +494,16 @@ Creates new message call transaction or a contract creation for signed transacti
 
 ##### Parameters
 
-1. `DATA`, The signed transaction data.
+1. `string`, The signed transaction data.
 
 
 ##### Returns
 
-`DATA`, 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available.
+- 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available.
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_sendRawTransaction
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_sendrawtransaction
 
 ***
 
@@ -493,18 +514,18 @@ Executes a new message call immediately without creating a transaction on the bl
 
 ##### Parameters
 
-1. `Object` - The transaction call object
-  - `from`: `DATA`, 20 Bytes - (optional) The address the transaction is sent from.
-  - `to`: `DATA`, 20 Bytes  - The address the transaction is directed to.
-  - `gas`: `QUANTITY`  - (optional) Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions.
-  - `gasPrice`: `QUANTITY`  - (optional) Integer of the gasPrice used for each paid gas.
-  - `value`: `QUANTITY`  - (optional) Integer of the value send with this transaction.
-  - `data`: `DATA`  - (optional) Hash of the method signature and encoded parameters.
-2. `QUANTITY|TAG` - integer block number, or the string `"latest"`, `"earliest"` or `"pending"`.
+1. `json` - The transaction call object
+  - `from`: 20 Bytes - (optional) The address the transaction is sent from.
+  - `to`: 20 Bytes  - The address the transaction is directed to.
+  - `gas`: (optional) Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions.
+  - `gasPrice`: (optional) Integer of the gasPrice used for each paid gas.
+  - `value`: (optional) Integer of the value send with this transaction.
+  - `data`: (optional) Hash of the method signature and encoded parameters.
+2. `string` - integer block number, or the string `"latest"`, `"earliest"` or `"pending"`.
 
 ##### Returns
 
-`DATA` - the return value of executed contract.
+- the return value of executed contract.
 
 ##### Related Ethereum Documentation
 
@@ -522,11 +543,11 @@ In [eth_call](#eth_call), all the optional parameters are expected.
 
 ##### Returns
 
-`QUANTITY` - the amount of gas used.
+- the amount of gas used.
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_estimateGas
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_estimategas
 
 ***
 
@@ -537,38 +558,38 @@ Returns information about a block by hash.
 
 ##### Parameters
 
-1. `DATA`, 32 Bytes - Hash of a block.
-2. `Boolean` - If `true` it returns the full transaction objects, if `false` only the hashes of the transactions.
+1. `string`, 32 Bytes - Hash of a block.
+2. `boolean` - If `true` it returns the full transaction objects, if `false` only the hashes of the transactions.
 
 
 ##### Returns
 
-`Object` - A block object, or `null` when no block was found:
+`json` - A block object, or `null` when no block was found:
 
-  - `number`: `QUANTITY` - the block number. `null` when its pending block.
-  - `hash`: `DATA`, 32 Bytes - hash of the block. `null` when its pending block.
-  - `parentHash`: `DATA`, 32 Bytes - hash of the parent block.
-  - `nonce`: `DATA`, 8 Bytes - hash of the generated proof-of-work. `null` when its pending block.
-  - `sha3Uncles`: `DATA`, 32 Bytes - SHA3 of the uncles data in the block.
-  - `logsBloom`: `DATA`, 256 Bytes - the bloom filter for the logs of the block. `null` when its pending block.
-  - `transactionsRoot`: `DATA`, 32 Bytes - the root of the transaction trie of the block.
-  - `stateRoot`: `DATA`, 32 Bytes - the root of the final state trie of the block.
-  - `receiptsRoot`: `DATA`, 32 Bytes - the root of the receipts trie of the block.
-  - `miner`: `DATA`, 20 Bytes - the address of the beneficiary to whom the mining rewards were given.
-  - `difficulty`: `QUANTITY` - integer of the difficulty for this block.
-  - `totalDifficulty`: `QUANTITY` - integer of the total difficulty of the chain until this block.
-  - `extraData`: `DATA` - the "extra data" field of this block.
-  - `size`: `QUANTITY` - integer the size of this block in bytes.
-  - `gasLimit`: `QUANTITY` - the maximum gas allowed in this block.
-  - `gasUsed`: `QUANTITY` - the total used gas by all transactions in this block.
-  - `timestamp`: `QUANTITY` - the unix timestamp for when the block was collated.
-  - `transactions`: `Array` - Array of transaction objects, or 32 Bytes transaction hashes depending on the last given parameter.
-  - `uncles`: `Array` - Array of uncle hashes.
+  - `number`: the block number. `null` when its pending block.
+  - `hash`: 32 Bytes - hash of the block. `null` when its pending block.
+  - `parentHash`: 32 Bytes - hash of the parent block.
+  - `nonce`: 8 Bytes - hash of the generated proof-of-work. `null` when its pending block.
+  - `sha3Uncles`: 32 Bytes - SHA3 of the uncles data in the block.
+  - `logsBloom`: 256 Bytes - the bloom filter for the logs of the block. `null` when its pending block.
+  - `transactionsRoot`: 32 Bytes - the root of the transaction trie of the block.
+  - `stateRoot`: 32 Bytes - the root of the final state trie of the block.
+  - `receiptsRoot`: 32 Bytes - the root of the receipts trie of the block.
+  - `miner`: 20 Bytes - the address of the beneficiary to whom the mining rewards were given.
+  - `difficulty`: integer of the difficulty for this block.
+  - `totalDifficulty`: integer of the total difficulty of the chain until this block.
+  - `extraData`: the "extra data" field of this block.
+  - `size`: integer the size of this block in bytes.
+  - `gasLimit`: the maximum gas allowed in this block.
+  - `gasUsed`: the total used gas by all transactions in this block.
+  - `timestamp`: the unix timestamp for when the block was collated.
+  - `transactions`: Array of transaction objects, or 32 Bytes transaction hashes depending on the last given parameter.
+  - `uncles`: Array of uncle hashes.
 
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getBlockByHash
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getblockbyhash
 
 ***
 
@@ -578,8 +599,8 @@ Returns information about a block by block number.
 
 ##### Parameters
 
-1. `QUANTITY|TAG` - integer of a block number, or the string `"earliest"`, `"latest"` or `"pending"`.
-2. `Boolean` - If `true` it returns the full transaction objects, if `false` only the hashes of the transactions.
+1. `string` - integer of a block number, or the string `"earliest"`, `"latest"` or `"pending"`.
+2. `string` - If `true` it returns the full transaction objects, if `false` only the hashes of the transactions.
 
 
 ##### Returns
@@ -588,7 +609,7 @@ See [eth_getBlockByHash](#eth_getblockbyhash)
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getBlockByNumber
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getblockbynumber
 
 ***
 
@@ -599,28 +620,28 @@ Returns the information about a transaction requested by transaction hash.
 
 ##### Parameters
 
-1. `DATA`, 32 Bytes - hash of a transaction
+1. `string`, 32 Bytes - hash of a transaction
 
 
 ##### Returns
 
-`Object` - A transaction object, or `null` when no transaction was found:
+`json` - A transaction object, or `null` when no transaction was found:
 
-  - `hash`: `DATA`, 32 Bytes - hash of the transaction.
-  - `nonce`: `QUANTITY` - the number of transactions made by the sender prior to this one.
-  - `blockHash`: `DATA`, 32 Bytes - hash of the block where this transaction was in. `null` when its pending.
-  - `blockNumber`: `QUANTITY` - block number where this transaction was in. `null` when its pending.
-  - `transactionIndex`: `QUANTITY` - integer of the transactions index position in the block. `null` when its pending.
-  - `from`: `DATA`, 20 Bytes - address of the sender.
-  - `to`: `DATA`, 20 Bytes - address of the receiver. `null` when its a contract creation transaction.
-  - `value`: `QUANTITY` - value transferred in Wei.
-  - `gasPrice`: `QUANTITY` - gas price provided by the sender in Wei.
-  - `gas`: `QUANTITY` - gas provided by the sender.
-  - `input`: `DATA` - the data send along with the transaction.
+  - `hash`: 32 Bytes - hash of the transaction.
+  - `nonce`: the number of transactions made by the sender prior to this one.
+  - `blockHash`: 32 Bytes - hash of the block where this transaction was in. `null` when its pending.
+  - `blockNumber`: block number where this transaction was in. `null` when its pending.
+  - `transactionIndex`: integer of the transactions index position in the block. `null` when its pending.
+  - `from`: 20 Bytes - address of the sender.
+  - `to`: 20 Bytes - address of the receiver. `null` when its a contract creation transaction.
+  - `value`: value transferred in Wei.
+  - `gasPrice`: gas price provided by the sender in Wei.
+  - `gas`: gas provided by the sender.
+  - `input`: the data send along with the transaction.
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getTransactionByHash
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_gettransactionbyhash
 
 ***
 
@@ -631,8 +652,8 @@ Returns information about a transaction by block hash and transaction index posi
 
 ##### Parameters
 
-1. `DATA`, 32 Bytes - hash of a block.
-2. `QUANTITY` - integer of the transaction index position.
+1. `string`, 32 Bytes - hash of a block.
+2. `string` - integer of the transaction index position.
 
 ##### Returns
 
@@ -640,7 +661,7 @@ See [eth_getBlockByHash](#eth_gettransactionbyhash)
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getTransactionByBlockHashAndIndex
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_gettransactionbyblockhashandindex
 
 ***
 
@@ -651,8 +672,8 @@ Returns information about a transaction by block number and transaction index po
 
 ##### Parameters
 
-1. `QUANTITY|TAG` - a block number, or the string `"earliest"`, `"latest"` or `"pending"`, as in the [default block parameter](#the-default-block-parameter).
-2. `QUANTITY` - the transaction index position.
+1. `string` - a block number, or the string `"earliest"`, `"latest"` or `"pending"`.
+2. `string` - the transaction index position.
 
 
 ##### Returns
@@ -661,7 +682,7 @@ See [eth_gettransactionbyhash](#eth_gettransactionbyhash)
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getTransactionByBlockNumberAndIndex
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_gettransactionbyblocknumberandindex
 
 ***
 
@@ -674,31 +695,31 @@ Returns the receipt of a transaction by transaction hash.
 
 ##### Parameters
 
-1. `DATA`, 32 Bytes - hash of a transaction
+1. `string`, 32 Bytes - hash of a transaction
 
 ##### Returns
 
-`Object` - A transaction receipt object, or `null` when no receipt was found:
+`json` - A transaction receipt object, or `null` when no receipt was found:
 
-  - `transactionHash `: `DATA`, 32 Bytes - hash of the transaction.
-  - `transactionIndex`: `QUANTITY` - integer of the transactions index position in the block.
-  - `blockHash`: `DATA`, 32 Bytes - hash of the block where this transaction was in.
-  - `blockNumber`: `QUANTITY` - block number where this transaction was in.
-  - `cumulativeGasUsed `: `QUANTITY ` - The total amount of gas used when this transaction was executed in the block.
-  - `gasUsed `: `QUANTITY ` - The amount of gas used by this specific transaction alone.
-  - `contractAddress `: `DATA`, 20 Bytes - The contract address created, if the transaction was a contract creation, otherwise `null`.
-  - `logs`: `Array` - Array of log objects, which this transaction generated.
-  - `logsBloom`: `DATA`, 256 Bytes - Bloom filter for light clients to quickly retrieve related logs.
+  - `transactionHash `: 32 Bytes - hash of the transaction.
+  - `transactionIndex`: integer of the transactions index position in the block.
+  - `blockHash`: 32 Bytes - hash of the block where this transaction was in.
+  - `blockNumber`: block number where this transaction was in.
+  - `cumulativeGasUsed `: The total amount of gas used when this transaction was executed in the block.
+  - `gasUsed `: The amount of gas used by this specific transaction alone.
+  - `contractAddress `: 20 Bytes - The contract address created, if the transaction was a contract creation, otherwise `null`.
+  - `logs`: Array of log objects, which this transaction generated.
+  - `logsBloom`: 256 Bytes - Bloom filter for light clients to quickly retrieve related logs.
   
 It also returns _either_ :
 
-  - `root` : `DATA` 32 bytes of post-transaction stateroot (pre Byzantium)
-  - `status`: `QUANTITY` either `1` (success) or `0` (failure) 
+  - `root` : 32 bytes of post-transaction stateroot (pre Byzantium)
+  - `status`: either `1` (success) or `0` (failure) 
 
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getTransactionReceipt
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_gettransactionreceipt
 
 ***
 
@@ -710,8 +731,8 @@ Returns information about a uncle of a block by hash and uncle index position.
 ##### Parameters
 
 
-1. `DATA`, 32 Bytes - hash a block.
-2. `QUANTITY` - the uncle's index position.
+1. `string`, 32 Bytes - hash a block.
+2. `string` - the uncle's index position.
 
 
 ##### Returns
@@ -720,7 +741,7 @@ See [eth_getBlockByHash](#eth_getblockbyhash)
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getUncleByBlockHashAndIndex
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getunclebyblockhashandindex
 
 ***
 
@@ -731,8 +752,8 @@ Returns information about a uncle of a block by number and uncle index position.
 
 ##### Parameters
 
-1. `QUANTITY|TAG` - a block number, or the string `"earliest"`, `"latest"` or `"pending"`.
-2. `QUANTITY` - the uncle's index position.
+1. `string` - a block number, or the string `"earliest"`, `"latest"` or `"pending"`.
+2. `string` - the uncle's index position.
 
 ##### Returns
 
@@ -742,7 +763,7 @@ See [eth_getBlockByHash](#eth_getblockbyhash)
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getUncleByBlockNumberAndIndex
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getunclebyblocknumberandindex
 
 ***
 
@@ -755,11 +776,11 @@ none
 
 ##### Returns
 
-`Array` - Array of available compilers.
+- Array of available compilers.
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getCompilers
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getcompilers
 
 ***
 
@@ -769,11 +790,11 @@ Returns compiled solidity code.
 
 ##### Parameters
 
-1. `String` - The source code.
+1. `string` - The source code.
 
 ##### Returns
 
-`DATA` - The compiled source code.
+- The compiled source code.
 
 ##### Related Ethereum Documentation
 
@@ -787,11 +808,11 @@ Returns compiled LLL code.
 
 ##### Parameters
 
-1. `String` - The source code.
+1. `string` - The source code.
 
 ##### Returns
 
-`DATA` - The compiled source code.
+- The compiled source code.
 
 ##### Related Ethereum Documentation
 
@@ -805,15 +826,15 @@ Returns compiled serpent code.
 
 ##### Parameters
 
-1. `String` - The source code.
+1. `string` - The source code.
 
 ##### Returns
 
-`DATA` - The compiled source code.
+- The compiled source code.
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_compileSerpent
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_compileserpent
 
 ***
 
@@ -823,19 +844,19 @@ Creates a filter object, based on filter options, to notify when the state chang
 
 ##### Parameters
 
-1. `Object` - The filter options:
-  - `fromBlock`: `QUANTITY|TAG` - (optional, default: `"latest"`) Integer block number, or `"latest"` for the last mined block or `"pending"`, `"earliest"` for not yet mined transactions.
-  - `toBlock`: `QUANTITY|TAG` - (optional, default: `"latest"`) Integer block number, or `"latest"` for the last mined block or `"pending"`, `"earliest"` for not yet mined transactions.
-  - `address`: `DATA|Array`, 20 Bytes - (optional) Contract address or a list of addresses from which logs should originate.
-  - `topics`: `Array of DATA`,  - (optional) Array of 32 Bytes `DATA` topics. Topics are order-dependent. Each topic can also be an array of DATA with "or" options.
+1. `json` - The filter options:
+  - `fromBlock`: (optional, default: `"latest"`) Integer block number, or `"latest"` for the last mined block or `"pending"`, `"earliest"` for not yet mined transactions.
+  - `toBlock`: (optional, default: `"latest"`) Integer block number, or `"latest"` for the last mined block or `"pending"`, `"earliest"` for not yet mined transactions.
+  - `address`: 20 Bytes - (optional) Contract address or a list of addresses from which logs should originate.
+  - `topics`: (optional) Array of 32 Bytes `DATA` topics. Topics are order-dependent. Each topic can also be an array of DATA with "or" options.
 
 ##### Returns
 
-`QUANTITY` - A filter id.
+- A filter id.
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_newFilter
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_newfilter
 
 ***
 
@@ -849,11 +870,11 @@ None
 
 ##### Returns
 
-`QUANTITY` - A filter id.
+- A filter id.
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_newBlockFilter
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_newblockfilter
 
 ***
 
@@ -866,11 +887,11 @@ None
 
 ##### Returns
 
-`QUANTITY` - A filter id.
+- A filter id.
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_newPendingTransactionFilter
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_newpendingtransactionfilter
 ***
 
 #### eth_uninstallFilter
@@ -880,15 +901,15 @@ Uninstalls a filter with given id.
 
 ##### Parameters
 
-1. `QUANTITY` - The filter id.
+1. `string` - The filter id.
 
 ##### Returns
 
-`Boolean` - `true` if the filter was successfully uninstalled, otherwise `false`.
+- `true` if the filter was successfully uninstalled, otherwise `false`.
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_uninstallFilter
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_uninstallfilter
 
 ***
 
@@ -899,29 +920,29 @@ Polling method for a filter, which returns an array of logs which occurred since
 
 ##### Parameters
 
-1. `QUANTITY` - the filter id.
+1. `string` - the filter id.
 
 ##### Returns
 
-`Array` - Array of log objects, or an empty array if nothing has changed since last poll.
+`json` - Array of log objects, or an empty array if nothing has changed since last poll.
 
-- For filters created with `eth_newBlockFilter` the return are block hashes (`DATA`, 32 Bytes), e.g. `["0x3454645634534..."]`.
-- For filters created with `eth_newPendingTransactionFilter ` the return are transaction hashes (`DATA`, 32 Bytes), e.g. `["0x6345343454645..."]`.
+- For filters created with `eth_newBlockFilter` the return are block hashes (`string`, 32 Bytes), e.g. `["0x3454645634534..."]`.
+- For filters created with `eth_newPendingTransactionFilter ` the return are transaction hashes (`string`, 32 Bytes), e.g. `["0x6345343454645..."]`.
 - For filters created with `eth_newFilter` logs are objects with following params:
 
-  - `removed`: `TAG` - `true` when the log was removed, due to a chain reorganization. `false` if its a valid log.
-  - `logIndex`: `QUANTITY` - integer of the log index position in the block. `null` when its pending log.
-  - `transactionIndex`: `QUANTITY` - integer of the transactions index position log was created from. `null` when its pending log.
-  - `transactionHash`: `DATA`, 32 Bytes - hash of the transactions this log was created from. `null` when its pending log.
-  - `blockHash`: `DATA`, 32 Bytes - hash of the block where this log was in. `null` when its pending. `null` when its pending log.
-  - `blockNumber`: `QUANTITY` - the block number where this log was in. `null` when its pending. `null` when its pending log.
-  - `address`: `DATA`, 20 Bytes - address from which this log originated.
-  - `data`: `DATA` - contains one or more 32 Bytes non-indexed arguments of the log.
-  - `topics`: `Array of DATA` - Array of 0 to 4 32 Bytes `DATA` of indexed log arguments. (In *solidity*: The first topic is the *hash* of the signature of the event (e.g. `Deposit(address,bytes32,uint256)`), except you declared the event with the `anonymous` specifier.)
+  - `removed`: `true` when the log was removed, due to a chain reorganization. `false` if its a valid log.
+  - `logIndex`: integer of the log index position in the block. `null` when its pending log.
+  - `transactionIndex`: integer of the transactions index position log was created from. `null` when its pending log.
+  - `transactionHash`: 32 Bytes - hash of the transactions this log was created from. `null` when its pending log.
+  - `blockHash`: 32 Bytes - hash of the block where this log was in. `null` when its pending. `null` when its pending log.
+  - `blockNumber`: the block number where this log was in. `null` when its pending. `null` when its pending log.
+  - `address`: 20 Bytes - address from which this log originated.
+  - `data`: contains one or more 32 Bytes non-indexed arguments of the log.
+  - `topics`: `Array of string` - Array of 0 to 4, 32 Bytes `string` of indexed log arguments.
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getFilterChanges
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getFilterchanges
 
 ***
 
@@ -932,7 +953,7 @@ Returns an array of all logs matching filter with given id.
 
 ##### Parameters
 
-1. `QUANTITY` - The filter id.
+1. `string` - The filter id.
 
 ##### Returns
 
@@ -940,7 +961,7 @@ See [eth_getFilterChanges](#eth_getfilterchanges)
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getFilterLogs
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getfilterlogs
 
 ***
 
@@ -950,7 +971,7 @@ Returns an array of all logs matching a given filter object.
 
 ##### Parameters
 
-1. `Object` - the filter object, see [eth_newFilter parameters](#eth_newfilter).
+1. `json` - the filter object, see [eth_newFilter parameters](#eth_newfilter).
 
 ##### Returns
 
@@ -958,7 +979,7 @@ See [eth_getFilterChanges](#eth_getfilterchanges)
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getLogs#eth_getLogs
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getLogs#eth_getlogs
 
 ***
 
@@ -971,14 +992,14 @@ none
 
 ##### Returns
 
-`Array` - Array with the following properties:
-  1. `DATA`, 32 Bytes - current block header pow-hash
-  2. `DATA`, 32 Bytes - the seed hash used for the DAG.
-  3. `DATA`, 32 Bytes - the boundary condition ("target"), 2^256 / difficulty.
+`json` - Array with the following properties:
+  1. `string`, 32 Bytes - current block header pow-hash
+  2. `string`, 32 Bytes - the seed hash used for the DAG.
+  3. `string`, 32 Bytes - the boundary condition ("target"), 2^256 / difficulty.
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getWork
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getwork
 
 ***
 
@@ -989,18 +1010,18 @@ Used for submitting a proof-of-work solution.
 
 ##### Parameters
 
-1. `DATA`, 8 Bytes - The nonce found (64 bits)
-2. `DATA`, 32 Bytes - The header's pow-hash (256 bits)
-3. `DATA`, 32 Bytes - The mix digest (256 bits)
+1. `string`, 8 Bytes - The nonce found (64 bits)
+2. `string`, 32 Bytes - The header's pow-hash (256 bits)
+3. `string`, 32 Bytes - The mix digest (256 bits)
 
 ##### Returns
 
-`Boolean` - returns `true` if the provided solution is valid, otherwise `false`.
+- returns `true` if the provided solution is valid, otherwise `false`.
 
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_submitWork
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_submitwork
 
 ***
 
@@ -1011,17 +1032,17 @@ Used for submitting mining hashrate.
 
 ##### Parameters
 
-1. `Hashrate`, a hexadecimal string representation (32 bytes) of the hash rate 
-2. `ID`, String - A random hexadecimal(32 bytes) ID identifying the client
+1. `string` - a hexadecimal string representation (32 bytes) of the hash rate 
+2. `string` - A random hexadecimal(32 bytes) ID identifying the client
 
 ##### Returns
 
-`Boolean` - returns `true` if submitting went through succesfully and `false` otherwise.
+- returns `true` if submitting went through succesfully and `false` otherwise.
 
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_submitHashrate
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_submithashrate
 
 
 ***
@@ -1035,7 +1056,7 @@ none
 
 ##### Returns
 
-`String` - The current whisper protocol version
+`string` - The current whisper protocol version
 
 ##### Related Ethereum Documentation
 
@@ -1049,18 +1070,18 @@ Sends a whisper message.
 
 ##### Parameters
 
-1. `Object` - The whisper post object:
-  - `from`: `DATA`, 60 Bytes - (optional) The identity of the sender.
-  - `to`: `DATA`, 60 Bytes - (optional) The identity of the receiver. When present whisper will encrypt the message so that only the receiver can decrypt it.
-  - `topics`: `Array of DATA` - Array of `DATA` topics, for the receiver to identify messages.
-  - `payload`: `DATA` - The payload of the message.
-  - `priority`: `QUANTITY` - The integer of the priority in a rang from ... .
-  - `ttl`: `QUANTITY` - integer of the time to live in seconds.
+1. `json` - The whisper post object:
+  - `from`: 60 Bytes - (optional) The identity of the sender.
+  - `to`: 60 Bytes - (optional) The identity of the receiver. When present whisper will encrypt the message so that only the receiver can decrypt it.
+  - `topics`: Array of `string` topics, for the receiver to identify messages.
+  - `payload`: The payload of the message.
+  - `priority`: The integer of the priority in a rang from ... .
+  - `ttl`: integer of the time to live in seconds.
 
 
 ##### Returns
 
-`Boolean` - returns `true` if the message was send, otherwise `false`.
+- returns `true` if the message was send, otherwise `false`.
 
 
 ##### Related Ethereum Documentation
@@ -1078,11 +1099,11 @@ none
 
 ##### Returns
 
-`DATA`, 60 Bytes - the address of the new identiy.
+- 60 Bytes - the address of the new identiy.
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#shh_newIdentity
+https://github.com/ethereum/wiki/wiki/JSON-RPC#shh_newidentity
 
 ***
 
@@ -1093,16 +1114,16 @@ Checks if the client hold the private keys for a given identity.
 
 ##### Parameters
 
-1. `DATA`, 60 Bytes - The identity address to check.
+1. `string`, 60 Bytes - The identity address to check.
 
 ##### Returns
 
-`Boolean` - returns `true` if the client holds the privatekey for that identity, otherwise `false`.
+- returns `true` if the client holds the privatekey for that identity, otherwise `false`.
 
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#shh_hasIdentity
+https://github.com/ethereum/wiki/wiki/JSON-RPC#shh_hasidentity
 
 ***
 
@@ -1115,11 +1136,11 @@ none
 
 ##### Returns
 
-`DATA`, 60 Bytes - the address of the new group.
+- 60 Bytes - the address of the new group.
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#shh_newGroup
+https://github.com/ethereum/wiki/wiki/JSON-RPC#shh_newgroup
 
 ***
 
@@ -1129,15 +1150,15 @@ Adds identities to a group
 
 ##### Parameters
 
-1. `DATA`, 60 Bytes - The identity address to add to a group.
+1. `string`, 60 Bytes - The identity address to add to a group.
 
 ##### Returns
 
-`Boolean` - returns `true` if the identity was successfully added to the group, otherwise `false`.
+- returns `true` if the identity was successfully added to the group, otherwise `false`.
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#shh_addToGroup
+https://github.com/ethereum/wiki/wiki/JSON-RPC#shh_addtogroup
 
 ***
 
@@ -1148,20 +1169,20 @@ Creates filter to notify, when client receives whisper message matching the filt
 
 ##### Parameters
 
-1. `Object` - The filter options:
-  - `to`: `DATA`, 60 Bytes - (optional) Identity of the receiver. *When present it will try to decrypt any incoming message if the client holds the private key to this identity.*
-  - `topics`: `Array of DATA` - Array of `DATA` topics which the incoming message's topics should match.  You can use the following combinations:
+1. `json` - The filter options:
+  - `to`: 60 Bytes - (optional) Identity of the receiver. 
+  - `topics`: Array of `string` topics which the incoming message's topics should match.  You can use the following combinations:
     - `[A, B] = A && B`
     - `[A, [B, C]] = A && (B || C)`
     - `[null, A, B] = ANYTHING && A && B` `null` works as a wildcard
 
 ##### Returns
 
-`QUANTITY` - The newly created filter.
+- The newly created filter.
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#
+https://github.com/ethereum/wiki/wiki/JSON-RPC#shh_newfilter
 
 ***
 
@@ -1172,16 +1193,16 @@ Uninstalls a filter with given id.
 
 ##### Parameters
 
-1. `QUANTITY` - The filter id.
+1. `string` - The filter id.
 
 
 ##### Returns
 
-`Boolean` - `true` if the filter was successfully uninstalled, otherwise `false`.
+- `true` if the filter was successfully uninstalled, otherwise `false`.
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#shh_uninstallFilter
+https://github.com/ethereum/wiki/wiki/JSON-RPC#shh_uninstallfilter
 
 ***
 
@@ -1192,26 +1213,26 @@ Polling method for whisper filters. Returns new messages since the last call of 
 
 ##### Parameters
 
-1. `QUANTITY` - The filter id.
+1. `string` - The filter id.
 
 
 ##### Returns
 
-`Array` - Array of messages received since last poll:
+`json` - Array of messages received since last poll:
 
-  - `hash`: `DATA`, 32 Bytes - The hash of the message.
-  - `from`: `DATA`, 60 Bytes - The sender of the message, if a sender was specified.
-  - `to`: `DATA`, 60 Bytes - The receiver of the message, if a receiver was specified.
-  - `expiry`: `QUANTITY` - Integer of the time in seconds when this message should expire.
-  - `ttl`: `QUANTITY` -  Integer of the time the message should float in the system in seconds.
-  - `sent`: `QUANTITY` -  Integer of the unix timestamp when the message was sent.
-  - `topics`: `Array of DATA` - Array of `DATA` topics the message contained.
-  - `payload`: `DATA` - The payload of the message.
-  - `workProved`: `QUANTITY` - Integer of the work this message required before it was send.
+  - `hash`: 32 Bytes - The hash of the message.
+  - `from`: 60 Bytes - The sender of the message, if a sender was specified.
+  - `to`: 60 Bytes - The receiver of the message, if a receiver was specified.
+  - `expiry`: Integer of the time in seconds when this message should expire.
+  - `ttl`: Integer of the time the message should float in the system in seconds.
+  - `sent`: Integer of the unix timestamp when the message was sent.
+  - `topics`: Array of `string` topics the message contained.
+  - `payload`: The payload of the message.
+  - `workProved`: Integer of the work this message required before it was send.
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#shh_getFilterChanges
+https://github.com/ethereum/wiki/wiki/JSON-RPC#shh_getfilterchanges
 
 ***
 
@@ -1221,7 +1242,7 @@ Get all messages matching a filter. Unlike `shh_getFilterChanges` this returns a
 
 ##### Parameters
 
-1. `QUANTITY` - The filter id.
+1. `string` - The filter id.
 
 ##### Returns
 
@@ -1229,7 +1250,7 @@ See [shh_getFilterChanges](#shh_getfilterchanges)
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#shh_getMessages
+https://github.com/ethereum/wiki/wiki/JSON-RPC#shh_getmessages
 
 ***
 
@@ -1245,6 +1266,7 @@ The Ethereum connector supports unimplemented RPC API functions via `remoteProce
     println(e);
   }
   ```
+  
 ## Running samples
 
 - Copy `connector-ethereum/component/samples/ethereum/sample.bal` file and paste it into `<ballerina-tools>/bin` folder.

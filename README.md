@@ -60,7 +60,7 @@ Geth/hostname/v1.7.3-stable-4bb3c89d/linux-amd64/go1.9
 
 ## Working with Ethereum connector actions
 
-### Generic Function
+### Generic Action
 
 The Ethereum connector supports unimplemented RPC API functions via `remoteProcedureCall()`.
 ```java

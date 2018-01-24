@@ -132,6 +132,17 @@ public connector ClientConnector (string URI) {
         return response, e;
     }
 
+    @Description{ value : "Returns the current ethereum protocol version."}
+    @Param { value : "jsonRPCVersion : JSON RPC version"}
+    @Param { value : "id : Network id"}
+    @Return{ value : "Response object."}
+    @Return{ value : "Error occured during HTTP client invocation." }
+    action ethProtocolVersion(string jsonRPCVersion, int id) (http:Response, http:HttpConnectorError) {
+        http:Response response = {};
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethProtocolVersionMethod, emptyParams));
+        return response, e;
+    }
+
     @Description{ value : "Returns an object with data about the sync status or false."}
     @Param { value : "jsonRPCVersion : JSON RPC version"}
     @Param { value : "id : Network id"}
@@ -832,7 +843,6 @@ public connector ClientConnector (string URI) {
         response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, method, params));
         return response, e;
     }
-
 }
 
 function constructRequest(string jsonRPCVersion, int id, string method, json params)(http:Request){

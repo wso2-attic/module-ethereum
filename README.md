@@ -2109,7 +2109,7 @@ See [ethGetFilterChanges](#ethgetfilterchanges)
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getLogs#eth_getlogs
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getLogs
 
 ***
 

@@ -343,7 +343,7 @@ Returns an object with data about the sync status or `false`.
 
 - An object with sync status data or `FALSE`, when not syncing:
   - `startingBlock`: The block at which the import started (will only be reset, after the sync reached his head)
-  - `currentBlock`: The current block, same as eth_blockNumber
+  - `currentBlock`: The current block, same as ethBlockNumber
   - `highestBlock`: The estimated highest block
 
 ##### Example
@@ -1464,7 +1464,7 @@ Returns information about a transaction by block hash and transaction index posi
 
 ##### Returns
 
-See [eth_getBlockByHash](#eth_gettransactionbyhash)
+See [ethGetBlockByHash](#ethgettransactionbyhash)
 
 ##### Related Ethereum Documentation
 
@@ -1487,7 +1487,7 @@ Returns information about a transaction by block number and transaction index po
 
 ##### Returns
 
-See [eth_gettransactionbyhash](#eth_gettransactionbyhash)
+See [ethGettransactionbyhash](#ethgettransactionbyhash)
 
 ##### Related Ethereum Documentation
 
@@ -1587,7 +1587,7 @@ Returns information about a uncle of a block by hash and uncle index position.
 
 ##### Returns
 
-See [eth_getBlockByHash](#eth_getblockbyhash)
+See [ethGetBlockByHash](#ethgetblockbyhash)
 
 ##### Related Ethereum Documentation
 
@@ -1609,7 +1609,7 @@ Returns information about a uncle of a block by number and uncle index position.
 
 ##### Returns
 
-See [eth_getBlockByHash](#eth_getblockbyhash)
+See [ethGetBlockByHash](#ethgetblockbyhash)
 
 **Note**: An uncle doesn't contain individual transactions.
 
@@ -1880,7 +1880,7 @@ https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_newfilter
 #### ethNewBlockFilter
 
 Creates a filter in the node, to notify when a new block arrives.
-To check if the state has changed, call [eth_getFilterChanges](#eth_getfilterchanges).
+To check if the state has changed, call [ethGetFilterChanges](#ethgetfilterchanges).
 
 ##### Parameters
 1. `string` - JSON RPC version
@@ -2018,9 +2018,9 @@ Polling method for a filter, which returns an array of logs which occurred since
 
 `json` - Array of log objects, or an empty array if nothing has changed since last poll.
 
-- For filters created with `eth_newBlockFilter` the return are block hashes (`string`, 32 Bytes), e.g. `["0x3454645634534..."]`.
-- For filters created with `eth_newPendingTransactionFilter ` the return are transaction hashes (`string`, 32 Bytes), e.g. `["0x6345343454645..."]`.
-- For filters created with `eth_newFilter` logs are objects with following params:
+- For filters created with `ethNewBlockFilter` the return are block hashes (`string`, 32 Bytes), e.g. `["0x3454645634534..."]`.
+- For filters created with `ethNewPendingTransactionFilter ` the return are transaction hashes (`string`, 32 Bytes), e.g. `["0x6345343454645..."]`.
+- For filters created with `ethNewFilter` logs are objects with following params:
 
   - `removed`: `true` when the log was removed, due to a chain reorganization. `false` if its a valid log.
   - `logIndex`: integer of the log index position in the block. `null` when its pending log.
@@ -2085,7 +2085,7 @@ Returns an array of all logs matching filter with given id.
 
 ##### Returns
 
-See [eth_getFilterChanges](#eth_getfilterchanges)
+See [ethGetFilterChanges](#ethgetfilterchanges)
 
 ##### Related Ethereum Documentation
 
@@ -2105,7 +2105,7 @@ Returns an array of all logs matching a given filter object.
 
 ##### Returns
 
-See [eth_getFilterChanges](#eth_getfilterchanges)
+See [ethGetFilterChanges](#ethgetfilterchanges)
 
 ##### Related Ethereum Documentation
 
@@ -2455,7 +2455,7 @@ https://github.com/ethereum/wiki/wiki/JSON-RPC#shh_getfilterchanges
 
 #### shhGetMessages
 
-Get all messages matching a filter. Unlike `shh_getFilterChanges` this returns all messages.
+Get all messages matching a filter. Unlike `shhGetFilterChanges` this returns all messages.
 
 ##### Parameters
 
@@ -2465,7 +2465,7 @@ Get all messages matching a filter. Unlike `shh_getFilterChanges` this returns a
 
 ##### Returns
 
-See [shh_getFilterChanges](#shh_getfilterchanges)
+See [shhGetFilterChanges](#shhgetfilterchanges)
 
 ##### Related Ethereum Documentation
 

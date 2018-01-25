@@ -1,5 +1,7 @@
 # Ballerina Ethereum Connector
 
+*Ethereum is a decentralized platform for applications that run exactly as programmed without any chance of fraud, censorship or third-party interference* (https://www.ethereum.org/).
+
 The Ethereum connector allows you to access the Ethereum JSON RPC API through ballerina. And the Ethereum connector actions are being invoked with a ballerina main function. The following section provide you the details on how to use Ballerina Ethereum connector.
 
 ## Getting started
@@ -103,8 +105,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
@@ -148,8 +148,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
@@ -196,8 +194,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
@@ -207,7 +203,7 @@ if (e == null) {
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#net_version#net_version
+https://github.com/ethereum/wiki/wiki/JSON-RPC#net_version
 
 ***
 
@@ -239,8 +235,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
@@ -282,8 +276,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
@@ -325,12 +317,10 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
-  "result": "0x3f" //54
+  "result": "0x3f"
 }
 ```
 
@@ -372,18 +362,17 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc": "2.0",
   "result": {
-    startingBlock: '0x384',
-    currentBlock: '0x386',
-    highestBlock: '0x454'
+    "startingBlock": "0x384",
+    "currentBlock": "0x386",
+    "highestBlock": "0x454"
   }
 }
-// Or when not syncing
+```
+```json
 {
   "id":1999,
   "jsonrpc": "2.0",
@@ -426,8 +415,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
@@ -469,12 +456,10 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
-  "result": false  // or true
+  "result": false 
 }
 ```
 
@@ -512,8 +497,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
@@ -555,8 +538,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
@@ -599,8 +580,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
@@ -642,12 +621,10 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
-  "result": "0x58a" //1418
+  "result": "0x58a"
 }
 ```
 
@@ -689,8 +666,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
@@ -737,8 +712,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
@@ -784,8 +757,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
@@ -831,8 +802,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
@@ -878,8 +847,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
@@ -889,7 +856,7 @@ if (e == null) {
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getBlockTransactionCountByNumber
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getblocktransactioncountbynumber
 
 ***
 
@@ -924,8 +891,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
@@ -971,8 +936,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
@@ -1019,8 +982,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
@@ -1039,11 +1000,10 @@ https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getcode
 The sign method calculates an Ethereum specific signature with.
 
 ##### Parameters
-account, message
 
 1. `string` - JSON RPC version
 2. `int` - network id
-3. `string`, 20 Bytes - address
+3. `string`, 20 Bytes - account address
 4. `string`, N Bytes - message to sign
 
 ##### Returns
@@ -1066,8 +1026,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
@@ -1125,12 +1083,10 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
-  "result": ""0x1c80b47e4a28c7c4892460c84a1f7b10aa2a33f0059f881abbcf77ef7ae2914a""
+  "result": "0x1c80b47e4a28c7c4892460c84a1f7b10aa2a33f0059f881abbcf77ef7ae2914a"
 }
 ```
 
@@ -1170,12 +1126,10 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
-  "result": ""0xe670ec64341771606e55d6b4ca35a1a6b75ee3d5145a99d05921026d1527331""
+  "result": "0xe670ec64341771606e55d6b4ca35a1a6b75ee3d5145a99d05921026d1527331"
 }
 ```
 
@@ -1229,8 +1183,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
@@ -1469,8 +1421,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
@@ -1697,8 +1647,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
@@ -1743,8 +1691,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc": "2.0",
@@ -1787,7 +1733,7 @@ if (e == null) {
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_compileSolidity
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_compilesolidity
 
 ***
 
@@ -1821,18 +1767,16 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
-  "result": ""0x603880600c6000396000f3006001600060e060020a600035048063c6888fa114601857005b6021600435602b565b8060005260206000f35b600081600702905091905056""
+  "result": "0x603880600c6000396000f3006001600060e060020a600035048063c6888fa114601857005b6021600435602b565b8060005260206000f35b600081600702905091905056"
 }
 ```
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_compileLLL
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_compilelll
 
 ***
 
@@ -1920,8 +1864,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
@@ -1964,8 +1906,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
@@ -2007,8 +1947,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
@@ -2052,8 +1990,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
@@ -2112,14 +2048,12 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
   "result": [{
     "logIndex": "0x1",
-    "blockNumber":"0x5f9"
+    "blockNumber":"0x5f9",
     "blockHash": "0x8216c5785ac562ff41e2dcfdf5785ac562ff41e2dcfdf829c5a142f1fccd7d",
     "transactionHash":  "0xdf829c5a142f1fccd7d8216c5785ac562ff41e2dcfdf5785ac562ff41e2dcf",
     "transactionIndex": "0x0",
@@ -2127,14 +2061,14 @@ if (e == null) {
     "data":"0x0000000000000000000000000000000000000000000000000000000000000000",
     "topics": ["0x59ebeb90bc63057b6515673c3ecf9438e5058bca0f92585014eced636878c9a5"]
     },{
-      ...
+      
     }]
 }
 ```
 
 ##### Related Ethereum Documentation
 
-https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getFilterchanges
+https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getfilterchanges
 
 ***
 
@@ -2209,8 +2143,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
@@ -2257,8 +2189,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",
@@ -2304,8 +2234,6 @@ if (e == null) {
 ```
 
 ```json
-//result
-
 {
   "id":1999,
   "jsonrpc":"2.0",

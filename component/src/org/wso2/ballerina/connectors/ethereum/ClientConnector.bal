@@ -432,6 +432,22 @@ public connector ClientConnector (string URI) {
         return response, e;
     }
 
+    @Description{ value : "Returns information about a transaction by block number and transaction index position."}
+    @Param { value : "jsonRPCVersion : JSON RPC version"}
+    @Param { value : "id : Network id"}
+    @Param { value : "block : integer of a block number, or the string 'latest', 'earliest' or 'pending'"}
+    @Param { value : "position : Integer of the transaction index position."}
+    @Return{ value : "Response object."}
+    @Return{ value : "Error occured during HTTP client invocation." }
+    action ethGetTransactionByBlockNumberAndIndex(string jsonRPCVersion, int id, string block, string position)
+    (http:Response, http:HttpConnectorError) {
+        http:Response response = {};
+        response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id,
+                                                            ethGetTransactionByBlockHashAndIndexMethod,
+                                                            [block, position]));
+        return response, e;
+    }
+
     @Description{ value : "Returns the receipt of a transaction by transaction hash."}
     @Param { value : "jsonRPCVersion : JSON RPC version"}
     @Param { value : "id : Network id"}

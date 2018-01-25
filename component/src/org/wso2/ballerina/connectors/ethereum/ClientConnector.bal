@@ -166,7 +166,7 @@ public connector ClientConnector (string URI) {
     @Param { value : "jsonRPCVersion : JSON RPC version"}
     @Param { value : "id : Network id"}
     @Param { value : "accountAddress : 20 Bytes - address to check for balance."}
-    @Param { value : "block : Integer block number, or the string 'latest', 'earliest' or 'pending'"}
+    @Param { value : "block : Hex value block number, or the string 'latest', 'earliest' or 'pending'"}
     @Return{ value : "Response object."}
     @Return{ value : "Error occured during HTTP client invocation." }
     action ethGetBalance(string jsonRPCVersion, int id, string address, string block)
@@ -180,8 +180,8 @@ public connector ClientConnector (string URI) {
     @Param { value : "jsonRPCVersion : JSON RPC version"}
     @Param { value : "id : Network id"}
     @Param { value : "address : 20 Bytes - address to check for balance."}
-    @Param { value : "position : Integer of the position in the storage."}
-    @Param { value : "block :  Integer block number, or the string 'latest', 'earliest' or 'pending'"}
+    @Param { value : "position : Hex value of the position in the storage."}
+    @Param { value : "block :  Hex value block number, or the string 'latest', 'earliest' or 'pending'"}
     @Return{ value : "Response object."}
     @Return{ value : "Error occured during HTTP client invocation." }
     action ethGetStorageAt(string jsonRPCVersion, int id, string address, string position, string block)
@@ -196,7 +196,7 @@ public connector ClientConnector (string URI) {
     @Param { value : "jsonRPCVersion : JSON RPC version"}
     @Param { value : "id : Network id"}
     @Param { value : "address : 20 Bytes - address to check for balance."}
-    @Param { value : "block : Integer block number, or the string 'latest', 'earliest' or 'pending'"}
+    @Param { value : "block : Hex value block number, or the string 'latest', 'earliest' or 'pending'"}
     @Return{ value : "Response object."}
     @Return{ value : "Error occured during HTTP client invocation." }
     action ethGetTransactionCount(string jsonRPCVersion, int id, string address, string block)
@@ -253,7 +253,7 @@ public connector ClientConnector (string URI) {
     @Description{ value : ""}
     @Param { value : "jsonRPCVersion : JSON RPC version"}
     @Param { value : "id : Network id"}
-    @Param { value : "block : integer of a block number, or the string 'latest', 'earliest' or 'pending'"}
+    @Param { value : "block : Hex value of a block number, or the string 'latest', 'earliest' or 'pending'"}
     @Return{ value : "Response object."}
     @Return{ value : "Error occured during HTTP client invocation." }
     action ethGetUncleCountByBlockNumber(string jsonRPCVersion, int id, string block)
@@ -268,7 +268,7 @@ public connector ClientConnector (string URI) {
     @Param { value : "jsonRPCVersion : JSON RPC version"}
     @Param { value : "id : Network id"}
     @Param { value : "address : 20 Bytes - address"}
-    @Param { value : "block : integer of a block number, or the string 'latest', 'earliest' or 'pending'"}
+    @Param { value : "block : Hex value of a block number, or the string 'latest', 'earliest' or 'pending'"}
     @Return{ value : "Response object."}
     @Return{ value : "Error occured during HTTP client invocation." }
     action ethGetCode(string jsonRPCVersion, int id, string address, string block)
@@ -298,11 +298,11 @@ public connector ClientConnector (string URI) {
     @Param { value : "transactionObject : The transaction object
         from: DATA, 20 Bytes - The address the transaction is send from.
         to: DATA, 20 Bytes - (optional when creating new contract) The address the transaction is directed to.
-        gas: QUANTITY - (optional, default: 90000) Integer of the gas provided for the transaction execution.
-        gasPrice: QUANTITY - (optional, default: To-Be-Determined) Integer of the gasPrice used for each paid gas
-        value: QUANTITY - (optional) Integer of the value send with this transaction
+        gas: QUANTITY - (optional, default: 90000) Hex value of the gas provided for the transaction execution.
+        gasPrice: QUANTITY - (optional, default: To-Be-Determined) Hex value of the gasPrice used for each paid gas
+        value: QUANTITY - (optional) Hex value of the value send with this transaction
         data: DATA - The compiled code of a contract OR the hash of the invoked method signature and encoded parameters.
-        nonce: QUANTITY - (optional) Integer of a nonce."}
+        nonce: QUANTITY - (optional) Hex value of a nonce."}
     @Return{ value : "Response object."}
     @Return{ value : "Error occured during HTTP client invocation." }
     action ethSendTransaction(string jsonRPCVersion, int id, json transactionObject)
@@ -333,12 +333,12 @@ public connector ClientConnector (string URI) {
     @Param { value : "transactionCallObject : The transaction call object
         from: DATA, 20 Bytes - (optional) The address the transaction is sent from.
         to: DATA, 20 Bytes - The address the transaction is directed to.
-        gas: QUANTITY - (optional) Integer of the gas provided for the transaction execution.
+        gas: QUANTITY - (optional) Hex value of the gas provided for the transaction execution.
             eth_call consumes zero gas, but this parameter may be needed by some executions.
-        gasPrice: QUANTITY - (optional) Integer of the gasPrice used for each paid gas
-        value: QUANTITY - (optional) Integer of the value send with this transaction
+        gasPrice: QUANTITY - (optional) Hex value of the gasPrice used for each paid gas
+        value: QUANTITY - (optional) Hex value of the value send with this transaction
         data: DATA - (optional) Hash of the method signature and encoded parameters."}
-    @Param { value : "block : integer of a block number, or the string 'latest', 'earliest' or 'pending'"}
+    @Param { value : "block : Hex value of a block number, or the string 'latest', 'earliest' or 'pending'"}
     @Return{ value : "Response object."}
     @Return{ value : "Error occured during HTTP client invocation." }
     action ethCall(string jsonRPCVersion, int id, json transactionCallObject, string block)
@@ -356,11 +356,11 @@ public connector ClientConnector (string URI) {
     @Param { value : "transactionCallObject : The transaction call object
         from: DATA, 20 Bytes - The address the transaction is sent from.
         to: DATA, 20 Bytes - The address the transaction is directed to.
-        gas: QUANTITY -  Integer of the gas provided for the transaction execution.
-        gasPrice: QUANTITY -  Integer of the gasPrice used for each paid gas
-        value: QUANTITY -  Integer of the value send with this transaction
+        gas: QUANTITY -  Hex value of the gas provided for the transaction execution.
+        gasPrice: QUANTITY -  Hex value of the gasPrice used for each paid gas
+        value: QUANTITY -  Hex value of the value send with this transaction
         data: DATA - (optional) Hash of the method signature and encoded parameters."}
-    @Param { value : "block : integer of a block number, or the string 'latest', 'earliest' or 'pending'"}
+    @Param { value : "block : Hex value of a block number, or the string 'latest', 'earliest' or 'pending'"}
     @Return{ value : "Response object."}
     @Return{ value : "Error occured during HTTP client invocation." }
     action ethEstimateGas(string jsonRPCVersion, int id, json transactionCallObject, string block)
@@ -390,7 +390,7 @@ public connector ClientConnector (string URI) {
     @Description{ value : "Returns information about a block by block number."}
     @Param { value : "jsonRPCVersion : JSON RPC version"}
     @Param { value : "id : Network id"}
-    @Param { value : "block : integer of a block number, or the string 'latest', 'earliest' or 'pending'"}
+    @Param { value : "block : Hex value of a block number, or the string 'latest', 'earliest' or 'pending'"}
     @Param { value : "fullTransaction : If true it returns the full transaction objects,
         if false only the hashes of the transactions."}
     @Return{ value : "Response object."}
@@ -420,7 +420,7 @@ public connector ClientConnector (string URI) {
     @Param { value : "jsonRPCVersion : JSON RPC version"}
     @Param { value : "id : Network id"}
     @Param { value : "hash : 32 Bytes - hash of a transaction"}
-    @Param { value : "position : Integer of the transaction index position."}
+    @Param { value : "position : Hex value of the transaction index position."}
     @Return{ value : "Response object."}
     @Return{ value : "Error occured during HTTP client invocation." }
     action ethGetTransactionByBlockHashAndIndex(string jsonRPCVersion, int id, string hash, string position)
@@ -435,8 +435,8 @@ public connector ClientConnector (string URI) {
     @Description{ value : "Returns information about a transaction by block number and transaction index position."}
     @Param { value : "jsonRPCVersion : JSON RPC version"}
     @Param { value : "id : Network id"}
-    @Param { value : "block : integer of a block number, or the string 'latest', 'earliest' or 'pending'"}
-    @Param { value : "position : Integer of the transaction index position."}
+    @Param { value : "block : Hex value of a block number, or the string 'latest', 'earliest' or 'pending'"}
+    @Param { value : "position : Hex value of the transaction index position."}
     @Return{ value : "Response object."}
     @Return{ value : "Error occured during HTTP client invocation." }
     action ethGetTransactionByBlockNumberAndIndex(string jsonRPCVersion, int id, string block, string position)
@@ -480,7 +480,7 @@ public connector ClientConnector (string URI) {
     @Description{ value : "Returns information about a uncle of a block by number and uncle index position."}
     @Param { value : "jsonRPCVersion : JSON RPC version"}
     @Param { value : "id : Network id"}
-    @Param { value : "block : integer of a block number, or the string 'latest', 'earliest' or 'pending'"}
+    @Param { value : "block : Hex value of a block number, or the string 'latest', 'earliest' or 'pending'"}
     @Param { value : "position :  The uncle's index position."}
     @Return{ value : "Response object."}
     @Return{ value : "Error occured during HTTP client invocation." }

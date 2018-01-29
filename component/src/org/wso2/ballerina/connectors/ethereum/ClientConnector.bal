@@ -360,14 +360,13 @@ public connector ClientConnector (string URI) {
         gasPrice: QUANTITY -  Hex value of the gasPrice used for each paid gas
         value: QUANTITY -  Hex value of the value send with this transaction
         data: DATA - (optional) Hash of the method signature and encoded parameters."}
-    @Param { value : "block : Hex value of a block number, or the string 'latest', 'earliest' or 'pending'"}
     @Return{ value : "Response object."}
     @Return{ value : "Error occured during HTTP client invocation." }
-    action ethEstimateGas(string jsonRPCVersion, int id, json transactionCallObject, string block)
+    action ethEstimateGas(string jsonRPCVersion, int id, json transactionCallObject)
     (http:Response, http:HttpConnectorError) {
         http:Response response = {};
         response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ethEstimateGasMethod,
-                                                            [transactionCallObject, block]));
+                                                            [transactionCallObject]));
         return response, e;
     }
 

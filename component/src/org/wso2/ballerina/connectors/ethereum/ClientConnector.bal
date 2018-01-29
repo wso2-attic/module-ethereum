@@ -442,7 +442,7 @@ public connector ClientConnector (string URI) {
     (http:Response, http:HttpConnectorError) {
         http:Response response = {};
         response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id,
-                                                            ethGetTransactionByBlockHashAndIndexMethod,
+                                                            ethGetTransactionByBlockNumberAndIndexMethod,
                                                             [block, position]));
         return response, e;
     }

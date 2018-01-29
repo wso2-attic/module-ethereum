@@ -13,7 +13,6 @@ public function main (string[] args) {
     string JSONRPCVersion = args[1]; //JSONRPC version of the ethereum node
     var networkId, networkIdError = <int> args[2]; //ntworkID: identity number in the ethereum network
 
-
     if (networkIdError == null) {
 
         http:Response response = {};

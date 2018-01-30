@@ -32,9 +32,9 @@ Default JSON-RPC endpoints:
 - Copy `connector-ethereum/component/samples/ethereum/sampleDashBoard.bal` file and paste it into `<ballerina-tools>/bin` folder.
 - Run the following commands to execute the sample.
 
-    `bin$ ./ballerina run sampleDashBoard.bal <URI> <JSONRPCVersion> <NetworkID>`
+    `bin$ ballerina run sampleDashBoard.bal <URI> <JSONRPCVersion> <NetworkID>`
 - eg:
-    `bin$ ./ballerina run sampleDashBoard.bal "http://localhost:8080" "2.0" 1999`
+    `bin$ ballerina run sampleDashBoard.bal "http://localhost:8080" "2.0" 1999`
 
 ### Example
 
@@ -2485,7 +2485,7 @@ You can easily test the following actions using the `sample.bal`.
 - Copy `connector-ethereum/component/samples/ethereum/sample.bal` file and paste it into `<ballerina-tools>/bin` folder.
 - Run the following commands to execute the sample.
 
-`bin$ ./ballerina run sample.bal <URI> <JSONRPCVersion> <NetworkID> <MethodName> <Param1> .. <ParamN>`
+`bin$ ballerina run sample.bal <URI> <JSONRPCVersion> <NetworkID> <MethodName> <Param1> .. <ParamN>`
 
 - eg:
 

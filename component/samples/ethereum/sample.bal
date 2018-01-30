@@ -325,7 +325,7 @@ public function main (string[] args) {
                 println(e);
             }
         } else if (methodName ==  "eth_newFilter") {
-            response, e = ethereumConnector.ethNewFilter(JSONRPCVersion, networkId, {"topics":["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b"]});
+            response, e = ethereumConnector.ethNewFilter(JSONRPCVersion, networkId, args[4]);
             if (e == null) {
                 json JSONResponse = response.getJsonPayload();
                 println( JSONResponse.toString());

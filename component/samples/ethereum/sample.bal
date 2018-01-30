@@ -324,30 +324,6 @@ public function main (string[] args) {
             } else {
                 println(e);
             }
-        } else if (methodName ==  "eth_compileLLL"){
-            response, e = ethereumConnector.remoteProcedureCall(JSONRPCVersion, networkId, methodName,args[4]);
-            if (e == null) {
-                json JSONResponse= response.getJsonPayload();
-                println( JSONResponse.toString());
-            } else {
-                println(e);
-            }
-        } else if (methodName ==  "eth_compileSolidity"){
-            response, e = ethereumConnector.remoteProcedureCall(JSONRPCVersion, networkId, methodName,args[4]);
-            if (e == null) {
-                json JSONResponse= response.getJsonPayload();
-                println( JSONResponse.toString());
-            } else {
-                println(e);
-            }
-        } else if (methodName ==  "eth_compileSerpent"){
-            response, e = ethereumConnector.remoteProcedureCall(JSONRPCVersion, networkId, methodName,args[4]);
-            if (e == null) {
-                json JSONResponse= response.getJsonPayload();
-                println( JSONResponse.toString());
-            } else {
-                println(e);
-            }
         } else if (methodName ==  "eth_newFilter"){
             response, e = ethereumConnector.ethNewFilter(JSONRPCVersion, networkId, args[4]);
             if (e == null) {
@@ -441,70 +417,6 @@ public function main (string[] args) {
             if (e == null) {
                 json JSONResponse= response.getJsonPayload();
                 println( JSONResponse.toString());
-            } else {
-                println(e);
-            }
-        } else if (methodName ==  "shh_newIdentity"){
-            response, e = ethereumConnector.shhNewIdentity(JSONRPCVersion, networkId, args[4]);
-            if (e == null) {
-                json JSONResponse= response.getJsonPayload();
-                println( JSONResponse.toString());
-            } else {
-                println(e);
-            }
-        } else if (methodName ==  "shh_hasIdentity"){
-            response, e = ethereumConnector.remoteProcedureCall(JSONRPCVersion, networkId, methodName,args[4]);
-            if (e == null) {
-                json JSONResponse= response.getJsonPayload();
-                println( JSONResponse.toString());
-            } else {
-                println(e);
-            }
-        } else if (methodName ==  "shh_newGroup"){
-            response, e = ethereumConnector.remoteProcedureCall(JSONRPCVersion, networkId, methodName,args[4]);
-            if (e == null) {
-                json JSONResponse= response.getJsonPayload();
-                println( JSONResponse.toString());
-            } else {
-                println(e);
-            }
-        } else if (methodName ==  "shh_addToGroup"){
-            response, e = ethereumConnector.remoteProcedureCall(JSONRPCVersion, networkId, methodName,args[4]);
-            if (e == null) {
-                json JSONResponse= response.getJsonPayload();
-                println( JSONResponse.toString());
-            } else {
-                println(e);
-            }
-        } else if (methodName ==  "shh_newFilter"){
-            response, e = ethereumConnector.remoteProcedureCall(JSONRPCVersion, networkId, methodName,args[4]);
-            if (e == null) {
-                json JSONResponse= response.getJsonPayload();
-                println( JSONResponse.toString());
-            } else {
-                println(e);
-            }
-        } else if (methodName ==  "shh_uninstallFilter"){
-            response, e = ethereumConnector.remoteProcedureCall(JSONRPCVersion, networkId, methodName,args[4]);
-            if (e == null) {
-                json JSONResponse= response.getJsonPayload();
-                println( JSONResponse.toString());
-            } else {
-                println(e);
-            }
-        } else if (methodName ==  "shh_getFilterChanges"){
-            response, e = ethereumConnector.remoteProcedureCall(JSONRPCVersion, networkId, methodName,args[4]);
-            if (e == null) {
-                json JSONResponse= response.getJsonPayload();
-                println( JSONResponse.toString());
-            } else {
-                println(e);
-            }
-        } else if (methodName ==  "shh_getMessages") {
-            response, e = ethereumConnector.remoteProcedureCall(JSONRPCVersion, networkId, methodName, args[4]);
-            if (e == null) {
-                json JSONResponse= response.getJsonPayload();
-                println(JSONResponse.toString());
             } else {
                 println(e);
             }

@@ -221,7 +221,8 @@ public function main (string[] args) {
                 println(e);
             }
         } else if (methodName == "eth_call"){
-            response, e = ethereumConnector.ethCall(JSONRPCVersion, networkId, {"to":"0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87"}, "latest");
+            response, e = ethereumConnector.ethCall(JSONRPCVersion, networkId,
+                                                        {"to":"0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87"}, "latest");
             if (e == null) {
                 json JSONResponse= response.getJsonPayload();
                 println( JSONResponse.toString());
@@ -274,7 +275,8 @@ public function main (string[] args) {
                 println(e);
             }
         } else if (methodName == "eth_getTransactionByBlockHashAndIndex"){
-            response, e = ethereumConnector.ethGetTransactionByBlockHashAndIndex(JSONRPCVersion, networkId, args[4], args[5]);
+            response, e = ethereumConnector.ethGetTransactionByBlockHashAndIndex(JSONRPCVersion, networkId, args[4],
+                                                                                 args[5]);
             if (e == null) {
                 json JSONResponse= response.getJsonPayload();
                 println( JSONResponse.toString());
@@ -282,7 +284,8 @@ public function main (string[] args) {
                 println(e);
             }
         } else if (methodName == "eth_getTransactionByBlockNumberAndIndex"){
-            response, e = ethereumConnector.ethGetTransactionByBlockNumberAndIndex(JSONRPCVersion, networkId, args[4], args[5]);
+            response, e = ethereumConnector.ethGetTransactionByBlockNumberAndIndex(JSONRPCVersion, networkId, args[4],
+                                                                                   args[5]);
             if (e == null) {
                 json JSONResponse= response.getJsonPayload();
                 println( JSONResponse.toString());
@@ -306,7 +309,8 @@ public function main (string[] args) {
                 println(e);
             }
         } else if (methodName == "eth_getUncleByBlockNumberAndIndex"){
-            response, e = ethereumConnector.ethGetUncleByBlockNumberAndIndex(JSONRPCVersion, networkId, args[4], args[5]);
+            response, e = ethereumConnector.ethGetUncleByBlockNumberAndIndex(JSONRPCVersion, networkId, args[4],
+                                                                             args[5]);
             if (e == null) {
                 json JSONResponse= response.getJsonPayload();
                 println( JSONResponse.toString());

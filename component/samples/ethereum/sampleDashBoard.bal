@@ -1,19 +1,20 @@
-
 import ballerina.net.http;
 import org.wso2.ballerina.connectors.ethereum;
 
+const string latest = "latest";
+
+// This is a simple dashboard for an Ethereum wallet
 public function main (string[] args) {
 
     endpoint<ethereum:ClientConnector> ethereumConnector {
-        create ethereum:ClientConnector(args[0]);
+        create ethereum:ClientConnector(args[0]); //set args[0] as the URI of the JSON RPC server
     }
 
-    string JSONRPCVersion = args[1];
+    string JSONRPCVersion = args[1]; //JSONRPC version of the ethereum node
 
-    var networkId, networkIdError = <int> args[2];
+    var networkId, networkIdError = <int> args[2]; //networkID: identity number in the ethereum network
     if (networkIdError == null) {
 
-        string latest = "latest";
         http:Response response = {};
         http:HttpConnectorError e;
         json JSONResponse;
@@ -21,6 +22,7 @@ public function main (string[] args) {
         println("Sample Ethereum Client");
         println("------------------------------------------------------");
 
+        //get client version
         response, e = ethereumConnector.web3ClientVersion(JSONRPCVersion, networkId);
         if (e == null) {
             JSONResponse = response.getJsonPayload();
@@ -29,6 +31,7 @@ public function main (string[] args) {
             println(e);
         }
 
+        //get available account addresses
         response, e = ethereumConnector.ethAccounts(JSONRPCVersion, networkId);
         if (e == null) {
             JSONResponse = response.getJsonPayload();
@@ -38,7 +41,9 @@ public function main (string[] args) {
 
             int i = 0;
             while (i < lengthof accounts) {
-                response, e = ethereumConnector.ethGetBalance(JSONRPCVersion, networkId, accounts[i].toString(), latest);
+                //get the account balance for each account
+                response, e = ethereumConnector.ethGetBalance(JSONRPCVersion, networkId, accounts[i].toString(),
+                                                              latest);
                 if (e == null) {
                     JSONResponse = response.getJsonPayload();
                     println(accounts[i].toString() + "\t" + JSONResponse.result.toString());
@@ -53,6 +58,7 @@ public function main (string[] args) {
             println(e);
         }
 
+        //get the number of the latest block
         response, e = ethereumConnector.ethBlockNumber(JSONRPCVersion, networkId);
         if (e == null) {
             JSONResponse = response.getJsonPayload();
@@ -62,6 +68,7 @@ public function main (string[] args) {
             println(e);
         }
 
+        //get the details of the latest block
         println("\nlatest block details: ");
         response, e = ethereumConnector.ethGetBlockByNumber(JSONRPCVersion, networkId, latest, false);
         if (e == null) {
@@ -72,6 +79,7 @@ public function main (string[] args) {
             println(e);
         }
 
+        //get the transactions of the latest block
         println("\nlatest block transactions:");
         response, e = ethereumConnector.ethGetBlockTransactionCountByNumber(JSONRPCVersion, networkId, latest);
         if (e == null) {

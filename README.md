@@ -116,6 +116,8 @@ if (e == null) {
   "result": "Geth/hostname/v1.7.3-stable-4bb3c89d/linux-amd64/go1.9"
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 web3_clientVersion`
 
 ##### Related Ethereum Documentation
 
@@ -159,6 +161,8 @@ if (e == null) {
   "result": "0xdf52f504725deca82f038d245711867631f97c819931abe097301d9340c729ea"
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 web3_sha3 "0x4521"`
 
 ##### Related Ethereum Documentation
 
@@ -205,6 +209,8 @@ if (e == null) {
   "result": "1999"
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 net_version`
 
 ##### Related Ethereum Documentation
 
@@ -246,6 +252,8 @@ if (e == null) {
   "result": true
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 net_listening`
 
 ##### Related Ethereum Documentation
 
@@ -287,6 +295,8 @@ if (e == null) {
   "result": "0x3"
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 net_peerCount`
 
 ##### Related Ethereum Documentation
 
@@ -328,6 +338,8 @@ if (e == null) {
   "result": "0x3f"
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_protocolVersion`
 
 ##### Related Ethereum Documentation
 
@@ -384,6 +396,8 @@ if (e == null) {
   "result": false
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_syncing`
 
 ##### Related Ethereum Documentation
 
@@ -426,6 +440,8 @@ if (e == null) {
   "result": "0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87"
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_coinbase`
 
 ##### Related Ethereum Documentation
 
@@ -467,6 +483,8 @@ if (e == null) {
   "result": false 
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_mining`
 
 ##### Related Ethereum Documentation
 
@@ -508,6 +526,8 @@ if (e == null) {
   "result": "0x5c84"
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_hashrate`
 
 ##### Related Ethereum Documentation
 
@@ -549,6 +569,8 @@ if (e == null) {
   "result": "0x430e23400"
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_gasPrice`
 
 ##### Related Ethereum Documentation
 
@@ -591,6 +613,8 @@ if (e == null) {
   "result": ["0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87","0xee76e1d9ad8859ac9340b07e6901a028a1101577"]
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_accounts`
 
 ##### Related Ethereum Documentation
 
@@ -632,6 +656,8 @@ if (e == null) {
   "result": "0x58a"
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_blockNumber`
 
 ##### Related Ethereum Documentation
 
@@ -677,7 +703,8 @@ if (e == null) {
   "result": "0x1085561b6057e826000"
 }
 ```
-
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getBalance 0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87 latest`
 
 ##### Related Ethereum Documentation
 
@@ -723,6 +750,8 @@ if (e == null) {
   "result": "0x00000000000000000000000000000000000000000000000000000000000005d3"
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getStorageAt 0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87 0x0 latest`
 
 ##### Related Ethereum Documentation
 
@@ -768,7 +797,8 @@ if (e == null) {
   "result": "0x19"
 }
 ```
-
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getTransactionCount 0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87 0x0`
 
 ##### Related Ethereum Documentation
 
@@ -813,6 +843,8 @@ if (e == null) {
   "result": "0x1"
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getBlockTransactionCountByHash 0xf6c17bf68c909565f2f1766da00a0f44e52ecb381ac6c8e088d28273d92e79ef`
 
 ##### Related Ethereum Documentation
 
@@ -858,6 +890,8 @@ if (e == null) {
   "result": "0x0"
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getBlockTransactionCountByNumber 0x0`
 
 ##### Related Ethereum Documentation
 
@@ -902,6 +936,8 @@ if (e == null) {
   "result": "0xc3"
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getUncleCountByBlockHash 0xf6c17bf68c909565f2f1766da00a0f44e52ecb381ac6c8e088d28273d92e79ef`
 
 ##### Related Ethereum Documentation
 
@@ -947,6 +983,8 @@ if (e == null) {
   "result": "0xa2"
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getUncleCountByBlockNumber 0x0`
 
 ##### Related Ethereum Documentation
 
@@ -993,6 +1031,8 @@ if (e == null) {
   "result": "0x600160008035811a818181146012578301005b601b6001356025565b8060005260206000f25b600060078202905091905056"
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getCode 0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87 latest`
 
 ##### Related Ethereum Documentation
 
@@ -1037,6 +1077,8 @@ if (e == null) {
   "result": "0x725b107db88f11690dd6f2031f260a0a93d735bd15e503d71bdbc1d7e73141a44bbeab080014866506b1e64281fc20690068a02f95298a09dd878e2272ca70b01c"
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_sign 0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87 0x170b651e078b2b0c073bffdb5dc53288ac0a62e1015f230e5ff5092c10eb56e4`
 
 ##### Related Ethereum Documentation
 
@@ -1094,6 +1136,8 @@ if (e == null) {
   "result": "0x1c80b47e4a28c7c4892460c84a1f7b10aa2a33f0059f881abbcf77ef7ae2914a"
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_sendTransaction '{"from" :"0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87","to": "0xee76e1d9ad8859ac9340b07e6901a028a1101577","data": "0x725b107db88f11690dd6f2032f260a0a93d735bd15e503d71bdbc1d7e73141a44bbeab080014866506b1e64281fc20690068a02f95298a09dd878e2272ca70b01c","value": "0xa"}'`
 
 ##### Related Ethereum Documentation
 
@@ -1138,6 +1182,8 @@ if (e == null) {
 }
 ```
 
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_sendRawTransaction 0x877399ae278d0a969bad46d3d2e4b2403d091b5c3fdab13c254c8ee09c6c591d17e058baaa8c5c4f2e3afc2fce30d1bce185e78307637d4cd67d0ad177b812e61c`
 
 ##### Related Ethereum Documentation
 
@@ -1194,6 +1240,8 @@ if (e == null) {
   "result": "0x"
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_call '{"to":"0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87"}' latest`
 
 ##### Related Ethereum Documentation
 
@@ -1237,6 +1285,8 @@ if (e == null) {
   "result": "0x5208"
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_estimateGas '{"from" :"0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87","to": "0xee76e1d9ad8859ac9340b07e6901a028a1101577", "data": "0x725b107db88f11690dd6f2032f260a0a93d735bd15e503d71bdbc1d7e73141a44bbeab080014866506b1e64281fc20690068a02f95298a09dd878e2272ca70b01c","value": "0xa"}'`
 
 ##### Related Ethereum Documentation
 
@@ -1351,6 +1401,8 @@ if (e == null) {
     }
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getBlockByHash 0xf6c17bf68c909565f2f1766da00a0f44e52ecb381ac6c8e088d28273d92e79ef true`
 
 ##### Related Ethereum Documentation
 
@@ -1374,6 +1426,8 @@ Returns information about a block by block number.
 
 See [eth_getBlockByHash](#eth_getblockbyhash)
 
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getBlockByNumber  0xaf true`
 
 ##### Related Ethereum Documentation
 
@@ -1448,6 +1502,8 @@ if (e == null) {
 }
 ```
 
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getTransactionByHash  0xf6c17bf68c909565f2f1766da00a0f44e52ecb381ac6c8e088d28273d92e79ef`
 
 ##### Related Ethereum Documentation
 
@@ -1471,6 +1527,9 @@ Returns information about a transaction by block hash and transaction index posi
 
 See [ethGetBlockByHash](#ethgettransactionbyhash)
 
+##### Quick Testing 
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getTransactionByBlockHashAndIndex  0xf6c17bf68c909565f2f1766da00a0f44e52ecb381ac6c8e088d28273d92e79ef 0x0`
+
 ##### Related Ethereum Documentation
 
 https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_gettransactionbyblockhashandindex
@@ -1493,6 +1552,9 @@ Returns information about a transaction by block number and transaction index po
 ##### Returns
 
 See [ethGettransactionbyhash](#ethgettransactionbyhash)
+
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getTransactionByBlockNumberAndIndex  0xaf 0x0`
 
 ##### Related Ethereum Documentation
 
@@ -1569,7 +1631,8 @@ if (e == null) {
     }
 }
 ```
-
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getTransactionReceipt 0xf6c17bf68c909565f2f1766da00a0f44e52ecb381ac6c8e088d28273d92e79ef`
 
 ##### Related Ethereum Documentation
 
@@ -1594,6 +1657,9 @@ Returns information about a uncle of a block by hash and uncle index position.
 
 See [ethGetBlockByHash](#ethgetblockbyhash)
 
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getUncleByBlockHashAndIndex 0xf6c17bf68c909565f2f1766da00a0f44e52ecb381ac6c8e088d28273d92e79ef 0x0'`
+
 ##### Related Ethereum Documentation
 
 https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getunclebyblockhashandindex
@@ -1617,6 +1683,9 @@ Returns information about a uncle of a block by number and uncle index position.
 See [ethGetBlockByHash](#ethgetblockbyhash)
 
 **Note**: An uncle doesn't contain individual transactions.
+
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getUncleByBlockNumberAndIndex 0xf6 0x0`
 
 ##### Related Ethereum Documentation
 
@@ -1735,7 +1804,6 @@ if (e == null) {
 
 }
 ```
-
 ##### Related Ethereum Documentation
 
 https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_compilesolidity
@@ -1875,6 +1943,9 @@ if (e == null) {
   "result": "0xcce8842bc862eec936b6ca0c392c8633"
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_newFilter '{"fromBlock": "0x1","toBlock": "0x2","address": "0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87","topics":["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b", null,["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b", "0x0000000000000000000000000aff3454fce5edbc8cca8697c15331677e6ebccc"]]}'`
+
 
 ##### Related Ethereum Documentation
 
@@ -1917,6 +1988,8 @@ if (e == null) {
   "result": "0xd1e74a0ecefd34817099171b8b9e8a82"
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_newBlockFilter`
 
 ##### Related Ethereum Documentation
 
@@ -1958,6 +2031,8 @@ if (e == null) {
   "result": "0x1bad3335bdd994b7a4690f0a134fb340"
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_newPendingTransactionFilter`
 
 ##### Related Ethereum Documentation
 
@@ -2001,6 +2076,8 @@ if (e == null) {
   "result": true
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_uninstallFilter 0x15842a94627e19e5571559236b5b1700`
 
 ##### Related Ethereum Documentation
 
@@ -2070,6 +2147,8 @@ if (e == null) {
     }]
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getFilterChanges 0x15842a94627e19e5571559236b5b1700`
 
 ##### Related Ethereum Documentation
 
@@ -2092,6 +2171,9 @@ Returns an array of all logs matching filter with given id.
 
 See [ethGetFilterChanges](#ethgetfilterchanges)
 
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getFilterLogs 0x15842a94627e19e5571559236b5b1700`
+
 ##### Related Ethereum Documentation
 
 https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_getfilterlogs
@@ -2111,6 +2193,9 @@ Returns an array of all logs matching a given filter object.
 ##### Returns
 
 See [ethGetFilterChanges](#ethgetfilterchanges)
+
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getLogs '{"fromBlock": "0x1","toBlock": "0x2","address": "0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87","topics":["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b", null,["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b", "0x0000000000000000000000000aff3454fce5edbc8cca8697c15331677e6ebccc"]]}'`
 
 ##### Related Ethereum Documentation
 
@@ -2154,6 +2239,8 @@ if (e == null) {
   "result": ["0xe77859f2a6cce904a1d7a2f84d4e18ba8ad877bc816c4544975be03be1fef938","0x0000000000000000000000000000000000000000000000000000000000000000","0x00007fb031e0d37bd29c5e4514d2fc226a7d7199005fc425689e9cddf546b3ce"]
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getWork`
 
 ##### Related Ethereum Documentation
 
@@ -2200,6 +2287,8 @@ if (e == null) {
   "result": true
 }
 ```
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_submitWork "0x0000000000000001" "0xa234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef" "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"`
 
 ##### Related Ethereum Documentation
 
@@ -2246,6 +2335,8 @@ if (e == null) {
 }
 ```
 
+##### Quick Testing
+`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_submitHashrate "0x500000" "0x59daa26581d0acd1fce254fb7e85952f4c09d0915afd33d3886cd914bc7d283c"`
 
 ##### Related Ethereum Documentation
 
@@ -2264,137 +2355,6 @@ You can easily test the following actions using the `sample.bal`.
 
 - eg:
 
-###### web3ClientVersion
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 web3_clientVersion`
-
-###### web3Sha3
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 web3_sha3 "0x4521"`
-
-###### netVersion
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 net_version`
-
-###### netListening
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 net_listening`
-
-###### netPeerCount
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 net_peerCount`
-
-###### ethProtocolVersion
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_protocolVersion`
-
-###### ethSyncing
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_syncing`
-
-###### ethCoinbase
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_coinbase`
-
-###### ethMining
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_mining`
-
-###### ethHashrate
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_hashrate`
-
-###### ethGasPrice
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_gasPrice`
-
-###### ethAccounts
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_accounts`
-
-###### ethBlockNumber
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_blockNumber`
-
-###### ethGetBalance
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getBalance 0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87 latest`
-
-###### ethGetStorageAt
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getStorageAt 0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87 0x0 latest`
-
-###### ethGetTransactionCount
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getTransactionCount 0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87 0x0`
-
-###### ethGetBlockTransactionCountByHash
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getBlockTransactionCountByHash 0xf6c17bf68c909565f2f1766da00a0f44e52ecb381ac6c8e088d28273d92e79ef`
-
-###### ethGetBlockTransactionCountByNumber
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getBlockTransactionCountByNumber 0x0`
-
-###### ethGetUncleCountByBlockHash
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getUncleCountByBlockHash 0xf6c17bf68c909565f2f1766da00a0f44e52ecb381ac6c8e088d28273d92e79ef`
-
-###### ethGetUncleCountByBlockNumber
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getUncleCountByBlockNumber 0x0`
-
-###### ethGetCode
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getCode 0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87 latest`
-
-###### ethSign
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_sign 0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87 0x170b651e078b2b0c073bffdb5dc53288ac0a62e1015f230e5ff5092c10eb56e4`
-
-###### ethSendTransaction
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_sendTransaction '{"from" :"0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87","to": "0xee76e1d9ad8859ac9340b07e6901a028a1101577","data": "0x725b107db88f11690dd6f2032f260a0a93d735bd15e503d71bdbc1d7e73141a44bbeab080014866506b1e64281fc20690068a02f95298a09dd878e2272ca70b01c","value": "0xa"}'`
-
-###### ethSendRawTransaction
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_sendRawTransaction 0x877399ae278d0a969bad46d3d2e4b2403d091b5c3fdab13c254c8ee09c6c591d17e058baaa8c5c4f2e3afc2fce30d1bce185e78307637d4cd67d0ad177b812e61c`
-
-###### ethCall
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_call '{"to":"0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87"}' latest`
-
-###### ethEstimateGas
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_estimateGas '{"from" :"0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87","to": "0xee76e1d9ad8859ac9340b07e6901a028a1101577", "data": "0x725b107db88f11690dd6f2032f260a0a93d735bd15e503d71bdbc1d7e73141a44bbeab080014866506b1e64281fc20690068a02f95298a09dd878e2272ca70b01c","value": "0xa"}'`
-
-###### ethGetBlockByHash
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getBlockByHash 0xf6c17bf68c909565f2f1766da00a0f44e52ecb381ac6c8e088d28273d92e79ef true`
-
-###### ethGetBlockByNumber
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getBlockByNumber  0xaf true`
-
-###### ethGetTransactionByHash
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getTransactionByHash  0xf6c17bf68c909565f2f1766da00a0f44e52ecb381ac6c8e088d28273d92e79ef`
-
-###### ethGetTransactionByBlockHashAndIndex
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getTransactionByBlockHashAndIndex  0xf6c17bf68c909565f2f1766da00a0f44e52ecb381ac6c8e088d28273d92e79ef 0x0`
-
-###### ethGetTransactionByBlockNumberAndIndex
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getTransactionByBlockNumberAndIndex  0xaf 0x0`
-
-###### ethGetTransactionReceipt
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getTransactionReceipt 0xf6c17bf68c909565f2f1766da00a0f44e52ecb381ac6c8e088d28273d92e79ef`
-
-###### ethGetUncleByBlockHashAndIndex
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getUncleByBlockHashAndIndex 0xf6c17bf68c909565f2f1766da00a0f44e52ecb381ac6c8e088d28273d92e79ef 0x0'`
-
-###### ethGetUncleByBlockNumberAndIndex
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getUncleByBlockNumberAndIndex 0xf6 0x0`
-
-###### ethNewFilter
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_newFilter '{"fromBlock": "0x1","toBlock": "0x2","address": "0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87","topics":["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b", null,["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b", "0x0000000000000000000000000aff3454fce5edbc8cca8697c15331677e6ebccc"]]}'`
-
-###### ethNewBlockFilter
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_newBlockFilter`
-
-###### ethNewPendingTransactionFilter
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_newPendingTransactionFilter`
-
-###### ethUninstallFilter
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_uninstallFilter 0x15842a94627e19e5571559236b5b1700`
-
-###### ethGetFilterChanges
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getFilterChanges 0x15842a94627e19e5571559236b5b1700`
-
-###### ethGetFilterLogs
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getFilterLogs 0x15842a94627e19e5571559236b5b1700`
-
-###### ethGetLogs
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getLogs '{"fromBlock": "0x1","toBlock": "0x2","address": "0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87","topics":["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b", null,["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b", "0x0000000000000000000000000aff3454fce5edbc8cca8697c15331677e6ebccc"]]}'`
-
-###### ethGetWork
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_getWork`
-
-###### ethSubmitWork
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_submitWork "0x0000000000000001" "0xa234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef" "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"`
-
-###### ethSubmitHashrate
-`bin$ ballerina run sample.bal "http://localhost:8080" "2.0" 1999 eth_submitHashrate "0x500000" "0x59daa26581d0acd1fce254fb7e85952f4c09d0915afd33d3886cd914bc7d283c"`
 
 #### Related links
 - https://github.com/ethereum/wiki/wiki/JSON-RPC

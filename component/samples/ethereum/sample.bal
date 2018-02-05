@@ -185,9 +185,7 @@ public function main (string[] args) {
         }
         println(response);
     } else if (methodName == "eth_sendTransaction") {
-        json params = {};
-        TypeConversionError paramsError;
-        params, paramsError = <json>args[4];
+        var params, paramsError = <json> args[4];
         if (paramsError != null) {
             println(e);
             return;
@@ -206,15 +204,24 @@ public function main (string[] args) {
         }
         println(response);
     } else if (methodName == "eth_call") {
-        response, e = ethereumConnector.ethCall({"to":"0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87"}, "latest");
+        var params, paramsError = <json> args[4];
+        if (paramsError != null) {
+            println(e);
+            return;
+        }
+        response, e = ethereumConnector.ethCall(params, "latest");
         if (e != null) {
             println(e);
             return;
         }
         println(response);
     } else if (methodName == "eth_estimateGas") {
-        println(args[4]);
-        response, e = ethereumConnector.ethEstimateGas(args[4]);
+        var params, paramsError = <json> args[4];
+        if (paramsError != null) {
+            println(e);
+            return;
+        }
+        response, e = ethereumConnector.ethEstimateGas(params);
         if (e != null) {
             println(e);
             return;
@@ -254,16 +261,14 @@ public function main (string[] args) {
         }
         println(response);
     } else if (methodName == "eth_getTransactionByBlockHashAndIndex") {
-        response, e = ethereumConnector.ethGetTransactionByBlockHashAndIndex(args[4],
-                                                                             args[5]);
+        response, e = ethereumConnector.ethGetTransactionByBlockHashAndIndex(args[4], args[5]);
         if (e != null) {
             println(e);
             return;
         }
         println(response);
     } else if (methodName == "eth_getTransactionByBlockNumberAndIndex") {
-        response, e = ethereumConnector.ethGetTransactionByBlockNumberAndIndex(args[4],
-                                                                               args[5]);
+        response, e = ethereumConnector.ethGetTransactionByBlockNumberAndIndex(args[4], args[5]);
         if (e != null) {
             println(e);
             return;
@@ -284,8 +289,7 @@ public function main (string[] args) {
         }
         println(response);
     } else if (methodName == "eth_getUncleByBlockNumberAndIndex") {
-        response, e = ethereumConnector.ethGetUncleByBlockNumberAndIndex(args[4],
-                                                                         args[5]);
+        response, e = ethereumConnector.ethGetUncleByBlockNumberAndIndex(args[4], args[5]);
         if (e != null) {
             println(e);
             return;
@@ -299,7 +303,12 @@ public function main (string[] args) {
         }
         println(response);
     } else if (methodName == "eth_newFilter") {
-        response, e = ethereumConnector.ethNewFilter({"topics":["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b"]});
+        var params, paramsError = <json> args[4];
+        if (paramsError != null) {
+            println(e);
+            return;
+        }
+        response, e = ethereumConnector.ethNewFilter(params);
         if (e != null) {
             println(e);
             return;
@@ -341,7 +350,12 @@ public function main (string[] args) {
         }
         println(response);
     } else if (methodName == "eth_getLogs") {
-        response, e = ethereumConnector.ethGetLogs(args[4]);
+        var params, paramsError = <json> args[4];
+        if (paramsError != null) {
+            println(e);
+            return;
+        }
+        response, e = ethereumConnector.ethGetLogs(params);
         if (e != null) {
             println(e);
             return;
@@ -374,7 +388,7 @@ public function main (string[] args) {
 }
 
 function toInt (string networkID) (int) {
-    var id, idError = <int>networkID;
+    var id, idError = <int> networkID;
     if (idError != null) {
         println(idError);
         return -1;

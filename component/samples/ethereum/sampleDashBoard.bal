@@ -1,6 +1,6 @@
 //
 // Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
-// 
+//
 // WSO2 Inc. licenses this file to you under the Apache License,
 // Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.
@@ -19,95 +19,82 @@
 import ballerina.net.http;
 import org.wso2.ballerina.connectors.ethereum;
 
-const string latest = "latest";
+const string LATEST = "latest";
 
 // This is a simple dashboard for an Ethereum wallet
 public function main (string[] args) {
 
     endpoint<ethereum:ClientConnector> ethereumConnector {
-        create ethereum:ClientConnector(args[0]); //set args[0] as the URI of the JSON RPC server
+        create ethereum:ClientConnector(args[0], {}, args[1], toInt(args[2]));
     }
 
-    string JSONRPCVersion = args[1]; //JSONRPC version of the ethereum node
+    http:HttpConnectorError e;
 
-    var networkId, networkIdError = <int> args[2]; //networkID: identity number in the ethereum network
-    if (networkIdError == null) {
+    println("Sample Ethereum Client");
+    println("------------------------------------------------------");
 
-        http:Response response = {};
-        http:HttpConnectorError e;
-        json JSONResponse;
-
-        println("Sample Ethereum Client");
-        println("------------------------------------------------------");
-
-        //get client version
-        response, e = ethereumConnector.web3ClientVersion(JSONRPCVersion, networkId);
-        if (e == null) {
-            JSONResponse = response.getJsonPayload();
-            println("Web3 Client Version: " + JSONResponse.result.toString());
-        } else {
-            println(e);
-        }
-
-        //get available account addresses
-        response, e = ethereumConnector.ethAccounts(JSONRPCVersion, networkId);
-        if (e == null) {
-            JSONResponse = response.getJsonPayload();
-            json accounts = JSONResponse.result;
-            println("Number of accounts: " + lengthof accounts);
-            println("\nAccount Balances");
-
-            int i = 0;
-            while (i < lengthof accounts) {
-                //get the account balance for each account
-                response, e = ethereumConnector.ethGetBalance(JSONRPCVersion, networkId, accounts[i].toString(),
-                                                              latest);
-                if (e == null) {
-                    JSONResponse = response.getJsonPayload();
-                    println(accounts[i].toString() + "\t" + JSONResponse.result.toString());
-
-                } else {
-                    println(e);
-                }
-                i = i + 1;
-            }
-
-        } else {
-            println(e);
-        }
-
-        //get the number of the latest block
-        response, e = ethereumConnector.ethBlockNumber(JSONRPCVersion, networkId);
-        if (e == null) {
-            JSONResponse = response.getJsonPayload();
-            println("\nNumber of blocks: " + JSONResponse.result.toString());
-
-        } else {
-            println(e);
-        }
-
-        //get the details of the latest block
-        println("\nlatest block details: ");
-        response, e = ethereumConnector.ethGetBlockByNumber(JSONRPCVersion, networkId, latest, false);
-        if (e == null) {
-            JSONResponse = response.getJsonPayload();
-            println(JSONResponse.result);
-
-        } else {
-            println(e);
-        }
-
-        //get the transactions of the latest block
-        println("\nlatest block transactions:");
-        response, e = ethereumConnector.ethGetBlockTransactionCountByNumber(JSONRPCVersion, networkId, latest);
-        if (e == null) {
-            JSONResponse = response.getJsonPayload();
-            println(JSONResponse.result);
-
-        } else {
-            println(e);
-        }
-    } else {
-        println(networkIdError);
+    //get client version
+    var response, e = ethereumConnector.web3ClientVersion();
+    if (e != null) {
+        println(e);
+        return;
     }
+    println("Web3 Client Version: " + response.result.toString());
+
+    //get available account addresses
+    response, e = ethereumConnector.ethAccounts();
+    if (e != null) {
+        println(e);
+        return;
+    }
+    json accounts = response.result;
+    println("Number of accounts: " + lengthof response.result);
+    println("\nAccount Balances");
+
+    int i = 0;
+    while (i < lengthof accounts) {
+        //get the account balance for each account
+        response, e = ethereumConnector.ethGetBalance(accounts[i].toString(), LATEST);
+        if (e != null) {
+            println(e);
+            return;
+        }
+        println(accounts[i].toString() + "\t" + response.result.toString());
+        i = i + 1;
+    }
+
+    //get the number of the latest block
+    response, e = ethereumConnector.ethBlockNumber();
+    if (e != null) {
+        println(e);
+        return;
+    }
+    println("\nNumber of blocks: " + response.result.toString());
+
+    //get the details of the latest block
+    println("\nlatest block details: ");
+    response, e = ethereumConnector.ethGetBlockByNumber(LATEST, false);
+    if (e != null) {
+        println(e);
+        return;
+    }
+    println(response.result);
+
+    //get the transactions of the latest block
+    println("\nlatest block transactions:");
+    response, e = ethereumConnector.ethGetBlockTransactionCountByNumber(LATEST);
+    if (e != null) {
+        println(e);
+        return;
+    }
+    println(response.result);
+}
+
+function toInt (string networkID) (int) {
+    var id, idError = <int>networkID;
+    if (idError != null) {
+        println(idError);
+        return -1;
+    }
+    return id;
 }

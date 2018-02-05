@@ -68,16 +68,6 @@ const string ETH_GET_LOGS = "eth_getLogs";
 const string ETH_GET_WORK = "eth_getWork";
 const string ETH_SUBMIT_WORK = "eth_submitWork";
 const string ETH_SUBMIT_HASHRATE = "eth_submitHashrate";
-const string SHH_POST = "shh_post";
-const string SHH_VERSION = "shh_version";
-const string SHH_NEW_IDENTITY = "shh_newIdentity";
-const string SHH_HAS_IDENTITY = "shh_hasIdentity";
-const string SHH_NEW_GROUP = "shh_newGroup";
-const string SHH_ADD_TO_GROUP = "shh_addToGroup";
-const string SHH_NEW_FILTER = "shh_newFilter";
-const string SHH_UNINSTALL_FILTER = "shh_uninstallFilter";
-const string SHH_GET_FILTER_CHANGES = "shh_getFilterChanges";
-const string SHH_GET_MESSAGES = "shh_getMessages";
 const string EMPTY_PARAMS = "[]";
 
 @Description {value:"Ethereum client connector"}
@@ -691,117 +681,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     (json, http:HttpConnectorError) {
         var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ETH_SUBMIT_HASHRATE,
                                                                 [hashrate, clientId]));
-        return response.getJsonPayload(), e;
-    }
-
-    @Description {value:"Returns the current whisper protocol version"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
-    @Return {value:"InResponse object"}
-    @Return {value:"Error occured during HTTP client invocation"}
-    action shhVersion () (json, http:HttpConnectorError) {
-        var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, SHH_VERSION, EMPTY_PARAMS));
-        return response.getJsonPayload(), e;
-    }
-
-    @Description {value:"Sends a whisper message"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
-    @Param {value:"postObject: The whisper post object"}
-    @Return {value:"InResponse object"}
-    @Return {value:"Error occured during HTTP client invocation"}
-    action shhPost (json postObject) (json, http:HttpConnectorError) {
-        var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, SHH_POST, [postObject]));
-        return response.getJsonPayload(), e;
-    }
-
-    @Description {value:"Creates new whisper identity in the client"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
-    @Param {value:"address: 60 Bytes - the address of the new identiy"}
-    @Return {value:"InResponse object"}
-    @Return {value:"Error occured during HTTP client invocation"}
-    action shhNewIdentity (string address) (json, http:HttpConnectorError) {
-        var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, SHH_NEW_IDENTITY, [address]));
-        return response.getJsonPayload(), e;
-    }
-
-    @Description {value:"Checks if the client hold the private keys for a given identity"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
-    @Param {value:"address: 60 Bytes - The identity address to check"}
-    @Return {value:"InResponse object"}
-    @Return {value:"Error occured during HTTP client invocation"}
-    action shhHasIdentity (string address) (json, http:HttpConnectorError) {
-        var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, SHH_HAS_IDENTITY, [address]));
-        return response.getJsonPayload(), e;
-    }
-
-    @Description {value:"Creates new group"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
-    @Return {value:"InResponse object"}
-    @Return {value:"Error occured during HTTP client invocation"}
-    action shhNewGroup () (json, http:HttpConnectorError) {
-        var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, SHH_NEW_GROUP, EMPTY_PARAMS));
-        return response.getJsonPayload(), e;
-    }
-
-    @Description {value:"Adds identities to a group"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
-    @Param {value:"address: 60 Bytes - The identity address to add to a group"}
-    @Return {value:"InResponse object"}
-    @Return {value:"Error occured during HTTP client invocation"}
-    action shhAddToGroup (string address) (json, http:HttpConnectorError) {
-        var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, SHH_ADD_TO_GROUP, [address]));
-        return response.getJsonPayload(), e;
-    }
-
-    @Description {value:"Creates filter to notify, when client receives whisper message matching the filter options"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
-    @Param {value:"filterOptions: The filter options:
-        to: DATA, 60 Bytes - (optional) Identity of the receiver.
-        topics: Array of DATA - Array of DATA topics which the incoming message's topics should match"}
-    @Return {value:"InResponse object"}
-    @Return {value:"Error occured during HTTP client invocation"}
-    action shhNewFilter (json filterOptions) (json, http:HttpConnectorError) {
-        var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, SHH_NEW_FILTER, [filterOptions]));
-        return response.getJsonPayload(), e;
-    }
-
-    @Description {value:"Uninstalls a filter with given id"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
-    @Param {value:"filterId: The filter id"}
-    @Return {value:"InResponse object"}
-    @Return {value:"Error occured during HTTP client invocation"}
-    action shhUninstallFilter (string filterId) (json, http:HttpConnectorError) {
-        var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, SHH_UNINSTALL_FILTER, [filterId]));
-        return response.getJsonPayload(), e;
-    }
-
-    @Description {value:"Polling method for whisper filters. Returns new messages since the last call of this method"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
-    @Param {value:"filterId: The filter id"}
-    @Return {value:"InResponse object"}
-    @Return {value:"Error occured during HTTP client invocation"}
-    action shhGetFilterChanges (string filterId)
-    (json, http:HttpConnectorError) {
-        var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, SHH_GET_FILTER_CHANGES, [filterId]));
-        return response.getJsonPayload(), e;
-    }
-
-    @Description {value:"Get all messages matching a filter"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
-    @Param {value:"filterId: The filter id"}
-    @Return {value:"InResponse object"}
-    @Return {value:"Error occured during HTTP client invocation"}
-    action shhGetMessages (string filterId) (json, http:HttpConnectorError) {
-        var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, SHH_GET_MESSAGES, [filterId]));
         return response.getJsonPayload(), e;
     }
 

@@ -6,20 +6,40 @@ import org.wso2.ballerina.connectors.ethereum;
 
 const string URI = "http://localhost:8080";
 const string JSONRPCVersion = "2.0";
-const int NETWORKID = 1999;
+const int NETWORK_ID = 1999;
 const string ACCOUNT = "0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87";
 const string HASH = "0xf6c17bf68c909565f2f1766da00a0f44e52ecb381ac6c8e088d28273d92e79ef";
 const string BLOCK_NUMBER = "0xaf";
 const string INDEX = "0x0";
+const string FILTER_ID = "FILTER_ID";
+const string LATEST = "latest";
+const string MESSAGE = "0x170b651e078b2b0c073bffdb5dc53288ac0a62e1015f230e5ff5092c10eb56e4";
+const string NONCE = "0x0000000000000001";
+const string HEADER_POW_HASH = "0xa234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef";
+const string MIX_DIGEST = "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef";
+const string HASH_RATE = "0x500000";
+const string CLIENT_ID = "0x59daa26581d0acd1fce254fb7e85952f4c09d0915afd33d3886cd914bc7d283c";
+const string RAW_TRANSACTION = "0x877399ae278d0a969bad46d3d2e4b2403d091b5c3fdab13c254c8ee09c6c591d17e058baaa8c5c4f2e3af"
+                               + "c2fce30d1bce185e78307637d4cd67d0ad177b812e61c";
+json transactionOptions = {from:"0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87",
+                              to:"0xee76e1d9ad8859ac9340b07e6901a028a1101577",
+                              data:"0x725b107db88f11690dd6f2032f260a0a93d735bd15e503d71bdbc1d7e73141a" +
+                                   "44bbeab080014866506b1e64281fc20690068a02f95298a09dd878e2272ca70b01c", value:"0xa"};
+json call = {to:"0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87"};
+json filterOptions = {fromBlock:"0x1", toBlock:"0x2", address:"0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87",
+                         topics:["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+                                 null, ["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+                                        "0x0000000000000000000000000aff3454fce5edbc8cca8697c15331677e6ebccc"]]};
 
-function beforeTest(){
+
+function beforeTest () {
     println("Starting integration tests");
 }
 
 function testMain () {
 
     endpoint<ethereum:ClientConnector> ethereumConnector {
-        create ethereum:ClientConnector(URI, {},JSONRPCVersion , NETWORKID);
+        create ethereum:ClientConnector(URI, {}, JSONRPCVersion, NETWORK_ID);
     }
 
     json response = {};
@@ -64,10 +84,10 @@ function testMain () {
     response, e = ethereumConnector.ethBlockNumber();
     test:assertTrue(checkResult(response, e), "ethBlockNumber test failed");
 
-    response, e = ethereumConnector.ethGetBalance(ACCOUNT, "latest");
+    response, e = ethereumConnector.ethGetBalance(ACCOUNT, LATEST);
     test:assertTrue(checkResult(response, e), "ethGetBalance test failed");
 
-    response, e = ethereumConnector.ethGetStorageAt(ACCOUNT, INDEX, "latest");
+    response, e = ethereumConnector.ethGetStorageAt(ACCOUNT, INDEX, LATEST);
     test:assertTrue(checkResult(response, e), "ethGetStorageAt test failed");
 
     response, e = ethereumConnector.ethGetTransactionCount(ACCOUNT, INDEX);
@@ -85,30 +105,22 @@ function testMain () {
     response, e = ethereumConnector.ethGetUncleCountByBlockNumber(INDEX);
     test:assertTrue(checkResult(response, e), "ethGetUncleCountByBlockNumber test failed");
 
-    response, e = ethereumConnector.ethGetCode(ACCOUNT, "latest");
+    response, e = ethereumConnector.ethGetCode(ACCOUNT, LATEST);
     test:assertTrue(checkResult(response, e), "ethGetCode test failed");
 
-    response, e = ethereumConnector.ethSign(
-                                   ACCOUNT, "0x170b651e078b2b0c073bffdb5dc53288ac0a62e1015f230e5ff5092c10eb56e4");
+    response, e = ethereumConnector.ethSign(ACCOUNT, MESSAGE);
     test:assertTrue(checkResult(response, e), "ethSign test failed");
 
-    response, e = ethereumConnector.ethSendTransaction("{\"from\" :\"0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87\",
-    \"to\": \"0xee76e1d9ad8859ac9340b07e6901a028a1101577\",
-    \"data\": \"0x725b107db88f11690dd6f2032f260a0a93d735bd15e503d71bdbc1d7e73141a44bbeab
-    080014866506b1e64281fc20690068a02f95298a09dd878e2272ca70b01c\",\"value\": \"0xa\"}");
+    response, e = ethereumConnector.ethSendTransaction(transactionOptions);
     test:assertTrue(checkResult(response, e), "ethSendTransaction test failed");
 
-    response, e = ethereumConnector.ethSendRawTransaction("0x877399ae278d0a969bad46d3d2e4b2403d091b5c3fdab13c254c8ee0
-    9c6c591d17e058baaa8c5c4f2e3afc2fce30d1bce185e78307637d4cd67d0ad177b812e61c");
+    response, e = ethereumConnector.ethSendRawTransaction(RAW_TRANSACTION);
     test:assertTrue(checkResult(response, e), "ethSendRawTransaction test failed");
 
-    response, e = ethereumConnector.ethCall("{\"to\":\"0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87\"}", "latest");
+    response, e = ethereumConnector.ethCall(call, LATEST);
     test:assertTrue(checkResult(response, e), "ethCall test failed");
 
-    response, e = ethereumConnector.ethEstimateGas("{\"from\" :\"0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87\",\"to\":
-    \"0xee76e1d9ad8859ac9340b07e6901a028a1101577\",
-    \"data\": \"0x725b107db88f11690dd6f2032f260a0a93d735bd15e503d71bdbc1d7e73141a44bbeab080014866506b1e64281fc20690068a
-    02f95298a09dd878e2272ca70b01c\",\"value\": \"0xa\"}");
+    response, e = ethereumConnector.ethEstimateGas(transactionOptions);
     test:assertTrue(checkResult(response, e), "ethEstimateGas test failed");
 
     response, e = ethereumConnector.ethGetBlockByHash(HASH, true);
@@ -132,15 +144,10 @@ function testMain () {
     response, e = ethereumConnector.ethGetUncleByBlockHashAndIndex(HASH, INDEX);
     test:assertTrue(checkResult(response, e), "ethGetUncleByBlockHashAndIndex test failed");
 
-    response, e = ethereumConnector.ethGetUncleByBlockNumberAndIndex("0xf6", INDEX);
+    response, e = ethereumConnector.ethGetUncleByBlockNumberAndIndex(BLOCK_NUMBER, INDEX);
     test:assertTrue(checkResult(response, e), "ethGetUncleByBlockNumberAndIndex test failed");
 
-    response, e = ethereumConnector.ethNewFilter
-                                   ("{\"fromBlock\": \"0x1\",\"toBlock\": \"0x2\",
-                                   \"address\": \"0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87\",
-                                   \"topics\":[\"0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b\",
-                                   null,[\"0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b\",
-                                   \"0x0000000000000000000000000aff3454fce5edbc8cca8697c15331677e6ebccc\"]]}");
+    response, e = ethereumConnector.ethNewFilter(filterOptions);
     test:assertTrue(checkResult(response, e), "ethNewFilter test failed");
 
     response, e = ethereumConnector.ethNewBlockFilter();
@@ -149,42 +156,34 @@ function testMain () {
     response, e = ethereumConnector.ethNewPendingTransactionFilter();
     test:assertTrue(checkResult(response, e), "ethNewPendingTransactionFilter test failed");
 
-    response, e = ethereumConnector.ethUninstallFilter("0x15842a94627e19e5571559236b5b1700");
+    response, e = ethereumConnector.ethUninstallFilter(FILTER_ID);
     test:assertTrue(checkResult(response, e), "ethUninstallFilter test failed");
 
-    response, e = ethereumConnector.ethGetFilterChanges("0x15842a94627e19e5571559236b5b1700");
+    response, e = ethereumConnector.ethGetFilterChanges(FILTER_ID);
     test:assertTrue(checkResult(response, e), "ethGetFilterChanges test failed");
 
-    response, e = ethereumConnector.ethGetFilterLogs("0x15842a94627e19e5571559236b5b1700");
+    response, e = ethereumConnector.ethGetFilterLogs(FILTER_ID);
     test:assertTrue(checkResult(response, e), "ethGetFilterLogs test failed");
 
-    response, e = ethereumConnector.ethGetLogs
-                                   ("{\"fromBlock\": \"0x1\",\"toBlock\": \"0x2\",
-                                   \"address\": \"0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87\",
-                                   \"topics\":[\"0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b\",
-                                    null,[\"0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b\",
-                                     \"0x0000000000000000000000000aff3454fce5edbc8cca8697c15331677e6ebccc\"]]}");
+    response, e = ethereumConnector.ethGetLogs(filterOptions);
     test:assertTrue(checkResult(response, e), "ethGetLogs test failed");
 
     response, e = ethereumConnector.ethGetWork();
     test:assertTrue(checkResult(response, e), "ethGetWork test failed");
 
-    response, e = ethereumConnector.ethSubmitWork("0x0000000000000001",
-                                                  "0xa234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
-                                                  "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef");
+    response, e = ethereumConnector.ethSubmitWork(NONCE, HEADER_POW_HASH, MIX_DIGEST);
     test:assertTrue(checkResult(response, e), "ethSubmitWork test failed");
 
-    response, e = ethereumConnector.ethSubmitHashrate
-                                   ("0x500000", "0x59daa26581d0acd1fce254fb7e85952f4c09d0915afd33d3886cd914bc7d283c");
+    response, e = ethereumConnector.ethSubmitHashrate(HASH_RATE, CLIENT_ID);
     test:assertTrue(checkResult(response, e), "ethSubmitHashrate test failed");
 }
 
-function afterTest(){
+function afterTest () {
     println("Finishing integration tests");
 }
 
 function checkResult (json response, http:HttpConnectorError e) (boolean) {
-    if (e == null || response.id == null || response.jsonrpc == null) {
+    if (e == null && response.id != null && response.jsonrpc != null) {
         println(response);
         return true;
     }

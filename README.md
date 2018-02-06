@@ -56,13 +56,11 @@ All the actions return a `json payload` and a `http:HttpConnectorError`. The `js
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.web3ClientVersion("2.0", 1999);
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
-    println(JSONResponse.result.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -82,8 +80,7 @@ The Ethereum connector supports unimplemented RPC API functions via `remoteProce
 ```java
   response, e = ethereumConnector.remoteProcedureCall(JSONRPCVersion, networkId, "method_name", [params]);
   if (e == null) {
-    JSONResponse = response.getJsonPayload();
-    println(JSONResponse.result.toString());
+    println(response);
   } else {
     println(e);
   }
@@ -107,12 +104,11 @@ Returns the current client version.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.web3ClientVersion("2.0", 1999);
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -152,12 +148,11 @@ Returns Keccak-256 (*not* the standardized SHA3-256) of the given data.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.web3Sha3("2.0", 1999, "0x88656c6c6f20776f726c64");
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -200,12 +195,11 @@ Returns the current network id.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.netVersion("2.0", 1999);
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -243,12 +237,11 @@ Returns `true` if client is actively listening for network connections.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.netListening("2.0", 1999);
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -286,12 +279,11 @@ Returns number of peers currently connected to the client.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.netPeerCount("2.0", 1999);
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -329,12 +321,11 @@ Returns the current ethereum protocol version.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethProtocolVersion("2.0", 1999);
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -376,12 +367,11 @@ Returns an object with data about the sync status or `false`.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethSyncing("2.0", 1999);
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -431,12 +421,11 @@ Returns the client coinbase address.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethCoinbase("2.0", 1999);
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -474,12 +463,11 @@ Returns `true` if client is actively mining new blocks.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethMining("2.0", 1999);
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -517,12 +505,11 @@ Returns the number of hashes per second that the node is mining with.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethHashrate("2.0", 1999);
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -560,12 +547,11 @@ Returns the current price per gas in wei.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethGasPrice("2.0", 1999);
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -604,12 +590,11 @@ Returns a list of addresses owned by client.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethAccounts("2.0", 1999);
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -647,12 +632,11 @@ Returns the number of most recent block.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethBlockNumber("2.0", 1999);
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -694,12 +678,11 @@ Returns the balance of the account of given address.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethGetBalance("2.0", 1999, "0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87", "latest");
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -741,12 +724,11 @@ Returns the value from a storage position at a given address.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethGetStorageAt("2.0", 1999, "0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87", "0x0", "latest");
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -788,12 +770,11 @@ Returns the number of transactions *sent* from an address.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethGetTransactionCount("2.0", 1999, "0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87", "latest");
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -834,12 +815,11 @@ Returns the number of transactions in a block from a block matching the given bl
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethGetBlockTransactionCountByHash("2.0", 1999, "0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238");
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -881,12 +861,11 @@ Returns the number of transactions in a block matching the given block number.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethGetBlockTransactionCountByNumber("2.0", 1999, "latest");
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -927,12 +906,11 @@ Returns the number of uncles in a block from a block matching the given block ha
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethGetUncleCountByBlockHash("2.0", 1999, "0xe841dbd4630fde75a70dc221911aa289756827cd8dd909510215609adaf58655");
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -974,12 +952,11 @@ Returns the number of uncles in a block from a block matching the given block nu
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethGetUncleCountByBlockNumber("2.0", 1999, "latest");
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -1022,12 +999,11 @@ Returns code at a given address.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethGetCode("2.0", 1999, "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b", "0x2");
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -1068,12 +1044,11 @@ The sign method calculates an Ethereum specific signature with.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethSign("2.0", 1999, "0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87", "0xdeadbeaf");
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -1121,7 +1096,7 @@ Creates new message call transaction or a contract creation, if the data field c
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethSendTransaction("2.0", 1999,
         {
@@ -1131,8 +1106,7 @@ response, e = ethereumConnector.ethSendTransaction("2.0", 1999,
          value: "0xa"
          });
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -1172,12 +1146,11 @@ Creates new message call transaction or a contract creation for signed transacti
 ##### Example
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethSendRawTransaction("2.0", 1999, "0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675");
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -1226,7 +1199,7 @@ Executes a new message call immediately without creating a transaction on the bl
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethCall("2.0", 1999, {
               from :"0x0eb8a07d29f5afdcbec1a9d087ece456139bfb87",
@@ -1235,8 +1208,7 @@ response, e = ethereumConnector.ethCall("2.0", 1999, {
               value: "0xa"
               }, "latest");
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -1274,12 +1246,11 @@ In [eth_call](#eth_call), all the optional parameters are expected.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethEstimateGas("2.0", 1999, {see above ethCall parameters});
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -1344,12 +1315,11 @@ Returns information about a block by hash.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethGetBlockByHash("2.0", 1999, "0x8655b1b7949f45a95a77c8ff3942116db22ce268b5f63d2c25f09b5625b02607", true);
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -1477,12 +1447,11 @@ Returns the information about a transaction requested by transaction hash.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethGetTransactionByHash("2.0", 1999, "0x1c80b47e4a28c7c4892460c84a1f7b10aa2a33f0059f881abbcf77ef7ae2914a");
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -1607,12 +1576,11 @@ It also returns _either_ :
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethGetTransactionReceipt("2.0", 1999, "0x1c80b47e4a28c7c4892460c84a1f7b10aa2a33f0059f881abbcf77ef7ae2914a");
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -1718,12 +1686,11 @@ Returns a list of available compilers in the client.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethGetCompilers("2.0", 1999);
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -1761,13 +1728,12 @@ Returns compiled solidity code.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethCompileSolidity("2.0", 1999,
     "contract test { function multiply(uint a) returns(uint d) {   return a * 7;   } }");
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -1837,12 +1803,11 @@ Returns compiled LLL code.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethCompileLLL("2.0", 1999, "(returnlll (suicide (caller)))");
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -1880,12 +1845,11 @@ Returns compiled serpent code.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethCompileSerpent("2.0", 1999, "Some code");
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -1929,7 +1893,7 @@ Creates a filter object, based on filter options, to notify when the state chang
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethNewFilter("2.0", 1999, {
         "fromBlock": "0x1",
@@ -1938,8 +1902,7 @@ response, e = ethereumConnector.ethNewFilter("2.0", 1999, {
         "topics": ["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b", null, ["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b", "0x0000000000000000000000000aff3454fce5edbc8cca8697c15331677e6ebccc"]]
       });
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -1979,12 +1942,11 @@ To check if the state has changed, call [ethGetFilterChanges](#ethgetfilterchang
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethNewBlockFilter("2.0", 1999);
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -2022,12 +1984,11 @@ Creates a filter in the node, to notify when new pending transactions arrive.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethNewPendingTransactionFilter("2.0", 1999);
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -2067,12 +2028,11 @@ Uninstalls a filter with given id.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethUninstallFilter("2.0", 1999, "0xd1e74a0ecefd34817099171b8b9e8a82");
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -2127,12 +2087,11 @@ Polling method for a filter, which returns an array of logs which occurred since
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethGetFilterChanges("2.0", 1999, "0x1bad3335bdd994b7a4690f0a134fb340");
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -2230,12 +2189,11 @@ none
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethGetWork("2.0", 1999);
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -2278,12 +2236,11 @@ Used for submitting a proof-of-work solution.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethSubmitWork("2.0", 1999, "0x0000000000000001", "0xa234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef", "0xD1GE5700000000000000000000000000D1GE5700000000000000000000000000");
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }
@@ -2325,12 +2282,11 @@ Used for submitting mining hashrate.
 
 ```java
 //code
-http:Response response = {};
+json response = {};
 http:HttpConnectorError e;
 response, e = ethereumConnector.ethSubmitHashrate("2.0", 1999, "0x0000000000000000000000000000000000000000000000000000000000500000", "0x59daa26581d0acd1fce254fb7e85952f4c09d0915afd33d3886cd914bc7d283c");
 if (e == null) {
-    json JSONResponse = response.getJsonPayload();
-    println(JSONResponse.toString());
+    println(response);
 } else {
     println(e);
 }

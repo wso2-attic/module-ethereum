@@ -7,8 +7,8 @@ The Ethereum connector allows you to access the Ethereum JSON RPC API through ba
 ## Outline
 1) [Getting started](#getting-started)
 2) [Running Samples](#running-samples)
-3) [Working with Ethereum connector actions](#working-with-ethereum-connector-actions)
-4) [Quick Testing](#quick-testing)
+3) [Quick Testing](#quick-testing)
+4) [Working with Ethereum connector actions](#working-with-ethereum-connector-actions)
 
 ## Getting started
 
@@ -35,10 +35,23 @@ Default JSON-RPC endpoints:
     `bin$ ballerina run sampleDashBoard.bal <URI> <JSONRPCVersion> <NetworkID>`
 - eg:
     `bin$ ballerina run sampleDashBoard.bal "http://localhost:8080" "2.0" 1999`
+    
+## Quick Testing
+
+You can easily test the following actions using the `sample.bal`.
+
+- Copy `connector-ethereum/component/samples/ethereum/sample.bal` file and paste it into `<ballerina-tools>/bin` folder.
+- Run the following commands to execute the sample.
+
+`bin$ ballerina run sample.bal <URI> <JSONRPCVersion> <NetworkID> <MethodName> <Param1> .. <ParamN>`
+
+***
+
+## Working with Ethereum connector actions
 
 ### Example
 
-All the actions return a `http:Response` and a `http:HttpConnectorError`. The `http:Response` consists a `json` payload. In the following section, provide you the details about the result of the `json` payload for each action under **Returns** sub heading.
+All the actions return a `json payload` and a `http:HttpConnectorError`. The `json payload` consists either a result or an error. In the following section, provide you the details about the result of the `json` payload for each action under **Returns** sub heading.
 
 
 ```java
@@ -62,10 +75,6 @@ if (e == null) {
 
 Geth/hostname/v1.7.3-stable-4bb3c89d/linux-amd64/go1.9
 ```
-
-***
-
-## Working with Ethereum connector actions
 
 ### Generic Action
 
@@ -2343,17 +2352,6 @@ if (e == null) {
 https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_submithashrate
 
 ***
-
-## Quick Testing
-
-You can easily test the following actions using the `sample.bal`.
-
-- Copy `connector-ethereum/component/samples/ethereum/sample.bal` file and paste it into `<ballerina-tools>/bin` folder.
-- Run the following commands to execute the sample.
-
-`bin$ ballerina run sample.bal <URI> <JSONRPCVersion> <NetworkID> <MethodName> <Param1> .. <ParamN>`
-
-- eg:
 
 
 #### Related links

@@ -61,6 +61,7 @@ http:HttpConnectorError e;
 response, e = ethereumConnector.web3ClientVersion("2.0", 1999);
 if (e == null) {
     println(response);
+    println(response.result.toString());
 } else {
     println(e);
 }

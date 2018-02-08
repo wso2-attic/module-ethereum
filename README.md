@@ -21,6 +21,8 @@ The Ethereum connector allows you to access the Ethereum JSON RPC API through Ba
 - [Quick Testing](#quick-testing)
 - [Working with Ethereum connector actions](#working-with-ethereum-connector-actions)
 
+![Ballerina -Ethereum Connector Overview](BallerinaEthereumJSONRPC.png)
+
 ## Getting started
 
 1. Download the Ballerina tool distribution by navigating to https://ballerinalang.org/downloads/.

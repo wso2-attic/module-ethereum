@@ -6,7 +6,7 @@
 
 JSON RPC is a remote procedure call protocol and the API is used to help integrate with Ethereum. 
 
-One advantage of using the JSON RPC API is the simplicity of storing the Ethereum blockchain ledger. The Ethereum blockchain ledger is more than 400GB in size. It is difficult to store the ledger in normal devices. Using the JSON RPC API, one device can store the whole ledger and others can use the stored blockchain ledger without keeping their own ledger. A ligh protocol exists that compresses the ledger and slightly addresses the sizing concerns. However, the light protocol for the blockchain ledger limits the capabilities of the blockchain ledger as it is not readable.
+One advantage of using the JSON RPC API is the simplicity of storing the Ethereum blockchain ledger. The Ethereum blockchain ledger is more than 400GB in size. It is difficult to store the ledger in normal devices. Using the JSON RPC API, one device can store the whole ledger and others can use the stored blockchain ledger without keeping their own ledger.
 
 After enabling JSON RPC, the node acts as a server. Because of that It's easy to spread decentralized apps among the people by hiding the complexity.
 

@@ -17,6 +17,7 @@
 //
 
 import ballerina.net.http;
+import ballerina.util;
 import org.wso2.ballerina.connectors.ethereum;
 
 const string LATEST = "latest";
@@ -69,7 +70,9 @@ public function main (string[] args) {
         println(e);
         return;
     }
-    println("\nNumber of blocks: " + response.result.toString());
+
+    var blockNumber, err = util:hexToDecimal(response.result.toString());
+    println("\nNumber of blocks: " + blockNumber);
 
     //get the details of the latest block
     println("\nlatest block details: ");

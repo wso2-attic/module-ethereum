@@ -2,18 +2,29 @@
 
 *Ethereum is a decentralized platform for applications that run exactly as programmed without any chance of fraud, censorship or third-party interference* (https://www.ethereum.org/).
 
-The Ethereum connector allows you to access the Ethereum JSON RPC API through ballerina. And the Ethereum connector actions are being invoked with a ballerina main function. The following section provide you the details on how to use Ballerina Ethereum connector.
+### Why do you need the JSON RPC API for Ethereum
 
-## Outline
-1) [Getting started](#getting-started)
-2) [Running Samples](#running-samples)
-3) [Quick Testing](#quick-testing)
-4) [Working with Ethereum connector actions](#working-with-ethereum-connector-actions)
+JSON RPC is a remote procedure call protocol and the API is used to help integrate with Ethereum. 
+
+One advantage of using the JSON RPC API is the simplicity of storing the Ethereum blockchain ledger. The Ethereum blockchain ledger is more than 400GB in size. It is difficult to store the ledger in normal devices. Using the JSON RPC API, one device can store the whole ledger and others can use the stored blockchain ledger without keeping their own ledger. A ligh protocol exists that compresses the ledger and slightly addresses the sizing concerns. However, the light protocol for the blockchain ledger limits the capabilities of the blockchain ledger as it is not readable.
+
+After enabling JSON RPC, the node acts as a server. Because of that It's easy to spread decentralized apps among the people by hiding the complexity.
+
+### Why would you use a Ballerina connector for Ethereum
+
+Ballerina is a JSON friendly language. It is easy to write programs for the JSON RPC API if we have a connector for Ethereum. Ballerina is also an integration tool and can be used to easily integrate the Ethereum JSON RPC API with other endpoints.
+
+The Ethereum connector allows you to access the Ethereum JSON RPC API through Ballerina. The Ethereum connector actions are invoked using a Ballerina main function. The following sections provide you with information on how to use the Ballerina Ethereum connector.
+
+- [Getting started](#getting-started)
+- [Running Samples](#running-samples)
+- [Quick Testing](#quick-testing)
+- [Working with Ethereum connector actions](#working-with-ethereum-connector-actions)
 
 ## Getting started
 
-1. Download the Ballerina tool distribution by navigating https://ballerinalang.org/downloads/
-2. Extract ballerina-ethereum-0.95.0.zip and copy ballerina-ethereum-0.95.0.jar into the `<ballerina-tools>/bre/lib` folder.
+1. Download the Ballerina tool distribution by navigating to https://ballerinalang.org/downloads/.
+2. Extract `ballerina-ethereum-0.95.0.zip` and copy the `ballerina-ethereum-0.95.0.jar` file into the `<ballerina-tools>/bre/lib` folder.
 
 ##### Prerequisites
 1. Enable JSON RPC API in your Ethereum client node by visiting [https://github.com/ethereum/wiki/wiki/JSON-RPC/](https://github.com/ethereum/wiki/wiki/JSON-RPC#javascript-api).
@@ -29,29 +40,25 @@ Default JSON-RPC endpoints:
 
 ## Running Samples
 
-- Copy `connector-ethereum/component/samples/ethereum/sampleDashBoard.bal` file and paste it into `<ballerina-tools>/bin` folder.
-- Run the following commands to execute the sample.
-
+- Copy the `connector-ethereum/component/samples/ethereum/sampleDashBoard.bal` file and paste it into the `<ballerina-tools>/bin` folder.
+- Run the following command to execute the sample.
     `bin$ ballerina run sampleDashBoard.bal <URI> <JSONRPCVersion> <NetworkID>`
-- eg:
-    `bin$ ballerina run sampleDashBoard.bal "http://localhost:8080" "2.0" 1999`
+    
+    E.g., `bin$ ballerina run sampleDashBoard.bal "http://localhost:8080" "2.0" 1999`
     
 ## Quick Testing
 
-You can easily test the following actions using the `sample.bal`.
+You can easily test the following actions using the `sample.bal` file.
 
 - Copy `connector-ethereum/component/samples/ethereum/sample.bal` file and paste it into `<ballerina-tools>/bin` folder.
 - Run the following commands to execute the sample.
-
-`bin$ ballerina run sample.bal <URI> <JSONRPCVersion> <NetworkID> <MethodName> <Param1> .. <ParamN>`
-
-***
+    `bin$ ballerina run sample.bal <URI> <JSONRPCVersion> <NetworkID> <MethodName> <Param1> .. <ParamN>`
 
 ## Working with Ethereum connector actions
 
 ### Example
 
-All the actions return a `json payload` and a `http:HttpConnectorError`. The `json payload` consists either a result or an error. In the following section, provide you the details about the result of the `json` payload for each action under **Returns** sub heading.
+All the actions return a `JSON payload` and a `http:HttpConnectorError`. The `JSON payload` consists of either a result or an error. The following section provides details on the result of the `JSON` payload for each action under the **Returns** section.
 
 
 ```java

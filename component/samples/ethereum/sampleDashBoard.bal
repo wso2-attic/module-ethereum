@@ -71,7 +71,7 @@ public function main (string[] args) {
         return;
     }
 
-    var blockNumber, err = util:hexToDecimal(response.result.toString());
+    var blockNumber, err = response.result.toString();
     println("\nNumber of blocks: " + blockNumber);
 
     //get the details of the latest block

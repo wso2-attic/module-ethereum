@@ -40,33 +40,6 @@ Default JSON-RPC endpoints:
 | Py | http://localhost:4000 |
 | Parity | http://localhost:8545 |
 
-## Working with Hex Numbers
-
-In Ethereum, integers and numbers are encoded as hex. Ballerina Ethereum Connector has inbuilt hex to decimal and decimal to text converters.
-
-- 0x41 (65 in decimal)
-- 0x400 (1024 in decimal)
-- WRONG: 0x (should always have at least one digit - zero is "0x0")
-- WRONG: 0x0400 (no leading zeroes allowed)
-- WRONG: ff (must be prefixed 0x)
-
-##### Example
-``` java
-    // Import
-    import ballerina.util;
-
-    // Code
-    var blockNumber, err = util:hexToDecimal("0x5d7");
-    println("Number of blocks: " + blockNumber);
-
-    var blockNumberHex, errHex = util:decimalToHex(1495);
-    println("Number of blocks: " + blockNumberHex);
-
-    // Results
-    Number of blocks: 1495
-    Number of blocks: 0x5d7
-```
-
 ## Running Samples
 
 - Copy the `connector-ethereum/component/samples/ethereum/sampleDashBoard.bal` file and paste it into the `<ballerina-tools>/bin` folder.

@@ -14,14 +14,16 @@ After enabling JSON RPC, the node acts as a server. Because of that It's easy to
 
 Ballerina is a JSON friendly language. It is easy to write programs for the JSON RPC API if we have a connector for Ethereum. Ballerina is also an integration tool and can be used to easily integrate the Ethereum JSON RPC API with other endpoints.
 
-The Ethereum connector allows you to access the Ethereum JSON RPC API through Ballerina. The Ethereum connector actions are invoked using a Ballerina main function. The following sections provide you with information on how to use the Ballerina Ethereum connector.
+The Ethereum connector allows you to access the Ethereum JSON RPC API through Ballerina. The Ethereum connector actions are invoked using a Ballerina main function. The following diagram illustrates how Ballerina connects to the JSON RPC-enabled server, which in turn integrates with the Ethereum network.
+
+![Ballerina -Ethereum Connector Overview](BallerinaEthereumJSONRPC.png)
+
+The following sections provide you with information on how to use the Ballerina Ethereum connector.
 
 - [Getting started](#getting-started)
 - [Running Samples](#running-samples)
 - [Quick Testing](#quick-testing)
 - [Working with Ethereum connector actions](#working-with-ethereum-connector-actions)
-
-![Ballerina -Ethereum Connector Overview](BallerinaEthereumJSONRPC.png)
 
 ## Getting started
 

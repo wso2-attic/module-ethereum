@@ -72,6 +72,9 @@ const string EMPTY_PARAMS = "[]";
 
 @Description {value:"Ethereum client connector"}
 @Param {value:"URI: URI of the Ethereum JSON - RPC server"}
+@Param {value:"options: options for the connector"}
+@Param {value:"jsonRPCVersion: JSON RPC version"}
+@Param {value:"id: Network id"}
 public connector ClientConnector (string URI, http:Options options, string jsonRPCVersion, int id) {
 
     endpoint<http:HttpClient> ethereumEP {
@@ -79,8 +82,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns the current client version"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action web3ClientVersion () (json, http:HttpConnectorError) {
@@ -89,8 +90,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns Keccak-256 (not the standardized SHA3-256) of the given data"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"data: the data to convert into a SHA3 hash"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
@@ -105,8 +104,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
         3: Ropsten Testnet,
         4: Rinkeby Testnet,
         42: Kovan Testnet"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action netVersion () (json, http:HttpConnectorError) {
@@ -115,8 +112,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns true if client is actively listening for network connections, otherwise false"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action netListening () (json, http:HttpConnectorError) {
@@ -125,8 +120,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns number of peers currently connected to the client"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action netPeerCount () (json, http:HttpConnectorError) {
@@ -135,8 +128,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns the current ethereum protocol version"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethProtocolVersion () (json, http:HttpConnectorError) {
@@ -145,8 +136,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns an object with data about the sync status or false"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethSyncing () (json, http:HttpConnectorError) {
@@ -155,8 +144,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns the client coinbase address"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethCoinbase () (json, http:HttpConnectorError) {
@@ -165,8 +152,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns true if client is actively mining new blocks"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethMining () (json, http:HttpConnectorError) {
@@ -175,8 +160,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns the number of hashes per second that the node is mining with"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethHashrate () (json, http:HttpConnectorError) {
@@ -185,8 +168,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns the current price per gas in wei"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethGasPrice () (json, http:HttpConnectorError) {
@@ -195,8 +176,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns a list of addresses owned by client"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethAccounts () (json, http:HttpConnectorError) {
@@ -205,8 +184,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns the number of most recent block"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethBlockNumber () (json, http:HttpConnectorError) {
@@ -215,8 +192,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns the balance of the account of given address"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"accountAddress: 20 Bytes - address to check for balance"}
     @Param {value:"block: Hex value block number, or the string 'latest', 'earliest' or 'pending'"}
     @Return {value:"InResponse object"}
@@ -228,8 +203,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns the value from a storage position at a given address"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"address: 20 Bytes - address to check for balance"}
     @Param {value:"position: Hex value of the position in the storage"}
     @Param {value:"block:  Hex value block number, or the string 'latest', 'earliest' or 'pending'"}
@@ -243,8 +216,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns the number of transactions sent from an address"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"address: 20 Bytes - address to check for balance"}
     @Param {value:"block: Hex value block number, or the string 'latest', 'earliest' or 'pending'"}
     @Return {value:"InResponse object"}
@@ -258,8 +229,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
 
 
     @Description {value:"Returns the number of transactions in a block from a block matching the given block hash"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"hash: 32 Bytes - hash of a block"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
@@ -272,8 +241,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns the number of transactions in a block matching the given block number"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"block: Network id"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
@@ -285,8 +252,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns the number of uncles in a block from a block matching the given block hash"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"hash: 32 Bytes - hash of a block"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
@@ -298,8 +263,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:""}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"block: Hex value of a block number, or the string 'latest', 'earliest' or 'pending'"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
@@ -311,8 +274,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns code at a given address"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"address: 20 Bytes - address"}
     @Param {value:"block: Hex value of a block number, or the string 'latest', 'earliest' or 'pending'"}
     @Return {value:"InResponse object"}
@@ -324,8 +285,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"The sign method calculates an Ethereum specific signature with"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"address: 20 Bytes - address"}
     @Param {value:"message: message to sign"}
     @Return {value:"InResponse object"}
@@ -337,8 +296,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Creates a message call transaction or a contract creation, if the data field contains code"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"transactionObject: The transaction object
         from: DATA, 20 Bytes - The address the transaction is send from.
         to: DATA, 20 Bytes - (optional when creating new contract) The address the transaction is directed to.
@@ -357,8 +314,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Creates new message call transaction or a contract creation for signed transactions"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"signedTransactionData:  The signed transaction data"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
@@ -370,8 +325,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Executes a new message call immediately without creating a transaction on the block chain"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"transactionCallObject: The transaction call object
         from: DATA, 20 Bytes - (optional) The address the transaction is sent from.
         to: DATA, 20 Bytes - The address the transaction is directed to.
@@ -392,8 +345,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
 
     @Description {value:"Makes a call or transaction, which won't be added to the blockchain and returns the used gas,
         which can be used for estimating the used gas"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"transactionCallObject: The transaction call object
         from: DATA, 20 Bytes - The address the transaction is sent from.
         to: DATA, 20 Bytes - The address the transaction is directed to.
@@ -411,8 +362,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns information about a block by hash"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"hash: 32 Bytes - Hash of a block"}
     @Param {value:"fullTransaction: If true it returns the full transaction objects,
         if false only the hashes of the transactions"}
@@ -426,8 +375,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns information about a block by block number"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"block: Hex value of a block number, or the string 'latest', 'earliest' or 'pending'"}
     @Param {value:"fullTransaction: If true it returns the full transaction objects,
         if false only the hashes of the transactions"}
@@ -441,8 +388,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns the information about a transaction requested by transaction hash"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"hash: 32 Bytes - hash of a transaction"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
@@ -454,8 +399,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns information about a transaction by block hash and transaction index position"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"hash: 32 Bytes - hash of a transaction"}
     @Param {value:"position: Hex value of the transaction index position"}
     @Return {value:"InResponse object"}
@@ -469,8 +412,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns information about a transaction by block number and transaction index position"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"block: Hex value of a block number, or the string 'latest', 'earliest' or 'pending'"}
     @Param {value:"position: Hex value of the transaction index position"}
     @Return {value:"InResponse object"}
@@ -484,8 +425,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns the receipt of a transaction by transaction hash"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"hash: 32 Bytes - hash of a transaction"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
@@ -497,8 +436,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns information about a uncle of a block by hash and uncle index position"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"hash: 32 Bytes - hash of a transaction"}
     @Param {value:"position:  The uncle's index position"}
     @Return {value:"InResponse object"}
@@ -511,8 +448,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns information about a uncle of a block by number and uncle index position"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"block: Hex value of a block number, or the string 'latest', 'earliest' or 'pending'"}
     @Param {value:"position:  The uncle's index position"}
     @Return {value:"InResponse object"}
@@ -525,8 +460,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns a list of available compilers in the client"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethGetCompilers () (json, http:HttpConnectorError) {
@@ -535,8 +468,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns compiled solidity code"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"source: The source code"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
@@ -546,8 +477,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns compiled LLL code"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"source: The source code"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
@@ -557,8 +486,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns compiled serpent code"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"source: The source code"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
@@ -568,8 +495,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Creates a filter object, based on filter options, to notify when the state changes (logs)"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"filterOptions:  The filter options"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
@@ -579,8 +504,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Creates a filter in the node, to notify when a new block arrives"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethNewBlockFilter () (json, http:HttpConnectorError) {
@@ -589,8 +512,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Creates a filter in the node, to notify when new pending transactions arrive"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethNewPendingTransactionFilter () (json, http:HttpConnectorError) {
@@ -600,8 +521,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Uninstalls a filter with given id"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"filterId: The filter id"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
@@ -611,8 +530,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Polling method for a filter, which returns an array of logs which occurred since last poll"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"filterId: The filter id"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
@@ -623,8 +540,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns an array of all logs matching filter with given id"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"filterId: The filter id"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
@@ -634,8 +549,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns an array of all logs matching a given filter object"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"filterObject: The filter object"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
@@ -646,8 +559,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
 
     @Description {value:"Returns the hash of the current block, the seedHash, and the boundary condition to be met
         ('target')"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Return {value:"InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethGetWork () (json, http:HttpConnectorError) {
@@ -656,8 +567,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Used for submitting a proof-of-work solution"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"nonce: 8 Bytes - The nonce found"}
     @Param {value:"powHash: 32 Bytes - The header's pow-hash"}
     @Param {value:"mixDigest: 32 Bytes - The mix digest"}
@@ -671,8 +580,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Used for submitting mining hashrate"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"hashrate: Hexadecimal string representation (32 bytes) of the hash rate"}
     @Param {value:"clientId: Random hexadecimal(32 bytes) ID identifying the client"}
     @Return {value:"InResponse object"}
@@ -685,8 +592,6 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Generic method for Ethereum RPC"}
-    @Param {value:"jsonRPCVersion: JSON RPC version"}
-    @Param {value:"id: Network id"}
     @Param {value:"method: Method name"}
     @Param {value:"params: parameter array"}
     @Return {value:"InResponse object"}

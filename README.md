@@ -65,7 +65,7 @@ You can easily test the following actions using the `sample.bal` file.
 All the actions return a `JSON payload` and a `http:HttpConnectorError`. The `JSON payload` consists of either a result or an error. The following section provides details on the result of the `JSON` payload for each action under the **Returns** section.
 
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -89,7 +89,7 @@ Geth/hostname/v1.7.3-stable-4bb3c89d/linux-amd64/go1.9
 ### Generic Action
 
 The Ethereum connector supports unimplemented RPC API functions via `remoteProcedureCall()`.
-```java
+```ballerina
   response, e = ethereumConnector.remoteProcedureCall(JSONRPCVersion, networkId, "method_name", [params]);
   if (e == null) {
     println(response);
@@ -114,7 +114,7 @@ Returns the current client version.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -158,7 +158,7 @@ Returns Keccak-256 (*not* the standardized SHA3-256) of the given data.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -205,7 +205,7 @@ Returns the current network id.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -247,7 +247,7 @@ Returns `true` if client is actively listening for network connections.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -289,7 +289,7 @@ Returns number of peers currently connected to the client.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -331,7 +331,7 @@ Returns the current ethereum protocol version.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -377,7 +377,7 @@ Returns an object with data about the sync status or `false`.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -431,7 +431,7 @@ Returns the client coinbase address.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -473,7 +473,7 @@ Returns `true` if client is actively mining new blocks.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -515,7 +515,7 @@ Returns the number of hashes per second that the node is mining with.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -557,7 +557,7 @@ Returns the current price per gas in wei.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -600,7 +600,7 @@ Returns a list of addresses owned by client.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -642,7 +642,7 @@ Returns the number of most recent block.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -688,7 +688,7 @@ Returns the balance of the account of given address.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -734,7 +734,7 @@ Returns the value from a storage position at a given address.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -780,7 +780,7 @@ Returns the number of transactions *sent* from an address.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -825,7 +825,7 @@ Returns the number of transactions in a block from a block matching the given bl
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -871,7 +871,7 @@ Returns the number of transactions in a block matching the given block number.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -916,7 +916,7 @@ Returns the number of uncles in a block from a block matching the given block ha
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -962,7 +962,7 @@ Returns the number of uncles in a block from a block matching the given block nu
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -1009,7 +1009,7 @@ Returns code at a given address.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -1054,7 +1054,7 @@ The sign method calculates an Ethereum specific signature with.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -1106,7 +1106,7 @@ Creates new message call transaction or a contract creation, if the data field c
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -1156,7 +1156,7 @@ Creates new message call transaction or a contract creation for signed transacti
 - 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available.
 
 ##### Example
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -1209,7 +1209,7 @@ Executes a new message call immediately without creating a transaction on the bl
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -1256,7 +1256,7 @@ In [eth_call](#eth_call), all the optional parameters are expected.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -1325,7 +1325,7 @@ Returns information about a block by hash.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -1457,7 +1457,7 @@ Returns the information about a transaction requested by transaction hash.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -1586,7 +1586,7 @@ It also returns _either_ :
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -1696,7 +1696,7 @@ Returns a list of available compilers in the client.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -1738,7 +1738,7 @@ Returns compiled solidity code.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -1813,7 +1813,7 @@ Returns compiled LLL code.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -1855,7 +1855,7 @@ Returns compiled serpent code.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -1903,7 +1903,7 @@ Creates a filter object, based on filter options, to notify when the state chang
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -1952,7 +1952,7 @@ To check if the state has changed, call [ethGetFilterChanges](#ethgetfilterchang
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -1994,7 +1994,7 @@ Creates a filter in the node, to notify when new pending transactions arrive.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -2038,7 +2038,7 @@ Uninstalls a filter with given id.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -2097,7 +2097,7 @@ Polling method for a filter, which returns an array of logs which occurred since
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -2199,7 +2199,7 @@ none
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -2246,7 +2246,7 @@ Used for submitting a proof-of-work solution.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;
@@ -2292,7 +2292,7 @@ Used for submitting mining hashrate.
 
 ##### Example
 
-```java
+```ballerina
 //code
 json response = {};
 http:HttpConnectorError e;

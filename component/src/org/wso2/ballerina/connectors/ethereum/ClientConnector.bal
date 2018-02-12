@@ -82,7 +82,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns the current client version"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action web3ClientVersion () (json, http:HttpConnectorError) {
         var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, WEB3_CLIENT_VERSION, EMPTY_PARAMS));
@@ -91,7 +91,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
 
     @Description {value:"Returns Keccak-256 (not the standardized SHA3-256) of the given data"}
     @Param {value:"data: the data to convert into a SHA3 hash"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action web3Sha3 (string data) (json, http:HttpConnectorError) {
         var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, WEB3_SHA3, [data]));
@@ -104,7 +104,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
         3: Ropsten Testnet,
         4: Rinkeby Testnet,
         42: Kovan Testnet"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action netVersion () (json, http:HttpConnectorError) {
         var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, NET_VERSION, EMPTY_PARAMS));
@@ -112,7 +112,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns true if client is actively listening for network connections, otherwise false"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action netListening () (json, http:HttpConnectorError) {
         var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, NET_LISTENING, EMPTY_PARAMS));
@@ -120,7 +120,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns number of peers currently connected to the client"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action netPeerCount () (json, http:HttpConnectorError) {
         var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, NET_PEER_COUNT, EMPTY_PARAMS));
@@ -128,7 +128,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns the current ethereum protocol version"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethProtocolVersion () (json, http:HttpConnectorError) {
         var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ETH_PROTOCOL_VERSION, EMPTY_PARAMS));
@@ -136,7 +136,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns an object with data about the sync status or false"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethSyncing () (json, http:HttpConnectorError) {
         var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ETH_SYNCING, EMPTY_PARAMS));
@@ -144,7 +144,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns the client coinbase address"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethCoinbase () (json, http:HttpConnectorError) {
         var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ETH_COINBASE, EMPTY_PARAMS));
@@ -152,7 +152,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns true if client is actively mining new blocks"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethMining () (json, http:HttpConnectorError) {
         var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ETH_MINING, EMPTY_PARAMS));
@@ -160,7 +160,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns the number of hashes per second that the node is mining with"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethHashrate () (json, http:HttpConnectorError) {
         var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ETH_HASHRATE, EMPTY_PARAMS));
@@ -168,7 +168,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns the current price per gas in wei"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethGasPrice () (json, http:HttpConnectorError) {
         var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ETH_GAS_PRICE, EMPTY_PARAMS));
@@ -176,7 +176,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns a list of addresses owned by client"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethAccounts () (json, http:HttpConnectorError) {
         var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ETH_ACCOUNTS, EMPTY_PARAMS));
@@ -184,7 +184,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns the number of most recent block"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethBlockNumber () (json, http:HttpConnectorError) {
         var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ETH_BLOCK_NUMBER, EMPTY_PARAMS));
@@ -194,7 +194,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     @Description {value:"Returns the balance of the account of given address"}
     @Param {value:"accountAddress: 20 Bytes - address to check for balance"}
     @Param {value:"block: Hex value block number, or the string 'latest', 'earliest' or 'pending'"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethGetBalance (string address, string block)
     (json, http:HttpConnectorError) {
@@ -206,7 +206,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     @Param {value:"address: 20 Bytes - address to check for balance"}
     @Param {value:"position: Hex value of the position in the storage"}
     @Param {value:"block:  Hex value block number, or the string 'latest', 'earliest' or 'pending'"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethGetStorageAt (string address, string position, string block)
     (json, http:HttpConnectorError) {
@@ -218,7 +218,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     @Description {value:"Returns the number of transactions sent from an address"}
     @Param {value:"address: 20 Bytes - address to check for balance"}
     @Param {value:"block: Hex value block number, or the string 'latest', 'earliest' or 'pending'"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethGetTransactionCount (string address, string block)
     (json, http:HttpConnectorError) {
@@ -230,7 +230,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
 
     @Description {value:"Returns the number of transactions in a block from a block matching the given block hash"}
     @Param {value:"hash: 32 Bytes - hash of a block"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethGetBlockTransactionCountByHash (string hash)
     (json, http:HttpConnectorError) {
@@ -242,7 +242,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
 
     @Description {value:"Returns the number of transactions in a block matching the given block number"}
     @Param {value:"block: Network id"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethGetBlockTransactionCountByNumber (string block)
     (json, http:HttpConnectorError) {
@@ -253,7 +253,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
 
     @Description {value:"Returns the number of uncles in a block from a block matching the given block hash"}
     @Param {value:"hash: 32 Bytes - hash of a block"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethGetUncleCountByBlockHash (string hash)
     (json, http:HttpConnectorError) {
@@ -264,7 +264,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
 
     @Description {value:""}
     @Param {value:"block: Hex value of a block number, or the string 'latest', 'earliest' or 'pending'"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethGetUncleCountByBlockNumber (string block)
     (json, http:HttpConnectorError) {
@@ -276,7 +276,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     @Description {value:"Returns code at a given address"}
     @Param {value:"address: 20 Bytes - address"}
     @Param {value:"block: Hex value of a block number, or the string 'latest', 'earliest' or 'pending'"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethGetCode (string address, string block)
     (json, http:HttpConnectorError) {
@@ -287,7 +287,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     @Description {value:"The sign method calculates an Ethereum specific signature with"}
     @Param {value:"address: 20 Bytes - address"}
     @Param {value:"message: message to sign"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethSign (string address, string message)
     (json, http:HttpConnectorError) {
@@ -304,7 +304,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
         value: QUANTITY - (optional) Hex value of the value send with this transaction
         data: DATA - The compiled code of a contract OR the hash of the invoked method signature and encoded parameters.
         nonce: QUANTITY - (optional) Hex value of a nonce"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethSendTransaction (json transactionObject)
     (json, http:HttpConnectorError) {
@@ -315,7 +315,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
 
     @Description {value:"Creates new message call transaction or a contract creation for signed transactions"}
     @Param {value:"signedTransactionData:  The signed transaction data"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethSendRawTransaction (string signedTransactionData)
     (json, http:HttpConnectorError) {
@@ -334,7 +334,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
         value: QUANTITY - (optional) Hex value of the value send with this transaction
         data: DATA - (optional) Hash of the method signature and encoded parameters"}
     @Param {value:"block: Hex value of a block number, or the string 'latest', 'earliest' or 'pending'"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethCall (json transactionCallObject, string block)
     (json, http:HttpConnectorError) {
@@ -352,7 +352,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
         gasPrice: QUANTITY -  Hex value of the gasPrice used for each paid gas
         value: QUANTITY -  Hex value of the value send with this transaction
         data: DATA - (optional) Hash of the method signature and encoded parameters"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethEstimateGas (json transactionCallObject)
     (json, http:HttpConnectorError) {
@@ -365,7 +365,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     @Param {value:"hash: 32 Bytes - Hash of a block"}
     @Param {value:"fullTransaction: If true it returns the full transaction objects,
         if false only the hashes of the transactions"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethGetBlockByHash (string hash, boolean fullTransaction)
     (json, http:HttpConnectorError) {
@@ -378,7 +378,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     @Param {value:"block: Hex value of a block number, or the string 'latest', 'earliest' or 'pending'"}
     @Param {value:"fullTransaction: If true it returns the full transaction objects,
         if false only the hashes of the transactions"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethGetBlockByNumber (string block, boolean fullTransaction)
     (json, http:HttpConnectorError) {
@@ -389,7 +389,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
 
     @Description {value:"Returns the information about a transaction requested by transaction hash"}
     @Param {value:"hash: 32 Bytes - hash of a transaction"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethGetTransactionByHash (string hash)
     (json, http:HttpConnectorError) {
@@ -401,7 +401,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     @Description {value:"Returns information about a transaction by block hash and transaction index position"}
     @Param {value:"hash: 32 Bytes - hash of a transaction"}
     @Param {value:"position: Hex value of the transaction index position"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethGetTransactionByBlockHashAndIndex (string hash, string position)
     (json, http:HttpConnectorError) {
@@ -414,7 +414,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     @Description {value:"Returns information about a transaction by block number and transaction index position"}
     @Param {value:"block: Hex value of a block number, or the string 'latest', 'earliest' or 'pending'"}
     @Param {value:"position: Hex value of the transaction index position"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethGetTransactionByBlockNumberAndIndex (string block, string position)
     (json, http:HttpConnectorError) {
@@ -426,7 +426,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
 
     @Description {value:"Returns the receipt of a transaction by transaction hash"}
     @Param {value:"hash: 32 Bytes - hash of a transaction"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethGetTransactionReceipt (string hash)
     (json, http:HttpConnectorError) {
@@ -438,7 +438,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     @Description {value:"Returns information about a uncle of a block by hash and uncle index position"}
     @Param {value:"hash: 32 Bytes - hash of a transaction"}
     @Param {value:"position:  The uncle's index position"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethGetUncleByBlockHashAndIndex (string hash, string position)
     (json, http:HttpConnectorError) {
@@ -450,7 +450,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     @Description {value:"Returns information about a uncle of a block by number and uncle index position"}
     @Param {value:"block: Hex value of a block number, or the string 'latest', 'earliest' or 'pending'"}
     @Param {value:"position:  The uncle's index position"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethGetUncleByBlockNumberAndIndex (string block, string position)
     (json, http:HttpConnectorError) {
@@ -460,7 +460,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Returns a list of available compilers in the client"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethGetCompilers () (json, http:HttpConnectorError) {
         var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ETH_GET_COMPILERS, EMPTY_PARAMS));
@@ -469,7 +469,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
 
     @Description {value:"Returns compiled solidity code"}
     @Param {value:"source: The source code"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethCompileSolidity (string source) (json, http:HttpConnectorError) {
         var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ETH_COMPILE_SOLIDITY, [source]));
@@ -478,7 +478,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
 
     @Description {value:"Returns compiled LLL code"}
     @Param {value:"source: The source code"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethCompileLLL (string source) (json, http:HttpConnectorError) {
         var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ETH_COMPILELLL, [source]));
@@ -487,7 +487,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
 
     @Description {value:"Returns compiled serpent code"}
     @Param {value:"source: The source code"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethCompileSerpent (string source) (json, http:HttpConnectorError) {
         var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ETH_COMPILE_SERPENT, [source]));
@@ -496,7 +496,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
 
     @Description {value:"Creates a filter object, based on filter options, to notify when the state changes (logs)"}
     @Param {value:"filterOptions:  The filter options"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethNewFilter (json filterOptions) (json, http:HttpConnectorError) {
         var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ETH_NEW_FILTER, [filterOptions]));
@@ -504,7 +504,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Creates a filter in the node, to notify when a new block arrives"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethNewBlockFilter () (json, http:HttpConnectorError) {
         var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ETH_NEW_BLOCK_FILTER, EMPTY_PARAMS));
@@ -512,7 +512,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     }
 
     @Description {value:"Creates a filter in the node, to notify when new pending transactions arrive"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethNewPendingTransactionFilter () (json, http:HttpConnectorError) {
         var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ETH_NEW__PENDING_TRANSACTION_FILTER,
@@ -522,7 +522,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
 
     @Description {value:"Uninstalls a filter with given id"}
     @Param {value:"filterId: The filter id"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethUninstallFilter (string filterId) (json, http:HttpConnectorError) {
         var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ETH_UNINSTALL_FILTER, [filterId]));
@@ -531,7 +531,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
 
     @Description {value:"Polling method for a filter, which returns an array of logs which occurred since last poll"}
     @Param {value:"filterId: The filter id"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethGetFilterChanges (string filterId)
     (json, http:HttpConnectorError) {
@@ -541,7 +541,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
 
     @Description {value:"Returns an array of all logs matching filter with given id"}
     @Param {value:"filterId: The filter id"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethGetFilterLogs (string filterId) (json, http:HttpConnectorError) {
         var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ETH_GET_FILTER_LOGS, [filterId]));
@@ -550,7 +550,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
 
     @Description {value:"Returns an array of all logs matching a given filter object"}
     @Param {value:"filterObject: The filter object"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethGetLogs (json filterObject) (json, http:HttpConnectorError) {
         var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ETH_GET_LOGS, [filterObject]));
@@ -559,7 +559,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
 
     @Description {value:"Returns the hash of the current block, the seedHash, and the boundary condition to be met
         ('target')"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethGetWork () (json, http:HttpConnectorError) {
         var response, e = ethereumEP.post("/", constructRequest(jsonRPCVersion, id, ETH_GET_WORK, EMPTY_PARAMS));
@@ -570,7 +570,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     @Param {value:"nonce: 8 Bytes - The nonce found"}
     @Param {value:"powHash: 32 Bytes - The header's pow-hash"}
     @Param {value:"mixDigest: 32 Bytes - The mix digest"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethSubmitWork (string nonce, string powHash, string mixDigest)
     (json, http:HttpConnectorError) {
@@ -582,7 +582,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     @Description {value:"Used for submitting mining hashrate"}
     @Param {value:"hashrate: Hexadecimal string representation (32 bytes) of the hash rate"}
     @Param {value:"clientId: Random hexadecimal(32 bytes) ID identifying the client"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action ethSubmitHashrate (string hashrate, string clientId)
     (json, http:HttpConnectorError) {
@@ -594,7 +594,7 @@ public connector ClientConnector (string URI, http:Options options, string jsonR
     @Description {value:"Generic method for Ethereum RPC"}
     @Param {value:"method: Method name"}
     @Param {value:"params: parameter array"}
-    @Return {value:"InResponse object"}
+    @Return {value:"JSON payload of the InResponse object"}
     @Return {value:"Error occured during HTTP client invocation"}
     action remoteProcedureCall (string method, json params)
     (json, http:HttpConnectorError) {

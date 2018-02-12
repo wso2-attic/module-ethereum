@@ -51,11 +51,7 @@ public function main (string[] args) {
     while (i < lengthof accounts) {
         //get the account balance for each account
         response, e = ethereumConnector.ethGetBalance(accounts[i].toString(), LATEST);
-        if (e != null) {
-            println(e);
-            return;
-        }
-        println(accounts[i].toString() + "\t" + response.result.toString());
+        printResult(accounts[i].toString() + "\t" , response, e);
         i = i + 1;
     }
 

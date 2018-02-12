@@ -17,7 +17,6 @@
 //
 
 import ballerina.net.http;
-import ballerina.util;
 import org.wso2.ballerina.connectors.ethereum;
 
 const string LATEST = "latest";
@@ -36,11 +35,7 @@ public function main (string[] args) {
 
     //get client version
     var response, e = ethereumConnector.web3ClientVersion();
-    if (e != null) {
-        println(e);
-        return;
-    }
-    println("Web3 Client Version: " + response.result.toString());
+    printResult("Web3 Client Version: ", response, e);
 
     //get available account addresses
     response, e = ethereumConnector.ethAccounts();
@@ -66,31 +61,15 @@ public function main (string[] args) {
 
     //get the number of the latest block
     response, e = ethereumConnector.ethBlockNumber();
-    if (e != null) {
-        println(e);
-        return;
-    }
-
-    var blockNumber, err = response.result.toString();
-    println("\nNumber of blocks: " + blockNumber);
+    printResult("\nNumber of blocks: ", response, e);
 
     //get the details of the latest block
-    println("\nlatest block details: ");
     response, e = ethereumConnector.ethGetBlockByNumber(LATEST, false);
-    if (e != null) {
-        println(e);
-        return;
-    }
-    println(response.result);
+    printResult("\nlatest block details: \n", response, e);
 
     //get the transactions of the latest block
-    println("\nlatest block transactions:");
     response, e = ethereumConnector.ethGetBlockTransactionCountByNumber(LATEST);
-    if (e != null) {
-        println(e);
-        return;
-    }
-    println(response.result);
+    printResult("\nlatest block transactions: \n", response, e);
 }
 
 function toInt (string networkID) (int) {
@@ -100,4 +79,12 @@ function toInt (string networkID) (int) {
         return -1;
     }
     return id;
+}
+
+function printResult(string prefix, json response, http:HttpConnectorError e) {
+    if (e != null) {
+        println(e);
+        return;
+    }
+    println(prefix + response.result.toString());
 }

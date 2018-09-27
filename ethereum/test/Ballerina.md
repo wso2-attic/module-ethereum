@@ -1,0 +1,70 @@
+# Testing Ballerina Ethereum Connector
+
+The Ethereum connector allows you to access the Ethereum JSON RPC API through Ballerina. The Ethereum connector actions are invoked using a Ballerina main function. The following diagram illustrates how Ballerina connects to the JSON RPC-enabled server, which in turn integrates with the Ethereum network.
+
+![Ballerina -Ethereum Connector Overview](../../BallerinaEthereumJSONRPC.png)
+
+### Compatibility
+
+| Ballerina Language Version             | JSON-RPC API Version           |
+| ---------------------------------------| -------------------------------|
+|  0.982.0                               |   v2.0                        |
+
+### Starting Geth Client
+
+1) Download the Geth client from [https://geth.ethereum.org/downloads/](https://geth.ethereum.org/downloads/)
+
+2) Install the Geth Client. [https://ethereum.github.io/go-ethereum/install/](https://ethereum.github.io/go-ethereum/install/)
+
+3) Run `geth` command in your commandline to check whether the installation is complete or not.
+
+### enabling JSON RPC Server
+
+1) Create a folder for chain data. Let's call that folder `<chaindata>`.
+
+2) Run the following command. Please change the `<chaindata>` value with your actual folder path.
+    ````
+    geth --identity "testServer" --rpc --rpcport "8080" --rpccorsdomain "*" --datadir "<chaindata>/TestChain" --port "30304" --nodiscover --rpcapi "db,eth,net,web3,admin,shh" --networkid 1999 console --shh`
+    ````
+3) Now, you get the Geth JavaScript console.
+ 
+4) Create the new account in the Geth JavaScript console using the following command.
+    ```
+    personal.newAccount()
+    ```
+
+5) Start the miner in the Geth JavaScript console using the following command.
+    ```
+    miner.start()
+    ```
+
+### Running Samples
+
+You can use the `tests.bal` file to test all the connector actions by following the below steps:
+
+1. Navigate to package-ethereum and initialize the ballerina project
+    ```
+    ballerina init
+    ```
+
+2. Obtain the following variable's value and add these value in the package-ethereum/ballerina.conf file.
+    ```
+    JSON_RPC_ENDPOINT = "The JSON RPC server uri"
+    JSON_RPC_VERSION = "The JSON RPC version"
+    NETWORK_ID = "The network id"
+    POSITION = "The storage position"
+    BLOCK_HASH = "The block hash"
+    BLOCK = "The block parameter" 
+    TO_VALUE_FOR_TRANSACTION_CALL_OBJECT_ = "The address the transaction is directed to"
+    TRANSACTION_OBJECT_STATUS = "The transaction objects status"
+    MESSAGE = "The message to sign"
+    TRANSACTION_OPTION_DATA = "The signed transaction data"
+    NONCE = "The nonce found"
+    HEADER_POW_HASH = "The header's pow-hash"
+    MIX_DIGEST = "The mix digest"
+    ```
+
+4. Run the following command to execute the tests.
+    ```
+    ballerina test ethereum --config ballerina.conf
+    ```

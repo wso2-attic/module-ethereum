@@ -14,16 +14,14 @@
 // specific language governing permissions and limitations
 // under the License.
 
-function convertToResult(json jsonPayload) returns Result {
-    Result results = {};
-    results.result = jsonPayload["result"] != null ? jsonPayload["result"].toString() : "";
-    return results;
+function resultToString(json jsonPayload) returns string {
+    string result = jsonPayload["result"] != null ? jsonPayload["result"].toString() : "";
+    return result;
 }
 
-function arrayConvertToResult(json jsonPayload) returns Result {
-    Result results = {};
-    results.result = jsonPayload["result"] != null ? jsonPayload["result"][0].toString() : "";
-    return results;
+function arrayToString(json jsonPayload) returns string {
+    string result = jsonPayload["result"] != null ? jsonPayload["result"][0].toString() : "";
+    return result;
 }
 
 function jsonToBoolean(json jsonVal) returns boolean {

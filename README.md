@@ -27,41 +27,39 @@ The Ethereum connector allows you to access the Ethereum JSON RPC API through Ba
 
 ### Starting Geth Client
 
-1) Download the Geth client from [https://geth.ethereum.org/downloads/](https://geth.ethereum.org/downloads/)
+1. Download the Geth client from [https://geth.ethereum.org/downloads/](https://geth.ethereum.org/downloads/).
 
-2) Install the Geth Client. [https://ethereum.github.io/go-ethereum/install/](https://ethereum.github.io/go-ethereum/install/)
+2. Install the Geth Client. [https://ethereum.github.io/go-ethereum/install/](https://ethereum.github.io/go-ethereum/install/).
 
-3) Run `geth` command in your commandline to check whether the installation is complete or not.
+3. Check whether the installation is complete or not from start the HTTP JSON-RPC by run the `geth` command in your command line .
 
-### enabling JSON RPC Server
+### Enabling JSON RPC Server
 
-1) Create a folder for chain data. Let's call that folder `<chaindata>`.
+1. Create a folder for chain data. Let's call that folder `<chaindata>`.
 
-2) Run the following command. Please change the `<chaindata>` value with your actual folder path.
+2. Run the following command and open the Geth JavaScript console. Here, change the `<chaindata>` value with your actual folder path.
     ````
     geth --identity "testServer" --rpc --rpcport "8080" --rpccorsdomain "*" --datadir "<chaindata>/TestChain" --port "30304" --nodiscover --rpcapi "db,eth,net,web3,admin,shh" --networkid 1999 console --shh`
     ````
-3) Now, you get the Geth JavaScript console.
- 
-4) Create the new account in the Geth JavaScript console using the following command.
+3. To create the new account, use the following command in the Geth JavaScript console.
     ```
     personal.newAccount()
     ```
 
-5) Start the miner in the Geth JavaScript console using the following command.
+4. To start the miner, use the following command in the Geth JavaScript console.
     ```
     miner.start()
     ```
     
 The following sections provide you with information on how to use the Ballerina Ethereum connector.
 
-- [Contribute To Develop](#contribute-to-develop)
+- [Contribute to the Code](#Contribute-to-the-Code)
 - [Working with Ethereum Connector](#working-with-ethereum-connector)
 - [Sample](#sample)
 
-### Contribute To develop
+### Contribute to the Code
 
-Clone the repository by running the following command 
+Clone the repository by running the following command. 
 
 ```shell
 git clone https://github.com/wso2-ballerina/package-ethereum.git
@@ -75,7 +73,7 @@ First, import the `wso2/ethereum` package into the Ballerina project.
 import wso2/ethereum;
 ```
 
-In order for you to use the ethereum Connector, first you need to create an ethereum Client endpoint.
+To use the Ethereum Connector, first create an Ethereum Client endpoint.
 
 ```ballerina
 endpoint ethereum:Client ethereumClient {

@@ -16,19 +16,19 @@
 
 import ballerina/io;
 
-function EthereumConnector::getWeb3ClientVersion() returns Result|EthereumError {
+function EthereumConnector::getWeb3ClientVersion() returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int>self.networkId,
             WEB3_CLIENT_VERSION , EMPTY_PARAMS));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -39,7 +39,7 @@ function EthereumConnector::getWeb3ClientVersion() returns Result|EthereumError 
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -52,19 +52,19 @@ function EthereumConnector::getWeb3ClientVersion() returns Result|EthereumError 
     }
 }
 
-function EthereumConnector::getWeb3Sha3(string data) returns Result|EthereumError {
+function EthereumConnector::getWeb3Sha3(string data) returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             WEB3_SHA3 , [data]));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -75,7 +75,7 @@ function EthereumConnector::getWeb3Sha3(string data) returns Result|EthereumErro
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -88,19 +88,19 @@ function EthereumConnector::getWeb3Sha3(string data) returns Result|EthereumErro
     }
 }
 
-function EthereumConnector::getNetVersion() returns Result|EthereumError {
+function EthereumConnector::getNetVersion() returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             NET_VERSION, EMPTY_PARAMS));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -111,7 +111,7 @@ function EthereumConnector::getNetVersion() returns Result|EthereumError {
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -124,19 +124,19 @@ function EthereumConnector::getNetVersion() returns Result|EthereumError {
     }
 }
 
-function EthereumConnector::getNetPeerCount() returns Result|EthereumError {
+function EthereumConnector::getNetPeerCount() returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
-             NET_PEER_COUNT, EMPTY_PARAMS));
+            NET_PEER_COUNT, EMPTY_PARAMS));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -147,7 +147,7 @@ function EthereumConnector::getNetPeerCount() returns Result|EthereumError {
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -160,19 +160,19 @@ function EthereumConnector::getNetPeerCount() returns Result|EthereumError {
     }
 }
 
-function EthereumConnector::getNetListening() returns boolean|EthereumError {
+function EthereumConnector::getNetListening() returns boolean|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             NET_LISTENING, EMPTY_PARAMS));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -196,19 +196,19 @@ function EthereumConnector::getNetListening() returns boolean|EthereumError {
     }
 }
 
-function EthereumConnector::getEthProtocolVersion() returns Result|EthereumError {
+function EthereumConnector::getEthProtocolVersion() returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_PROTOCOL_VERSION, EMPTY_PARAMS));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -219,7 +219,7 @@ function EthereumConnector::getEthProtocolVersion() returns Result|EthereumError
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -232,19 +232,19 @@ function EthereumConnector::getEthProtocolVersion() returns Result|EthereumError
     }
 }
 
-function EthereumConnector::getEthSyncing() returns Result|EthereumError {
+function EthereumConnector::getEthSyncing() returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_SYNCING, EMPTY_PARAMS));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -255,7 +255,7 @@ function EthereumConnector::getEthSyncing() returns Result|EthereumError {
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -268,19 +268,19 @@ function EthereumConnector::getEthSyncing() returns Result|EthereumError {
     }
 }
 
-function EthereumConnector::getEthCoinbase() returns Result|EthereumError {
+function EthereumConnector::getEthCoinbase() returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_COINBASE, EMPTY_PARAMS));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -291,7 +291,7 @@ function EthereumConnector::getEthCoinbase() returns Result|EthereumError {
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -304,19 +304,19 @@ function EthereumConnector::getEthCoinbase() returns Result|EthereumError {
     }
 }
 
-function EthereumConnector::getEthMining() returns boolean|EthereumError {
+function EthereumConnector::getEthMining() returns boolean|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_MINING, EMPTY_PARAMS));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -340,19 +340,19 @@ function EthereumConnector::getEthMining() returns boolean|EthereumError {
     }
 }
 
-function EthereumConnector::getEthHashrate() returns Result|EthereumError {
+function EthereumConnector::getEthHashrate() returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_HASHRATE, EMPTY_PARAMS));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -363,7 +363,7 @@ function EthereumConnector::getEthHashrate() returns Result|EthereumError {
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -376,19 +376,19 @@ function EthereumConnector::getEthHashrate() returns Result|EthereumError {
     }
 }
 
-function EthereumConnector::getEthGasPrice() returns Result|EthereumError {
+function EthereumConnector::getEthGasPrice() returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_GAS_PRICE, EMPTY_PARAMS));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -399,7 +399,7 @@ function EthereumConnector::getEthGasPrice() returns Result|EthereumError {
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -412,19 +412,19 @@ function EthereumConnector::getEthGasPrice() returns Result|EthereumError {
     }
 }
 
-function EthereumConnector::getEthAccounts() returns Result|EthereumError {
+function EthereumConnector::getEthAccounts() returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_ACCOUNTS, EMPTY_PARAMS));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -435,7 +435,7 @@ function EthereumConnector::getEthAccounts() returns Result|EthereumError {
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = arrayConvertToResult(jsonResponse);
+                        string result = arrayConvertToResult(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -448,19 +448,19 @@ function EthereumConnector::getEthAccounts() returns Result|EthereumError {
     }
 }
 
-function EthereumConnector::getEthBlockNumber() returns Result|EthereumError {
+function EthereumConnector::getEthBlockNumber() returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_BLOCK_NUMBER, EMPTY_PARAMS));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -471,7 +471,7 @@ function EthereumConnector::getEthBlockNumber() returns Result|EthereumError {
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -484,19 +484,19 @@ function EthereumConnector::getEthBlockNumber() returns Result|EthereumError {
     }
 }
 
-function EthereumConnector::getEthBalance(string address, string block) returns Result|EthereumError {
+function EthereumConnector::getEthBalance(string address, string block) returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_GET_BALANCE, [address, block]));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -507,7 +507,7 @@ function EthereumConnector::getEthBalance(string address, string block) returns 
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -521,19 +521,19 @@ function EthereumConnector::getEthBalance(string address, string block) returns 
 }
 
 function EthereumConnector::getEthStorageAt( string address, string position, string block)
-                                returns Result|EthereumError {
+                                returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_GET_STORAGEAT, [address, position, block]));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -544,7 +544,7 @@ function EthereumConnector::getEthStorageAt( string address, string position, st
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -557,19 +557,19 @@ function EthereumConnector::getEthStorageAt( string address, string position, st
     }
 }
 
-function EthereumConnector::getEthTransactionCount(string address, string block) returns Result|EthereumError {
+function EthereumConnector::getEthTransactionCount(string address, string block) returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_GET_TRANSACTION_COUNT, [address, block]));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -580,7 +580,7 @@ function EthereumConnector::getEthTransactionCount(string address, string block)
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -593,19 +593,19 @@ function EthereumConnector::getEthTransactionCount(string address, string block)
     }
 }
 
-function EthereumConnector::getEthBlockTransactionCountByHash(string blockHash) returns Result|EthereumError {
+function EthereumConnector::getEthBlockTransactionCountByHash(string blockHash) returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_GET_BLOCK_TRANSACTION_COUNT_BY_HASH, [blockHash]));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -616,7 +616,7 @@ function EthereumConnector::getEthBlockTransactionCountByHash(string blockHash) 
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -629,19 +629,19 @@ function EthereumConnector::getEthBlockTransactionCountByHash(string blockHash) 
     }
 }
 
-function EthereumConnector::getEthBlockTransactionCountByNumber(string block) returns Result|EthereumError {
+function EthereumConnector::getEthBlockTransactionCountByNumber(string block) returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_GET_BLOCK_TRANSACTION_COUNT_BY_NUMBER, [block]));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -652,7 +652,7 @@ function EthereumConnector::getEthBlockTransactionCountByNumber(string block) re
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -665,19 +665,19 @@ function EthereumConnector::getEthBlockTransactionCountByNumber(string block) re
     }
 }
 
-function EthereumConnector::getEthUncleCountByBlockHash(string blockHash) returns Result|EthereumError {
+function EthereumConnector::getEthUncleCountByBlockHash(string blockHash) returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_GET_UNCLE_COUNT_BY_BLOCK_HASH, [blockHash]));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -688,7 +688,7 @@ function EthereumConnector::getEthUncleCountByBlockHash(string blockHash) return
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -701,19 +701,19 @@ function EthereumConnector::getEthUncleCountByBlockHash(string blockHash) return
     }
 }
 
-function EthereumConnector::getEthUncleCountByBlockNumber(string block) returns Result|EthereumError {
+function EthereumConnector::getEthUncleCountByBlockNumber(string block) returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_GET_UNCLE_COUNT_BY_BLOCK_NUMBER, [block]));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -724,7 +724,7 @@ function EthereumConnector::getEthUncleCountByBlockNumber(string block) returns 
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -737,19 +737,19 @@ function EthereumConnector::getEthUncleCountByBlockNumber(string block) returns 
     }
 }
 
-function EthereumConnector::getEthCode(string address, string block) returns Result|EthereumError {
+function EthereumConnector::getEthCode(string address, string block) returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_GET_CODE, [address, block]));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -760,7 +760,7 @@ function EthereumConnector::getEthCode(string address, string block) returns Res
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -773,19 +773,19 @@ function EthereumConnector::getEthCode(string address, string block) returns Res
     }
 }
 
-function EthereumConnector::getEthSign(string address, string message) returns Result|EthereumError {
+function EthereumConnector::getEthSign(string address, string message) returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_SIGN, [address, message]));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -796,7 +796,7 @@ function EthereumConnector::getEthSign(string address, string message) returns R
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -809,19 +809,19 @@ function EthereumConnector::getEthSign(string address, string message) returns R
     }
 }
 
-function EthereumConnector::sendEthTransaction(json transactionObject) returns Result|EthereumError {
+function EthereumConnector::sendEthTransaction(json transactionObject) returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_SEND_TRANSACTION, [transactionObject]));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
@@ -831,7 +831,7 @@ function EthereumConnector::sendEthTransaction(json transactionObject) returns R
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -844,19 +844,19 @@ function EthereumConnector::sendEthTransaction(json transactionObject) returns R
     }
 }
 
-function EthereumConnector::sendEthRawTransaction(string signedTransactionData) returns Result|EthereumError {
+function EthereumConnector::sendEthRawTransaction(string signedTransactionData) returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_SEND_RAW_TRANSACTION, [signedTransactionData]));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -867,7 +867,7 @@ function EthereumConnector::sendEthRawTransaction(string signedTransactionData) 
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -880,19 +880,19 @@ function EthereumConnector::sendEthRawTransaction(string signedTransactionData) 
     }
 }
 
-function EthereumConnector::getEthCall(json transactionCallObject, string block) returns Result|EthereumError {
+function EthereumConnector::getEthCall(json transactionCallObject, string block) returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_CALL, [transactionCallObject, block]));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -903,7 +903,7 @@ function EthereumConnector::getEthCall(json transactionCallObject, string block)
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -916,19 +916,19 @@ function EthereumConnector::getEthCall(json transactionCallObject, string block)
     }
 }
 
-function EthereumConnector::getEthEstimateGas(json transactionCallObject) returns Result|EthereumError {
+function EthereumConnector::getEthEstimateGas(json transactionCallObject) returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_ESTIMATE_GAS, [transactionCallObject]));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -939,7 +939,7 @@ function EthereumConnector::getEthEstimateGas(json transactionCallObject) return
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -953,19 +953,19 @@ function EthereumConnector::getEthEstimateGas(json transactionCallObject) return
 }
 
 function EthereumConnector::getEthBlockByHash(string blockHash, boolean transactionObjectStatus)
-                                returns Result|EthereumError {
+                                returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_GET_BLOCK_BY_HASH, [blockHash, transactionObjectStatus]));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -976,7 +976,7 @@ function EthereumConnector::getEthBlockByHash(string blockHash, boolean transact
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -990,19 +990,19 @@ function EthereumConnector::getEthBlockByHash(string blockHash, boolean transact
 }
 
 function EthereumConnector::getEthBlockByNumber(string block, boolean transactionObjectStatus)
-                                returns Result|EthereumError {
+                                returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_GET_BLOCK_BY_NUMBER, [block, transactionObjectStatus]));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -1013,7 +1013,7 @@ function EthereumConnector::getEthBlockByNumber(string block, boolean transactio
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -1026,19 +1026,19 @@ function EthereumConnector::getEthBlockByNumber(string block, boolean transactio
     }
 }
 
-function EthereumConnector::getEthTransactionByHash(string transactionHash) returns Result|EthereumError {
+function EthereumConnector::getEthTransactionByHash(string transactionHash) returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_GET_TRANSACTION_BY_HASH, [transactionHash]));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -1049,7 +1049,7 @@ function EthereumConnector::getEthTransactionByHash(string transactionHash) retu
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -1063,19 +1063,19 @@ function EthereumConnector::getEthTransactionByHash(string transactionHash) retu
 }
 
 function EthereumConnector::getEthTransactionByBlockHashAndIndex(string blockHash, string  position)
-                                returns Result|EthereumError {
+                                returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_GET_TRANSACTION_BY_BLOCK_HASH_AND_INDEX, [blockHash, position]));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -1086,7 +1086,7 @@ function EthereumConnector::getEthTransactionByBlockHashAndIndex(string blockHas
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -1100,19 +1100,19 @@ function EthereumConnector::getEthTransactionByBlockHashAndIndex(string blockHas
 }
 
 function EthereumConnector::getEthTransactionByBlockNumberAndIndex(string block, string  position)
-                                returns Result|EthereumError {
+                                returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_GET_TRANSACTION_BY_BLOCK_NUMBER_AND_INDEX, [block, position]));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -1123,7 +1123,7 @@ function EthereumConnector::getEthTransactionByBlockNumberAndIndex(string block,
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -1136,19 +1136,19 @@ function EthereumConnector::getEthTransactionByBlockNumberAndIndex(string block,
     }
 }
 
-function EthereumConnector::getEthTransactionReceipt(string transactionHash) returns Result|EthereumError {
+function EthereumConnector::getEthTransactionReceipt(string transactionHash) returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_GET_TRANSACTION_RECEIPT, [transactionHash]));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -1159,7 +1159,7 @@ function EthereumConnector::getEthTransactionReceipt(string transactionHash) ret
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -1173,19 +1173,19 @@ function EthereumConnector::getEthTransactionReceipt(string transactionHash) ret
 }
 
 function EthereumConnector::getEthUncleByBlockHashAndIndex(string blockHash, string position)
-                                returns Result|EthereumError {
+                                returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_GET_UNCLE_BY_BLOCK_HASH_AND_INDEX, [blockHash, position]));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -1196,7 +1196,7 @@ function EthereumConnector::getEthUncleByBlockHashAndIndex(string blockHash, str
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -1210,19 +1210,19 @@ function EthereumConnector::getEthUncleByBlockHashAndIndex(string blockHash, str
 }
 
 function EthereumConnector::getEthUncleByBlockNumberAndIndex(string block, string position)
-                                returns Result|EthereumError {
+                                returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_GET_UNCLE_BY_BLOCK_NUMBER_AND_INDEX, [block, position]));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -1233,7 +1233,7 @@ function EthereumConnector::getEthUncleByBlockNumberAndIndex(string block, strin
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -1246,19 +1246,19 @@ function EthereumConnector::getEthUncleByBlockNumberAndIndex(string block, strin
     }
 }
 
-function EthereumConnector::ethNewFilter(json filterOptions) returns Result|EthereumError {
+function EthereumConnector::ethNewFilter(json filterOptions) returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_NEW_FILTER, [filterOptions]));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -1269,7 +1269,7 @@ function EthereumConnector::ethNewFilter(json filterOptions) returns Result|Ethe
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -1282,19 +1282,19 @@ function EthereumConnector::ethNewFilter(json filterOptions) returns Result|Ethe
     }
 }
 
-function EthereumConnector::ethNewBlockFilter() returns Result|EthereumError {
+function EthereumConnector::ethNewBlockFilter() returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_NEW_BLOCK_FILTER, EMPTY_PARAMS));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -1305,7 +1305,7 @@ function EthereumConnector::ethNewBlockFilter() returns Result|EthereumError {
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -1318,19 +1318,19 @@ function EthereumConnector::ethNewBlockFilter() returns Result|EthereumError {
     }
 }
 
-function EthereumConnector::ethNewPendingTransactionFilter() returns Result|EthereumError {
+function EthereumConnector::ethNewPendingTransactionFilter() returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_NEW__PENDING_TRANSACTION_FILTER, EMPTY_PARAMS));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -1341,7 +1341,7 @@ function EthereumConnector::ethNewPendingTransactionFilter() returns Result|Ethe
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -1354,19 +1354,19 @@ function EthereumConnector::ethNewPendingTransactionFilter() returns Result|Ethe
     }
 }
 
-function EthereumConnector::uninstallEthFilter(string filterId) returns Result|EthereumError {
+function EthereumConnector::uninstallEthFilter(string filterId) returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_UNINSTALL_FILTER, [filterId]));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -1377,7 +1377,7 @@ function EthereumConnector::uninstallEthFilter(string filterId) returns Result|E
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -1390,19 +1390,19 @@ function EthereumConnector::uninstallEthFilter(string filterId) returns Result|E
     }
 }
 
-function EthereumConnector::getEthFilterChanges(string filterId) returns Result|EthereumError {
+function EthereumConnector::getEthFilterChanges(string filterId) returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_GET_FILTER_CHANGES, [filterId]));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -1413,7 +1413,7 @@ function EthereumConnector::getEthFilterChanges(string filterId) returns Result|
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -1426,19 +1426,19 @@ function EthereumConnector::getEthFilterChanges(string filterId) returns Result|
     }
 }
 
-function EthereumConnector::getEthFilterLogs(string filterId) returns Result|EthereumError {
+function EthereumConnector::getEthFilterLogs(string filterId) returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_GET_FILTER_LOGS, [filterId]));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -1449,7 +1449,7 @@ function EthereumConnector::getEthFilterLogs(string filterId) returns Result|Eth
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -1462,19 +1462,19 @@ function EthereumConnector::getEthFilterLogs(string filterId) returns Result|Eth
     }
 }
 
-function EthereumConnector::getEthLogs(json filterOptions) returns Result|EthereumError {
+function EthereumConnector::getEthLogs(json filterOptions) returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_GET_LOGS, [filterOptions]));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -1485,7 +1485,7 @@ function EthereumConnector::getEthLogs(json filterOptions) returns Result|Ethere
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -1498,19 +1498,19 @@ function EthereumConnector::getEthLogs(json filterOptions) returns Result|Ethere
     }
 }
 
-function EthereumConnector::getEthWork() returns Result|EthereumError {
+function EthereumConnector::getEthWork() returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_GET_WORK, EMPTY_PARAMS));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -1521,7 +1521,7 @@ function EthereumConnector::getEthWork() returns Result|EthereumError {
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -1534,19 +1534,19 @@ function EthereumConnector::getEthWork() returns Result|EthereumError {
     }
 }
 
-function EthereumConnector::submitEthWork(string nonce, string powHash, string mixDigest) returns Result|EthereumError {
+function EthereumConnector::submitEthWork(string nonce, string powHash, string mixDigest) returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient -> post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             ETH_SUBMIT_WORK, [nonce, powHash, mixDigest]));
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -1557,7 +1557,7 @@ function EthereumConnector::submitEthWork(string nonce, string powHash, string m
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();
@@ -1570,20 +1570,20 @@ function EthereumConnector::submitEthWork(string nonce, string powHash, string m
     }
 }
 
-function EthereumConnector::remoteProcedureCall(string method, json params) returns Result|EthereumError {
+function EthereumConnector::remoteProcedureCall(string method, json params) returns string|Error {
     endpoint http:Client httpClient = self.httpClient;
     var httpResponse = httpClient->post("/", constructRequest(self.jsonRpcVersion, check <int> self.networkId,
             method, params));
     io:println(httpResponse);
     match httpResponse {
         error err => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             ethereumError.message = err.message;
             ethereumError.cause = err.cause;
             return ethereumError;
         }
         http:Response response => {
-            EthereumError ethereumError = {};
+            Error ethereumError = {};
             int statusCode = response.statusCode;
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
@@ -1594,7 +1594,7 @@ function EthereumConnector::remoteProcedureCall(string method, json params) retu
                 }
                 json jsonResponse => {
                     if (jsonResponse["error"] == null) {
-                        Result result = convertToResult(jsonResponse);
+                        string result = resultToString(jsonResponse);
                         return result;
                     } else {
                         ethereumError.message = jsonResponse.error.message.toString();

@@ -12,37 +12,34 @@ The Ethereum connector allows you to access the Ethereum JSON RPC API through Ba
 
 ### Starting Geth Client
 
-1) Download the Geth client from [https://geth.ethereum.org/downloads/](https://geth.ethereum.org/downloads/)
+1. Download the Geth client from [https://geth.ethereum.org/downloads/](https://geth.ethereum.org/downloads/).
 
-2) Install the Geth Client. [https://ethereum.github.io/go-ethereum/install/](https://ethereum.github.io/go-ethereum/install/)
+2. Install the Geth Client. [https://ethereum.github.io/go-ethereum/install/](https://ethereum.github.io/go-ethereum/install/).
 
-3) Run `geth` command in your commandline to check whether the installation is complete or not.
+3. Check whether the installation is complete or not from start the HTTP JSON-RPC by run the `geth` command in your command line .
 
-### enabling JSON RPC Server
+### Enabling JSON RPC Server
 
-1) Create a folder for chain data. Let's call that folder `<chaindata>`.
+1. Create a folder for chain data. Let's call that folder `<chaindata>`.
 
-2) Run the following command. Please change the `<chaindata>` value with your actual folder path.
+2. Run the following command and open the Geth JavaScript console. Here, change the `<chaindata>` value with your actual folder path.
     ````
     geth --identity "testServer" --rpc --rpcport "8080" --rpccorsdomain "*" --datadir "<chaindata>/TestChain" --port "30304" --nodiscover --rpcapi "db,eth,net,web3,admin,shh" --networkid 1999 console --shh`
     ````
-3) Now, you get the Geth JavaScript console.
- 
-4) Create the new account in the Geth JavaScript console using the following command.
+3. To create the new account, use the following command in the Geth JavaScript console.
     ```
     personal.newAccount()
     ```
 
-5) Start the miner in the Geth JavaScript console using the following command.
+4. To start the miner, use the following command in the Geth JavaScript console.
     ```
     miner.start()
-    ```
 
 ### Running Samples
 
 You can use the `tests.bal` file to test all the connector actions by following the below steps:
 
-1. Navigate to package-ethereum and initialize the ballerina project
+1. Navigate to package-ethereum and initialize the ballerina project.
     ```
     ballerina init
     ```

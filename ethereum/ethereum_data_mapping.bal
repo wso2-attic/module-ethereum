@@ -19,7 +19,7 @@ function resultToString(json jsonPayload) returns string {
     return result;
 }
 
-function arrayToString(json jsonPayload) returns string {
+function convertToString(json jsonPayload) returns string {
     string result = jsonPayload["result"] != null ? jsonPayload["result"][0].toString() : "";
     return result;
 }

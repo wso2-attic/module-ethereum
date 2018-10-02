@@ -49,7 +49,7 @@ function testGetWeb3ClientVersion() {
     var ethereumRes = client->getWeb3ClientVersion();
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to get version of Web3Client.");
 }
@@ -61,7 +61,7 @@ function testGetWeb3Sha3() {
     var ethereumRes = client->getWeb3Sha3(dataForSHA3);
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to convert data into a SHA3 hash.");
 }
@@ -73,7 +73,7 @@ function testGetNetVersion() {
     var ethereumRes = client->getNetVersion();
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to get current network id.");
 }
@@ -85,7 +85,7 @@ function testGetNetListening() {
     var ethereumRes = client->getNetListening();
     match ethereumRes {
         boolean data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to check whether the client is actively listening for
      network connections/not.");
@@ -98,7 +98,7 @@ function testGeNetPeerCount() {
     var ethereumRes = client->getNetPeerCount();
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to get the number of peers currently
     connected to the client.");
@@ -111,7 +111,7 @@ function testGetEthProtocolVersion() {
     var ethereumRes = client->getEthProtocolVersion();
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to get current ethereum protocol version.");
 }
@@ -123,7 +123,7 @@ function testGetEthSyncing() {
     var ethereumRes = client->getEthSyncing();
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to get an object with data about the sync status");
 }
@@ -135,7 +135,7 @@ function testGetEthCoinbase() {
     var ethereumRes = client->getEthCoinbase();
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to get the current coinbase address.");
 }
@@ -147,7 +147,7 @@ function testGetEthMining() {
     var ethereumRes = client->getEthMining();
     match ethereumRes {
         boolean data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to check whether client is actively mining new blocks/not.");
 }
@@ -159,7 +159,7 @@ function testGetEthHashrate() {
     var ethereumRes = client->getEthHashrate();
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to get the number of hashes per second
     that the node is mining with.");
@@ -172,7 +172,7 @@ function testGetEthGasPrice() {
     var ethereumRes = client->getEthGasPrice();
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to get the current price per gas in wei.");
 }
@@ -184,7 +184,7 @@ function testGetEthAccounts() {
     var ethereumRes = client->getEthAccounts();
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     testAddress = result;
     test:assertNotEquals(result, " ", msg = "Failed to get a list of addresses owned by client.");
@@ -197,7 +197,7 @@ function testGetEthBlockNumber() {
     var ethereumRes = client->getEthBlockNumber();
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to get the number of most recent block.");
 }
@@ -211,7 +211,7 @@ function testGetEthBalance() {
     var ethereumRes = client->getEthBalance(testAddress, testBlock);
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to get the balance of the account of given address.");
 }
@@ -225,7 +225,7 @@ function testGetEthStorageAt() {
     var ethereumRes = client->getEthStorageAt(testAddress, testposition, testBlock);
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to get the value from a storage
     position at a given address.");
@@ -240,7 +240,7 @@ function testGetEthTransactionCount() {
     var ethereumRes = client->getEthTransactionCount(testAddress, testBlock);
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to get the number of transactions sent from an address.");
 }
@@ -252,7 +252,7 @@ function testGetEthBlockTransactionCountByHash() {
     var ethereumRes = client->getEthBlockTransactionCountByHash(testBlockHash);
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to get the number of transactions in a block
     from a block matching the given block hash.");
@@ -265,7 +265,7 @@ function testGetEthBlockTransactionCountByNumber() {
     var ethereumRes = client->getEthBlockTransactionCountByNumber(testBlock);
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to get the number of transactions in a block
     matching the given block number.");
@@ -278,7 +278,7 @@ function testGetEthUncleCountByBlockHash() {
     var ethereumRes = client->getEthUncleCountByBlockHash(testBlockHash);
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to get the number of uncles in a block from a block
     matching the given block hash.");
@@ -291,7 +291,7 @@ function testGetEthUncleCountByBlockNumber() {
     var ethereumRes = client->getEthUncleCountByBlockNumber(testBlock);
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to get the number of uncles in a block from
     a block matching the given block number.");
@@ -306,7 +306,7 @@ function testGetEthCode() {
     var ethereumRes = client->getEthCode(testAddress, testBlock);
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to get code at a given address.");
 }
@@ -320,7 +320,7 @@ function testGetEthSign() {
     var ethereumRes = client->getEthSign(testAddress, testMessage);
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to calculate an Ethereum specific signature");
 }
@@ -336,7 +336,7 @@ function testSendEthTransaction() {
     var ethereumRes = client->sendEthTransaction(testTransactionOptions);
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to create new message call transaction or
      a contract creation, if the data field contains code.");
@@ -349,7 +349,7 @@ function testSendEthRawTransaction() {
     var ethereumRes = client->sendEthRawTransaction(testTransactionOptionsData);
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to creates new message call transaction or
     a contract creation for signed transactions.");
@@ -364,7 +364,7 @@ function testGetEthCall() {
     var ethereumRes = client->getEthCall(testTransactionCallObject, testBlock);
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to executes a new message call immediately without creating
             a transaction on the block chain.");
@@ -378,7 +378,7 @@ function testGetEthEstimateGas() {
     var ethereumRes = client->getEthEstimateGas({});
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to generates and get an estimate of how much gas
     is necessary to allow the transaction to complete.");
@@ -391,7 +391,7 @@ function testGetEthBlockByHash() {
     var ethereumRes = client->getEthBlockByHash(testBlockHash, <boolean>(testTransactionObjectStatus));
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to get information about a block by hash.");
 }
@@ -403,7 +403,7 @@ function testGetEthBlockByNumber() {
     var ethereumRes = client->getEthBlockByNumber(testBlock, <boolean>(testTransactionObjectStatus));
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to get information about a block by block number");
 }
@@ -415,7 +415,7 @@ function testGetEthTransactionByHash() {
     var ethereumRes = client->getEthTransactionByHash(testBlockHash);
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to the information about a transaction requested by
     transaction hash.");
@@ -428,7 +428,7 @@ function testGetEthTransactionByBlockHashAndIndex() {
     var ethereumRes = client->getEthTransactionByBlockHashAndIndex(testBlockHash, testposition);
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to get the information about a transaction by block hash and
     transaction index position.");
@@ -441,7 +441,7 @@ function testGetEthTransactionByBlockNumberAndIndex() {
     var ethereumRes = client->getEthTransactionByBlockNumberAndIndex(testBlock, testposition);
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to get information about a transaction by block number
     and transaction index position.");
@@ -454,7 +454,7 @@ function testGetEthTransactionReceipt() {
     var ethereumRes = client->getEthTransactionReceipt(testBlockHash);
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to get the receipt of a transaction by transaction hash.");
 }
@@ -466,7 +466,7 @@ function testGetEthUncleByBlockHashAndIndex() {
     var ethereumRes = client->getEthUncleByBlockHashAndIndex(testBlockHash, testposition);
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to get information about a uncle of a block by
     hash and uncle index position.");
@@ -479,7 +479,7 @@ function testGetEthUncleByBlockNumberAndIndex() {
     var ethereumRes = client->getEthUncleByBlockNumberAndIndex(testBlock, testposition);
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to get information about a uncle of a block by number
     and uncle index position.");
@@ -492,7 +492,7 @@ function testEthNewFilter() {
     var ethereumRes = client->ethNewFilter({});
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     testFilterID = result;
     test:assertNotEquals(result, " ", msg = "Failed to creates a filter object, based on filter options,
@@ -506,7 +506,7 @@ function testEthNewBlockFilter() {
     var ethereumRes = client->ethNewBlockFilter();
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to creates a filter in the node,
     to notify when a new block arrives.");
@@ -519,7 +519,7 @@ function testEthNewPendingTransactionFilter() {
     var ethereumRes = client->ethNewPendingTransactionFilter();
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to creates a filter in the node,
     to notify when new pending transactions arrive.");
@@ -534,7 +534,7 @@ function testUninstallEthFilter() {
     var ethereumRes = client->uninstallEthFilter(testFilterID);
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to uninstalls a filter with given id.");
 }
@@ -548,7 +548,7 @@ function testGetEthFilterLogs() {
     var ethereumRes = client->getEthFilterLogs(testFilterID);
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to get an array of all logs matching filter with given id.");
 }
@@ -560,7 +560,7 @@ function testGetEthFilterChanges() {
     var ethereumRes = client->getEthFilterChanges(testFilterID);
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to returns an array of logs which occurred
     since last poll.");
@@ -573,7 +573,7 @@ function testGetEthLogs() {
     var ethereumRes = client->getEthLogs({});
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to get an array of all logs matching
     a given filter object.");
@@ -587,7 +587,7 @@ function testGetEthWork() {
     var ethereumRes = client -> getEthWork();
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to the hash of the current block, the seedHash,
     and the boundary condition to be met (\"target\")");
@@ -600,7 +600,7 @@ function testSubmitEthWork() {
     var ethereumRes = client->submitEthWork(testNonce, testHeaderPowHash, testMixDigest);
     match ethereumRes {
         string data => result = data;
-        Error e => test:assertFail(msg = e.message);
+        error e => test:assertFail(msg = e.message);
     }
     test:assertNotEquals(result, " ", msg = "Failed to submitting a proof-of-work solution.");
 }

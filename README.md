@@ -37,7 +37,7 @@ The Ethereum connector allows you to access the Ethereum JSON RPC API through Ba
 
 1. Create a folder for chain data. Let's call that folder `<chaindata>`.
 
-2. Run the following command and open the Geth JavaScript console. Here, change the `<chaindata>` value with your actual folder path.
+2. Let’s create a private network by running the following command. Here, change the `<chaindata>` value to your actual folder path.
     ````
     geth --identity "testServer" --rpc --rpcport "8080" --rpccorsdomain "*" --datadir "<chaindata>/TestChain" --port "30304" --nodiscover --rpcapi "db,eth,net,web3,admin,shh" --networkid 1999 console --shh`
     ````
@@ -46,14 +46,14 @@ The Ethereum connector allows you to access the Ethereum JSON RPC API through Ba
     personal.newAccount()
     ```
 
-4. To start the miner, use the following command in the Geth JavaScript console.
+4. To start the mine, use the following command in the Geth JavaScript console.
     ```
     miner.start()
     ```
     
 The following sections provide you with information on how to use the Ballerina Ethereum connector.
 
-- [Contribute to the Code](#Contribute-to-the-Code)
+- [Contribute to the Code](#contribute-to-the-code)
 - [Working with Ethereum Connector](#working-with-ethereum-connector)
 - [Sample](#sample)
 

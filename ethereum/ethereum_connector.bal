@@ -29,7 +29,6 @@ function EthereumConnector::getWeb3ClientVersion() returns string|error {
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -61,7 +60,6 @@ function EthereumConnector::getWeb3Sha3(string data) returns string|error {
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -93,7 +91,6 @@ function EthereumConnector::getNetVersion() returns string|error {
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -125,7 +122,6 @@ function EthereumConnector::getNetPeerCount() returns string|error {
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -157,7 +153,6 @@ function EthereumConnector::getNetListening() returns boolean|error {
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -189,7 +184,6 @@ function EthereumConnector::getEthProtocolVersion() returns string|error {
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -221,7 +215,6 @@ function EthereumConnector::getEthSyncing() returns string|error {
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -253,7 +246,6 @@ function EthereumConnector::getEthCoinbase() returns string|error {
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -285,7 +277,6 @@ function EthereumConnector::getEthMining() returns boolean|error {
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -317,7 +308,6 @@ function EthereumConnector::getEthHashrate() returns string|error {
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -349,7 +339,6 @@ function EthereumConnector::getEthGasPrice() returns string|error {
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -381,7 +370,6 @@ function EthereumConnector::getEthAccounts() returns string|error {
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -413,7 +401,6 @@ function EthereumConnector::getEthBlockNumber() returns string|error {
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -445,7 +432,6 @@ function EthereumConnector::getEthBalance(string address, string block) returns 
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -478,7 +464,6 @@ function EthereumConnector::getEthStorageAt( string address, string position, st
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -510,7 +495,6 @@ function EthereumConnector::getEthTransactionCount(string address, string block)
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -542,8 +526,6 @@ function EthereumConnector::getEthBlockTransactionCountByHash(string blockHash) 
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
-                    err.cause = err.cause;
                     return err;
                 }
                 json jsonResponse => {
@@ -575,7 +557,6 @@ function EthereumConnector::getEthBlockTransactionCountByNumber(string block) re
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -607,7 +588,6 @@ function EthereumConnector::getEthUncleCountByBlockHash(string blockHash) return
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -639,7 +619,6 @@ function EthereumConnector::getEthUncleCountByBlockNumber(string block) returns 
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -671,7 +650,6 @@ function EthereumConnector::getEthCode(string address, string block) returns str
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -703,7 +681,6 @@ function EthereumConnector::getEthSign(string address, string message) returns s
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -734,7 +711,6 @@ function EthereumConnector::sendEthTransaction(json transactionObject) returns s
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -766,7 +742,6 @@ function EthereumConnector::sendEthRawTransaction(string signedTransactionData) 
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -798,7 +773,6 @@ function EthereumConnector::getEthCall(json transactionCallObject, string block)
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -830,7 +804,6 @@ function EthereumConnector::getEthEstimateGas(json transactionCallObject) return
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -863,7 +836,6 @@ function EthereumConnector::getEthBlockByHash(string blockHash, boolean transact
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -896,7 +868,6 @@ function EthereumConnector::getEthBlockByNumber(string block, boolean transactio
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -928,7 +899,6 @@ function EthereumConnector::getEthTransactionByHash(string transactionHash) retu
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -961,7 +931,6 @@ function EthereumConnector::getEthTransactionByBlockHashAndIndex(string blockHas
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -994,7 +963,6 @@ function EthereumConnector::getEthTransactionByBlockNumberAndIndex(string block,
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -1026,7 +994,6 @@ function EthereumConnector::getEthTransactionReceipt(string transactionHash) ret
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -1059,7 +1026,6 @@ function EthereumConnector::getEthUncleByBlockHashAndIndex(string blockHash, str
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -1092,7 +1058,6 @@ function EthereumConnector::getEthUncleByBlockNumberAndIndex(string block, strin
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -1124,8 +1089,6 @@ function EthereumConnector::ethNewFilter(json filterOptions) returns string|erro
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
-                    err.cause = err.cause;
                     return err;
                 }
                 json jsonResponse => {
@@ -1157,7 +1120,6 @@ function EthereumConnector::ethNewBlockFilter() returns string|error {
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -1189,7 +1151,6 @@ function EthereumConnector::ethNewPendingTransactionFilter() returns string|erro
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -1221,7 +1182,6 @@ function EthereumConnector::uninstallEthFilter(string filterId) returns string|e
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -1253,7 +1213,6 @@ function EthereumConnector::getEthFilterChanges(string filterId) returns string|
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -1285,7 +1244,6 @@ function EthereumConnector::getEthFilterLogs(string filterId) returns string|err
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -1317,7 +1275,6 @@ function EthereumConnector::getEthLogs(json filterOptions) returns string|error 
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -1349,7 +1306,6 @@ function EthereumConnector::getEthWork() returns string|error {
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -1381,7 +1337,6 @@ function EthereumConnector::submitEthWork(string nonce, string powHash, string m
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {
@@ -1413,7 +1368,6 @@ function EthereumConnector::remoteProcedureCall(string method, json params) retu
             var ethereumJSONResponse = response.getJsonPayload();
             match ethereumJSONResponse {
                 error err => {
-                    err.message = "Error occured while extracting Json Payload";
                     return err;
                 }
                 json jsonResponse => {

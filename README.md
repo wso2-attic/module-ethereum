@@ -85,9 +85,9 @@ endpoint ethereum:Client ethereumClient {
 
 ### Sample
 
-The Ethereum connector can be instantiated using the JSON-RPC server url, version and networkId in the Ethereum client config.
+The Ethereum connector can be instantiated using the JSON-RPC server URL, version and networkId in the Ethereum client config.
 
-First, obtain the JSON-RPC server url, version and networkId from your created network.
+First, obtain the JSON-RPC server URL, version and networkId from your created network.
 
 You can enter the above obtained values in the Ethereum client config:
 

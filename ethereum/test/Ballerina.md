@@ -4,7 +4,7 @@ The Ethereum connector allows you to access the Ethereum JSON RPC API through Ba
 
 ![Ballerina -Ethereum Connector Overview](../../BallerinaEthereumJSONRPC.png)
 
-### Compatibility
+## Compatibility
 
 | Ballerina Language Version             | JSON-RPC API Version           |
 | ---------------------------------------| -------------------------------|
@@ -47,7 +47,7 @@ You can use the `tests.bal` file to test all the connector actions by following 
 
 2. Obtain the following variable's value and add these value in the package-ethereum/ballerina.conf file.
     ```
-    JSON_RPC_ENDPOINT = "The JSON RPC server uri"
+    JSON_RPC_ENDPOINT = "The JSON RPC server URL"
     JSON_RPC_VERSION = "The JSON RPC version"
     NETWORK_ID = "The network id"
     POSITION = "The storage position"

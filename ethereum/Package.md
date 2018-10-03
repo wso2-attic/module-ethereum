@@ -41,9 +41,9 @@ The Ethereum connector allows you to access the Ethereum JSON RPC API through Ba
 
 ## Sample
 
-The Ethereum connector can be instantiated using the JSON-RPC server url, version and networkId in the Ethereum client config.
+The Ethereum connector can be instantiated using the JSON-RPC server URL, version and networkId in the Ethereum client config.
 
-* First, obtain the JSON-RPC server url, version and networkId from your created network.
+* First, obtain the JSON-RPC server URL, version and networkId from your created network.
 
 * import the `wso2/ethereum` package into the Ballerina project.
 

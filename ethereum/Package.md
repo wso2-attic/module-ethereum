@@ -6,20 +6,20 @@ The Ethereum connector allows you to access the Ethereum JSON RPC API through Ba
 
 ![Ballerina -Ethereum Connector Overview](../BallerinaEthereumJSONRPC.png)
 
-### Compatibility
+## Compatibility
 
-|                                 |       Version                  |
-|  :---------------------------:  |  :---------------------------: |
-|  Ballerina Language             |   0.982.0                      |
-|  JSON-RPC API Version           |   v2.0                        |
+|                          |    Version     |
+|:------------------:      |:--------------:|
+| Ballerina Language       |   0.982.0      |
+| JSON-RPC API Version     |   v2.0         |
 
 ### Starting Geth Client
 
 1. Download the Geth client from [https://geth.ethereum.org/downloads/](https://geth.ethereum.org/downloads/).
 
-2. Install the Geth Client. [https://ethereum.github.io/go-ethereum/install/](https://ethereum.github.io/go-ethereum/install/).
+2. Install the Geth Client. For more information, see [https://ethereum.github.io/go-ethereum/install/](https://ethereum.github.io/go-ethereum/install/).
 
-3. Check whether the installation is complete or not from start the HTTP JSON-RPC by run the `geth` command in your command line.
+3. Check whether the installation is complete or not by starting the HTTP JSON-RPC. To do this, run the `geth` command in your command line.
 
 ### Enabling JSON RPC Server
 
@@ -39,26 +39,29 @@ The Ethereum connector allows you to access the Ethereum JSON RPC API through Ba
     miner.start()
     ```
 
-### Sample
+## Sample
 
-import the `wso2/ethereum` package into the Ballerina project.
- ```ballerina
- import wso2/ethereum;
- ```       
- 
-**Run the Sample**
+The Ethereum connector can be instantiated using the JSON-RPC server url, version and networkId in the Ethereum client config.
 
-You can now enter the JSON-RPC server url, version and networkId in the HTTP client config:
+* First, obtain the JSON-RPC server url, version and networkId from your created network.
 
-```ballerina
-endpoint ethereum:Client ethereumClient {
-    jsonRpcEndpoint: "<JSON_RPC_url>",
-    jsonRpcVersion: "<JSON_RPC_version>",
-    networkId: "<network_id>"
-};
-```
+* import the `wso2/ethereum` package into the Ballerina project.
 
-The `getWeb3ClientVersion` function gets the current client version.
+    ```ballerina
+    import wso2/ethereum;
+    ```       
+
+* Enter the above obtained values in the Ethereum client config:
+
+    ```ballerina
+      endpoint ethereum:Client ethereumClient {
+          jsonRpcEndpoint: "<JSON_RPC_url>",
+          jsonRpcVersion: "<JSON_RPC_version>",
+          networkId: "<network_id>"
+      };
+    ```
+
+The `getWeb3ClientVersion` function used to get the current client version.
 
 if the request was successful, the response from `getWeb3ClientVersion` is a current client version. if the request was unsuccessful, the response is an Error. 
 The match operation can be used to handle the response if an error occurs.
@@ -74,7 +77,7 @@ match response {
 }
 ```
 
-The `getWeb3Sha3` function converts data into a SHA3 hash.
+The `getWeb3Sha3` function used to convert data into a SHA3 hash.
 
 The `data` represents the data to convert into a SHA3 hash. if the request was successful, the response from `getWeb3Sha3` is a SHA3 hash data . if the request was unsuccessful, the response is an Error. 
 The match operation can be used to handle the response if an error occurs.
@@ -90,7 +93,7 @@ match response {
 }
 ```
 
-The `getNetVersion` function gets current network id.
+The `getNetVersion` function used to get the current network id.
 
 if the request was successful, the response from `getNetVersion` is a current network id. if the request was unsuccessful, the response is an Error. 
 The match operation can be used to handle the response if an error occurs.
@@ -106,7 +109,7 @@ match response {
 }
 ```
 
-**Example**
+## Example
 
 ```ballerina
 import ballerina/io;

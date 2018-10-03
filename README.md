@@ -18,20 +18,20 @@ The Ethereum connector allows you to access the Ethereum JSON RPC API through Ba
 
 ![Ballerina -Ethereum Connector Overview](BallerinaEthereumJSONRPC.png)
 
-### Compatibility
+## Compatibility
 
-|                                 |       Version                  |
-|  :---------------------------:  |  :---------------------------: |
-|  Ballerina Language             |   0.982.0                      |
-|  JSON-RPC API Version           |   v2.0                        |
+|                          |    Version     |
+|:------------------:      |:--------------:|
+| Ballerina Language       |   0.982.0      |
+| JSON-RPC API Version     |   v2.0         |
 
 ### Starting Geth Client
 
 1. Download the Geth client from [https://geth.ethereum.org/downloads/](https://geth.ethereum.org/downloads/).
 
-2. Install the Geth Client. [https://ethereum.github.io/go-ethereum/install/](https://ethereum.github.io/go-ethereum/install/).
+2. Install the Geth Client. For more information, see [https://ethereum.github.io/go-ethereum/install/](https://ethereum.github.io/go-ethereum/install/).
 
-3. Check whether the installation is complete or not from start the HTTP JSON-RPC by run the `geth` command in your command line .
+3. Check whether the installation is complete or not by starting the HTTP JSON-RPC. To do this, run the `geth` command in your command line.
 
 ### Enabling JSON RPC Server
 
@@ -85,24 +85,32 @@ endpoint ethereum:Client ethereumClient {
 
 ### Sample
 
+The Ethereum connector can be instantiated using the JSON-RPC server url, version and networkId in the Ethereum client config.
+
+First, obtain the JSON-RPC server url, version and networkId from your created network.
+
+You can enter the above obtained values in the Ethereum client config:
+
 ```ballerina
 import ballerina/config;
 import ballerina/io;
+import wso2/ethereum;
 
 public function main(string... args) {
     endpoint ethereum:Client ethereumClient {
-        jsonRpcVersion: "",
-        networkId: "",
-        jsonRpcEndpoint: ""
+        jsonRpcEndpoint: "<JSON_RPC_url>",
+        jsonRpcVersion: "<JSON_RPC_version>",
+        networkId: "<network_id>"
     };
 
-    var response = ethereumClient -> web3ClientVersion();
+    var response = ethereumClient -> getWeb3ClientVersion();
     match response {
-        ethereum:Result result => {
-            string value = result.result;
-            io:println("The web3 client version: " + value);
+        //If successful, returns the web3 client version
+        string result => {
+            io:println("The web3 client version: " + result);
         }
-        ethereum:EthereumError e => io:println(e);
+        //Unsuccessful attempts return an error.
+        error e => io:println(e);
     }
 }
 ```

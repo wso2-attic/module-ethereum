@@ -14,9 +14,9 @@ The Ethereum connector allows you to access the Ethereum JSON RPC API through Ba
 
 1. Download the Geth client from [https://geth.ethereum.org/downloads/](https://geth.ethereum.org/downloads/).
 
-2. Install the Geth Client. [https://ethereum.github.io/go-ethereum/install/](https://ethereum.github.io/go-ethereum/install/).
+2. Install the Geth Client. For more information, see [https://ethereum.github.io/go-ethereum/install/](https://ethereum.github.io/go-ethereum/install/).
 
-3. Check whether the installation is complete or not from start the HTTP JSON-RPC by run the `geth` command in your command line .
+3. Check whether the installation is complete or not by starting the HTTP JSON-RPC. To do this, run the `geth` command in your command line.
 
 ### Enabling JSON RPC Server
 
@@ -31,9 +31,10 @@ The Ethereum connector allows you to access the Ethereum JSON RPC API through Ba
     personal.newAccount()
     ```
 
-4. To start the miner, use the following command in the Geth JavaScript console.
+4. To start the mine, use the following command in the Geth JavaScript console.
     ```
     miner.start()
+    ```
 
 ### Running Samples
 

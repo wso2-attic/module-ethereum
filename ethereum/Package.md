@@ -2,9 +2,7 @@ Connects to Ethereum from Ballerina.
 
 # Ballerina Ethereum Connector
 
-The Ethereum connector allows you to access the Ethereum JSON RPC API through Ballerina. The Ethereum connector actions are invoked using a Ballerina main function. The following diagram illustrates how Ballerina connects to the JSON RPC-enabled server, which in turn integrates with the Ethereum network.
-
-![Ballerina -Ethereum Connector Overview](../BallerinaEthereumJSONRPC.png)
+The Ethereum connector allows you to access the Ethereum JSON RPC API through Ballerina. 
 
 ## Compatibility
 

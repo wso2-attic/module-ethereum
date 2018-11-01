@@ -8,7 +8,7 @@ The Ethereum connector allows you to access the Ethereum JSON RPC API through Ba
 
 | Ballerina Language Version             | JSON-RPC API Version           |
 | ---------------------------------------| -------------------------------|
-|  0.982.0                               |   v2.0                        |
+|  0.983.0                               |   v2.0                        |
 
 ### Starting Geth Client
 
@@ -40,12 +40,12 @@ The Ethereum connector allows you to access the Ethereum JSON RPC API through Ba
 
 You can use the `tests.bal` file to test all the connector actions by following the below steps:
 
-1. Navigate to package-ethereum and initialize the ballerina project.
+1. Navigate to module-ethereum and initialize the ballerina project.
     ```
     ballerina init
     ```
 
-2. Obtain the following variable's value and add these value in the package-ethereum/ballerina.conf file.
+2. Obtain the following variable's value and add these value in the module-ethereum/ballerina.conf file.
     ```
     JSON_RPC_ENDPOINT = "The JSON RPC server URL"
     JSON_RPC_VERSION = "The JSON RPC version"

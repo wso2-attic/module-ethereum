@@ -22,7 +22,7 @@ The Ethereum connector allows you to access the Ethereum JSON RPC API through Ba
 
 |                          |    Version     |
 |:------------------:      |:--------------:|
-| Ballerina Language       |   0.982.0      |
+| Ballerina Language       |   0.983.0      |
 | JSON-RPC API Version     |   v2.0         |
 
 ### Starting Geth Client
@@ -62,12 +62,12 @@ The following sections provide you with information on how to use the Ballerina 
 Clone the repository by running the following command. 
 
 ```shell
-git clone https://github.com/wso2-ballerina/package-ethereum.git
+git clone https://github.com/wso2-ballerina/module-ethereum.git
 ```
    
 ### Working with Ethereum Connector 
 
-First, import the `wso2/ethereum` package into the Ballerina project.
+First, import the `wso2/ethereum` module into the Ballerina project.
 
 ```ballerina
 import wso2/ethereum;

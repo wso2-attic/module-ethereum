@@ -8,7 +8,7 @@ The Ethereum connector allows you to access the Ethereum JSON RPC API through Ba
 
 |                          |    Version     |
 |:------------------:      |:--------------:|
-| Ballerina Language       |   0.982.0      |
+| Ballerina Language       |   0.983.0      |
 | JSON-RPC API Version     |   v2.0         |
 
 ### Starting Geth Client
@@ -43,7 +43,7 @@ The Ethereum connector can be instantiated using the JSON-RPC server URL, versio
 
 * First, obtain the JSON-RPC server URL, version and networkId from your created network.
 
-* import the `wso2/ethereum` package into the Ballerina project.
+* import the `wso2/ethereum` module into the Ballerina project.
 
     ```ballerina
     import wso2/ethereum;

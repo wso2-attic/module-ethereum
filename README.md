@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/wso2-ballerina/module-ethereum.svg?branch=master)](https://travis-ci.org/wso2-ballerina/module-ethereum)
+
 # Ballerina Ethereum Connector
 
 *Ethereum is a decentralized platform for applications that run exactly as programmed without any chance of fraud, censorship or third-party interference* (https://www.ethereum.org/).

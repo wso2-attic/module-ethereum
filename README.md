@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/wso2-ballerina/module-ethereum.svg?branch=master)](https://travis-ci.org/wso2-ballerina/module-ethereum)
-
 # Ballerina Ethereum Connector
 
 *Ethereum is a decentralized platform for applications that run exactly as programmed without any chance of fraud, censorship or third-party interference* (https://www.ethereum.org/).
@@ -24,7 +22,7 @@ The Ethereum connector allows you to access the Ethereum JSON RPC API through Ba
 
 |                          |    Version     |
 |:------------------:      |:--------------:|
-| Ballerina Language       |   0.983.0      |
+| Ballerina Language       |   0.985.0      |
 | JSON-RPC API Version     |   v2.0         |
 
 ### Starting Geth Client
@@ -78,7 +76,7 @@ import wso2/ethereum;
 To use the Ethereum Connector, first create an Ethereum Client endpoint.
 
 ```ballerina
-endpoint ethereum:Client ethereumClient {
+ethereum:Client ethereumClient {
     jsonRpcVersion: " ",
     networkId: " ",
     jsonRpcEndpoint: ""
@@ -98,21 +96,21 @@ import ballerina/config;
 import ballerina/io;
 import wso2/ethereum;
 
-public function main(string... args) {
-    endpoint ethereum:Client ethereumClient {
-        jsonRpcEndpoint: "<JSON_RPC_url>",
-        jsonRpcVersion: "<JSON_RPC_version>",
-        networkId: "<network_id>"
-    };
+ethereum:EthereumConfiguration ethereumConfig = {
+    jsonRpcEndpoint: "<JSON_RPC_url>",
+    jsonRpcVersion: "<JSON_RPC_version>",
+    networkId: "<network_id>"
+};
 
-    var response = ethereumClient -> getWeb3ClientVersion();
-    match response {
-        //If successful, returns the web3 client version
-        string result => {
-            io:println("The web3 client version: " + result);
-        }
-        //Unsuccessful attempts return an error.
-        error e => io:println(e);
+public function main(string... args) {
+    ethereum:Client ethereumClient = new(ethereumConfig);
+    
+    var response = ethereumClient -> web3ClientVersion();
+    if (response is string) {
+        string value = response.result;
+        io:println("The web3 client version: " + value);
+    } else {
+        io:println(response);
     }
 }
 ```

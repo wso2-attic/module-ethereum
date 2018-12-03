@@ -26,5 +26,5 @@ function convertToString(json jsonPayload) returns string {
 
 function jsonToBoolean(json jsonVal) returns boolean {
     string stringVal = jsonVal["result"] != null ? jsonVal["result"].toString() : "";
-    return <boolean>stringVal;
+    return boolean.create(stringVal);
 }

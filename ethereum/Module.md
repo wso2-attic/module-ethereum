@@ -8,7 +8,7 @@ The Ethereum connector allows you to access the Ethereum JSON RPC API through Ba
 
 |                          |    Version     |
 |:------------------:      |:--------------:|
-| Ballerina Language       |   0.983.0      |
+| Ballerina Language       |   0.985.0      |
 | JSON-RPC API Version     |   v2.0         |
 
 ### Starting Geth Client
@@ -52,58 +52,58 @@ The Ethereum connector can be instantiated using the JSON-RPC server URL, versio
 * Enter the above obtained values in the Ethereum client config:
 
     ```ballerina
-      endpoint ethereum:Client ethereumClient {
-          jsonRpcEndpoint: "<JSON_RPC_url>",
-          jsonRpcVersion: "<JSON_RPC_version>",
-          networkId: "<network_id>"
-      };
+    ethereum:EthereumConfiguration ethereumConfig = {
+        jsonRpcEndpoint: "<JSON_RPC_url>",
+        jsonRpcVersion: "<JSON_RPC_version>",
+        networkId: "<network_id>"
+    };
+        
+    ethereum:Client ethereumClient = new(ethereumConfig);
+
     ```
 
 The `getWeb3ClientVersion` function used to get the current client version.
 
 if the request was successful, the response from `getWeb3ClientVersion` is a current client version. if the request was unsuccessful, the response is an Error. 
-The match operation can be used to handle the response if an error occurs.
 
 ```ballerina
 //getWeb3ClientVersion.
-var response = ethereumClient -> getWeb3ClientVersion();
-match response {
-    string result => {
-        io:println("The web3 client version: " + result);
-    }
-    error e => io:println(e);
+var response = ethereumClient -> web3ClientVersion();
+if (response is string) {
+    string value = response.result;
+    io:println("The web3 client version: " + value);
+} else {
+    io:println(response);
 }
 ```
 
 The `getWeb3Sha3` function used to convert data into a SHA3 hash.
 
 The `data` represents the data to convert into a SHA3 hash. if the request was successful, the response from `getWeb3Sha3` is a SHA3 hash data . if the request was unsuccessful, the response is an Error. 
-The match operation can be used to handle the response if an error occurs.
 
 ```ballerina
 //getWeb3Sha3.
-var response = ethereumClient -> getWeb3Sha3(data);
-match response {
-    string result => {
-        io:println("The data in the SHA3-256: " + result);
-    }
-    error e => io:println(e);
+var response = ethereumClient -> web3Sha3(testData);
+if (response is string) {
+    string value = response;
+    io:println("The data in the SHA3-256: " + value);
+} else {
+    io:println(response);
 }
 ```
 
 The `getNetVersion` function used to get the current network id.
 
 if the request was successful, the response from `getNetVersion` is a current network id. if the request was unsuccessful, the response is an Error. 
-The match operation can be used to handle the response if an error occurs.
 
 ```ballerina
 //getNetVersion.
-var response = ethereumClient -> getNetVersion();
-match response {
-    string result => {
-        io:println("The current network id: " + result);
-    }
-    error e => io:println(e);
+var response = ethereumClient -> netVersion();
+if (response is string) {
+    string value = response;
+    io:println("The current network id: " + value);
+} else {
+    io:println(response);
 }
 ```
 
@@ -114,12 +114,14 @@ import ballerina/io;
 import wso2/ethereum;
 import ballerina/config;
 
-function main(string... args) {
-    endpoint ethereum:Client ethereumClient {
-        jsonRpcVersion: "<json_rpc_version>",
-        networkId: "<network_id>",
-        jsonRpcEndpoint: "<json_rpc_url>"
-    };
+ethereum:EthereumConfiguration ethereumConfig = {
+    jsonRpcEndpoint: "<JSON_RPC_url>",
+    jsonRpcVersion: "<JSON_RPC_version>",
+    networkId: "<network_id>"
+};
+
+public function main(string... args) {
+    ethereum:Client ethereumClient = new(ethereumConfig);
 
     string data = "<data to convert into a SHA3 hash>";
     string block = "<block number>";
@@ -135,398 +137,398 @@ function main(string... args) {
     string address ;
     string filterId;
 
-    io:println("---------------------Calling getWeb3ClientVersion()----------------------");
-    var response = ethereumClient -> getWeb3ClientVersion();
-    match response {
-        string result => {
-            io:println("The web3 client version: " + result);
+    io:println("---------------------Calling web3ClientVersion()----------------------");
+        var response = ethereumClient -> web3ClientVersion();
+        if (response is string) {
+            string value = response;
+            io:println("The web3 client version: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
     
-    io:println("------------------------Calling getWeb3Sha3()----------------------------");
-    response = ethereumClient -> getWeb3Sha3(data);
-    match response {
-        string result => {
-            io:println("The data in the SHA3-256: " + result);
+        string testData = "0x68656c6c6f20776f726c64";
+        io:println("------------------------Calling web3Sha3()----------------------------");
+        response = ethereumClient -> web3Sha3(testData);
+        if (response is string) {
+            string value = response;
+            io:println("The data in the SHA3-256: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
     
-    io:println("-----------------------Calling getNetVersion()----------------------------");
-    response = ethereumClient -> getNetVersion();
-        match response {
-        string result => {
-            io:println("The current network id: " + result);
+        io:println("-----------------------Calling netVersion()----------------------------");
+        response = ethereumClient -> netVersion();
+        if (response is string) {
+            string value = response;
+            io:println("The current network id: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
     
-    io:println("-----------------------Calling getNetPeerCount()--------------------------");
-    response = ethereumClient -> getNetPeerCount();
-    match response {
-        string result => {
-            io:println("The number of peers currently connected to the client: " + result);
+        io:println("-----------------------Calling netPeerCount()--------------------------");
+        response = ethereumClient -> netPeerCount();
+        if (response is string) {
+            string value = response;
+            io:println("The number of peers currently connected to the client: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
     
-    io:println("--------------------Calling getNetListening()--------------------------");
-    var ethResponse = ethereumClient -> getNetListening();
-    match ethResponse {
-        boolean result => {
-            io:println("The status for client is actively listening for network connections: " + result);
+        io:println("--------------------Calling netListening()--------------------------");
+        response = ethereumClient -> netListening();
+        if (response is boolean) {
+            boolean value = response;
+            io:println("The status for client is actively listening for network connections: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
     
-    io:println("--------------------Calling getEthProtocolVersion()----------------------");
-    response = ethereumClient -> getEthProtocolVersion();
-    match response {
-        string result => {
-            io:println("The current ethereum protocol version: " + result);
+        io:println("--------------------Calling ethProtocolVersion()----------------------");
+        response = ethereumClient -> ethProtocolVersion();
+        if (response is string) {
+            string value = response;
+            io:println("The current ethereum protocol version: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
     
-    io:println("-------------------------Calling getEthSyncing()------------------------");
-    response = ethereumClient -> getEthSyncing();
-    match response {
-        string result => {
-            io:println("The sync status of an object with data: " + result);
+        io:println("-------------------------Calling ethSyncing()------------------------");
+        response = ethereumClient -> ethSyncing();
+        if (response is string) {
+            string value = response;
+            io:println("The sync status of an object with data: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
     
-    io:println("----------------------Calling getEthCoinbase()--------------------------");
-    response = ethereumClient -> getEthCoinbase();
-    match response {
-        string result => {
-            io:println("The client coinbase address: " + result);
+        io:println("----------------------Calling ethCoinbase()--------------------------");
+        response = ethereumClient -> ethCoinbase();
+        if (response is string) {
+            string value = response;
+            io:println("The client coinbase address: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
     
-    io:println("-----------------------Calling getEthMining()------------------------");
-    ethResponse = ethereumClient -> getEthMining();
-    match ethResponse {
-        boolean result => {
-            io:println("The status for client is actively mining new blocks: " + result);
+        io:println("-----------------------Calling ethMining()------------------------");
+        response = ethereumClient -> ethMining();
+        if (response is string) {
+            string value = response;
+            io:println("The status for client is actively mining new blocks: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
     
-    io:println("-----------------------Calling getEthHashrate()------------------------");
-    response = ethereumClient -> getEthHashrate();
-    match response {
-        string result => {
-            io:println("The number of hashes per second that the node is mining with: " + result);
+        io:println("-----------------------Calling ethHashrate()------------------------");
+        response = ethereumClient -> ethHashrate();
+        if (response is string) {
+            string value = response;
+            io:println("The number of hashes per second that the node is mining with: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
     
-    io:println("-----------------------Calling getEthGasPrice()-------------------------");
-    response = ethereumClient -> getEthGasPrice();
-    match response {
-        string result => {
-            io:println("The current price per gas in wei: " + result);
+        io:println("-----------------------Calling ethGasPrice()-------------------------");
+        response = ethereumClient -> ethGasPrice();
+        if (response is string) {
+            string value = response;
+            io:println("The current price per gas in wei: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
     
-    io:println("-----------------------Calling getEthAccounts()-------------------------");
-    response = ethereumClient -> getEthAccounts();
-    match response {
-        string result => {
-            address = untaint result;
-            io:println(address);
-            io:println("Addresse owned by client: " + result);
+        io:println("-----------------------Calling ethAccounts()-------------------------");
+        response = ethereumClient -> ethAccounts();
+        if (response is string) {
+            string value = response;
+            address = untaint value;
+            io:println("Addresse owned by client: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("-----------------------Calling getEthBlockNumber()---------------------");
-    response = ethereumClient -> getEthBlockNumber();
-    match response {
-        string result => {
-            io:println("The number of most recent block: " + result);
+    
+        io:println("-----------------------Calling ethBlockNumber()---------------------");
+        response = ethereumClient -> ethBlockNumber();
+        if (response is string) {
+            string value = response;
+            io:println("The number of most recent block: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("-----------------------Calling getEthBalance()-----------------------");
-    response = ethereumClient -> getEthBalance(address, block);
-    match response {
-        string result => {
+    
+        io:println("-----------------------Calling ethGetBalance()-----------------------");
+        response = ethereumClient -> ethGetBalance(address,testblock);
+        if (response is string) {
+            string value = response;
             address = untaint address;
-            io:println("The balance of the account of given address: " + result);
+            io:println("The balance of the account of given address: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("-----------------------Calling getEthStorageAt()---------------------");
-    response = ethereumClient -> getEthStorageAt(address, position, block);
-    match response {
-        string result => {
-            io:println("The value from a storage position at a given address: " + result);
+    
+        io:println("-----------------------Calling ethGetStorageAt()---------------------");
+        response = ethereumClient -> ethGetStorageAt(address, testposition, testblock);
+        if (response is string) {
+            string value = response;
+            io:println("The value from a storage position at a given address: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("--------------------Calling getEthTransactionCount()-----------------");
-    response = ethereumClient -> getEthTransactionCount(address, block);
-    match response {
-        string result => {
-            io:println("The number of transactions send from this address: " + result);
+    
+        io:println("--------------------Calling ethGetTransactionCount()-----------------");
+        response = ethereumClient -> ethGetTransactionCount(address, testblock);
+        if (response is string) {
+            string value = response;
+            io:println("The number of transactions send from this address: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("--------------Calling getEthBlockTransactionCountByHash()-------------");
-    response = ethereumClient -> getEthBlockTransactionCountByHash(blockHash);
-    match response {
-        string result => {
-            io:println("The number of transactions in this block: " + result);
+    
+        io:println("--------------Calling ethGetBlockTransactionCountByHash()-------------");
+        response = ethereumClient -> ethGetBlockTransactionCountByHash(testblockHash);
+        if (response is string) {
+            string value = response;
+            io:println("The number of transactions in this block: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("------------Calling getEthBlockTransactionCountByNumber()------------");
-    response = ethereumClient -> getEthBlockTransactionCountByNumber(block);
-    match response {
-        string result => {
-            io:println("The number of transactions in this block: " + result);
+    
+        io:println("------------Calling ethGetBlockTransactionCountByNumber()------------");
+        response = ethereumClient -> ethGetBlockTransactionCountByNumber(testblock);
+        if (response is string) {
+            string value = response;
+            io:println("The number of transactions in this block: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("----------------Calling getEthUncleCountByBlockHash()----------------");
-    response = ethereumClient -> getEthUncleCountByBlockHash(blockHash);
-    match response {
-        string result => {
-            io:println("The number of uncles in this block: " + result);
+    
+        io:println("----------------Calling ethGetUncleCountByBlockHash()----------------");
+        response = ethereumClient -> ethGetUncleCountByBlockHash(testblockHash);
+        if (response is string) {
+            string value = response;
+            io:println("The number of uncles in this block: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("---------------Calling getEthUncleCountByBlockNumber()---------------");
-    response = ethereumClient -> getEthUncleCountByBlockNumber(block);
-    match response {
-        string result => {
-            io:println("The number of uncles in this block: " + result);
+    
+        io:println("---------------Calling ethGetUncleCountByBlockNumber()---------------");
+        response = ethereumClient -> ethGetUncleCountByBlockNumber(testblock);
+        if (response is string) {
+            string value = response;
+            io:println("The number of uncles in this block: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("-----------------------Calling getEthCode()-------------------------");
-    response = ethereumClient -> getEthCode(address, block);
-    match response {
-        string result => {
-            io:println("The code from the given address: " + result);
+    
+        io:println("-----------------------Calling ethGetCode()-------------------------");
+        response = ethereumClient -> ethGetCode(address, testblock);
+        if (response is string) {
+            string value = response;
+            io:println("The code from the given address: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("-----------------------Calling getEthSign()---------------------------");
-    response = ethereumClient -> getEthSign(address, message);
-    match response {
-        string result => {
-            io:println("Signature: " + result);
+    
+        io:println("-----------------------Calling ethSign()---------------------------");
+        response = ethereumClient -> ethSign(address, testmessage);
+        if (response is string) {
+            string value = response;
+            io:println("Signature: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("------------------Calling ethTransaction()---------------------");
-    json testTransactionOptions = { "from": address , "data": transactionOptionsData };
-    response = ethereumClient -> sendEthTransaction(testTransactionOptions);
-    match response {
-        string result => {
-            io:println("The transaction hash: " + result);
+    
+        io:println("------------------Calling ethSendTransaction()---------------------");
+        json testTransactionOptions = {"from": address , "data": testTransactionOptionsData };
+        response = ethereumClient -> ethSendTransaction(testTransactionOptions);
+        if (response is string) {
+            string value = response;
+            io:println("The transaction hash: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("----------------Calling sendEthRawTransaction()-------------------");
-    response = ethereumClient -> sendEthRawTransaction(transactionOptionsData);
-    match response {
-        string result => {
-            io:println("The transaction hash: " + result);
+    
+        io:println("----------------Calling ethSendRawTransaction()-------------------");
+        response = ethereumClient -> ethSendRawTransaction(testTransactionOptionsData);
+        if (response is string) {
+            string value = response;
+            io:println("The transaction hash: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("-----------------------Calling getEthCall()---------------------------");
-    json testTransactionCallObject = { "to": transactionCallObjectTovalue };
-    response = ethereumClient -> getEthCall(testTransactionCallObject, block);
-    match response {
-        string result => {
-            io:println("The value of executed contract: " + result);
+    
+        io:println("-----------------------Calling ethCall()---------------------------");
+        json testTransactionCallObject = {"to": testTransactionCallObjectTovalue };
+        response = ethereumClient -> ethCall(testTransactionCallObject, testblock);
+        if (response is string) {
+            string value = response;
+            io:println("The value of executed contract: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("-----------------------Calling getEthEstimateGas()-------------------");
-    response = ethereumClient -> getEthEstimateGas({});
-    match response {
-        string result => {
-            io:println("The amount of gas used: " + result);
+    
+        io:println("-----------------------Calling ethEstimateGas()-------------------");
+        response = ethereumClient -> ethEstimateGas({});
+        if (response is string) {
+            string value = response;
+            io:println("The amount of gas used: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("-----------------Calling getEthBlockByHash()-------------------");
-    response = ethereumClient -> getEthBlockByHash(blockHash, <boolean> transactionObjectStatus);
-    match response {
-        string result => {
-            io:println("The block object: " + result);
+    
+        io:println("-----------------Calling ethGetBlockByHash()-------------------");
+        response = ethereumClient -> ethGetBlockByHash(testblockHash, testtransactionObjectStatus);
+        if (response is string) {
+            string value = response;
+            io:println("The block object: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("-----------------Calling getEthBlockByNumber()----------------");
-    response = ethereumClient -> getEthBlockByNumber(block, <boolean> transactionObjectStatus);
-    match response {
-        string result => {
-            io:println("The information about a block by hash: " + result);
+    
+        io:println("-----------------Calling ethGetBlockByNumber()----------------");
+        response = ethereumClient -> ethGetBlockByNumber(testblock, testtransactionObjectStatus);
+        if (response is string) {
+            string value = response;
+            io:println("The information about a block by hash: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("---------------Calling getEthTransactionByHash()----------------");
-    response = ethereumClient -> getEthTransactionByHash(blockHash);
-    match response {
-        string result => {
-            io:println("The information about a transaction requested by transaction hash: " + result);
+    
+        io:println("---------------Calling ethGetTransactionByHash()----------------");
+        response = ethereumClient -> ethGetTransactionByHash(testblockHash);
+        if (response is string) {
+            string value = response;
+            io:println("The information about a transaction requested by transaction hash: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("--------Calling getEthTransactionByBlockHashAndIndex()----------");
-    response = ethereumClient -> getEthTransactionByBlockHashAndIndex(blockHash, position);
-    match response {
-        string result => {
-            io:println("The information about a transaction by block hash and transaction index position: " + result);
+    
+        io:println("--------Calling ethGetTransactionByBlockHashAndIndex()----------");
+        response = ethereumClient -> ethGetTransactionByBlockHashAndIndex(testblockHash, testposition);
+        if (response is string) {
+            string value = response;
+            io:println("The information about a transaction by block hash and transaction index position: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("--------Calling getEthTransactionByBlockNumberAndIndex()--------");
-    response = ethereumClient -> getEthTransactionByBlockNumberAndIndex(block, position);
-    match response {
-        string result => {
-            io:println("The information about a transaction by block number and transaction index position: " + result);
+    
+        io:println("--------Calling ethGetTransactionByBlockNumberAndIndex()--------");
+        response = ethereumClient -> ethGetTransactionByBlockNumberAndIndex(testblock, testposition);
+        if (response is string) {
+            string value = response;
+            io:println("The information about a transaction by block number and transaction index position: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("-------------Calling getEthTransactionReceipt()-----------------");
-    response = ethereumClient -> getEthTransactionReceipt(blockHash);
-    match response {
-        string result => {
-            io:println("The receipt of a transaction by transaction hash: " + result);
+    
+        io:println("-------------Calling ethGetTransactionReceipt()-----------------");
+        response = ethereumClient -> ethGetTransactionReceipt(testblockHash);
+        if (response is string) {
+            string value = response;
+            io:println("The receipt of a transaction by transaction hash: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("----------Calling getEthUncleByBlockHashAndIndex()--------------");
-    response = ethereumClient -> getEthUncleByBlockHashAndIndex(blockHash, position);
-    match response {
-        string result => {
-            io:println("The information about a uncle of a block by hash and uncle index position: " + result);
+    
+        io:println("----------Calling ethGetUncleByBlockHashAndIndex()--------------");
+        response = ethereumClient -> ethGetUncleByBlockHashAndIndex(testblockHash, testposition);
+        if (response is string) {
+            string value = response;
+            io:println("The information about a uncle of a block by hash and uncle index position: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("----------Calling getEthUncleByBlockNumberAndIndex()------------");
-    response = ethereumClient -> getEthUncleByBlockNumberAndIndex(block, position);
-    match response {
-        string result => {
-            io:println("The information about a uncle of a block by number and uncle index position: " + result);
+    
+        io:println("----------Calling ethGetUncleByBlockNumberAndIndex()------------");
+        response = ethereumClient -> ethGetUncleByBlockNumberAndIndex(testblock, testposition);
+        if (response is string) {
+            string value = response;
+            io:println("The information about a uncle of a block by number and uncle index position: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("--------------Calling ethNewFilter()---------------------------");
-    response = ethereumClient -> ethNewFilter({});
-    match response {
-        string result => {
-            filterId = untaint result;
-            io:println("A filter id: " + result);
+    
+        io:println("--------------Calling ethNewFilter()---------------------------");
+        response = ethereumClient -> ethNewFilter({});
+        if (response is string) {
+            string value = response;
+            testFilterID = untaint value;
+            io:println("A filter id: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("------------------Calling ethNewBlockFilter()-----------------");
-    response = ethereumClient -> ethNewBlockFilter();
-    match response {
-        string result => {
-            io:println("A filter id:" + result);
+    
+        io:println("------------------Calling ethNewBlockFilter()-----------------");
+        response = ethereumClient -> ethNewBlockFilter();
+        if (response is string) {
+            string value = response;
+            io:println("A filter id:" + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("---------Calling ethNewPendingTransactionFilter()------------");
-    response = ethereumClient -> ethNewPendingTransactionFilter();
-    match response {
-        string result => {
-            io:println("A filter id: " + result);
+    
+        io:println("---------Calling ethNewPendingTransactionFilter()------------");
+        response = ethereumClient -> ethNewPendingTransactionFilter();
+        if (response is string) {
+            string value = response;
+            io:println("A filter id: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("----------Calling getEthFilterLogs()------------------------");
-    response = ethereumClient -> getEthFilterLogs(filterId);
-    match response {
-        string result => {
-            io:println("An array of all logs matching filter with given id: " + result);
+    
+        io:println("----------Calling ethGetFilterLogs()------------------------");
+        response = ethereumClient -> ethGetFilterLogs(testFilterID);
+        if (response is string) {
+            string value = response;
+            io:println("An array of all logs matching filter with given id: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("-----------Calling getEthFilterChanges()--------------------");
-    response = ethereumClient -> getEthFilterChanges(filterId);
-    match response {
-        string result => {
-            io:println("Array of log objects: " + result);
+    
+        io:println("-----------Calling ethGetFilterChanges()--------------------");
+        response = ethereumClient -> ethGetFilterChanges(testFilterID);
+        if (response is string) {
+            string value = response;
+            io:println("Array of log objects: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("-------------Calling uninstallEthFilter()-------------------");
-    response = ethereumClient -> uninstallEthFilter(filterId);
-    match response {
-        string result => {
-            io:println("The status of uninstall the filter: " + result);
+    
+        io:println("-------------Calling ethUninstallFilter()-------------------");
+        response = ethereumClient -> ethUninstallFilter(testFilterID);
+        if (response is string) {
+            string value = response;
+            io:println("The status of uninstall the filter : " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("--------------------Calling getEthLogs()--------------------");
-    response = ethereumClient -> getEthLogs({});
-    match response {
-        string result => {
-            io:println("An array of all logs matching a given filter object: " + result);
+    
+        io:println("--------------------Calling ethGetLogs()--------------------");
+        response = ethereumClient -> ethGetLogs({});
+        if (response is string) {
+            string value = response;
+            io:println("An array of all logs matching a given filter object: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("-----------------Calling getEthWork()-----------------------");
-    response = ethereumClient -> getEthWork();
-    match response {
-        string result => {
+    
+        io:println("-----------------Calling ethGetWork()-----------------------");
+        response = ethereumClient -> ethGetWork();
+        if (response is string) {
+            string value = response;
             io:println("The hash of the current block, the seedHash, and the boundary condition to be met (\"target\"):
-            " + result);
+                " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-        
-    io:println("-----------------Calling submitEthWork()--------------------");
-    response = ethereumClient -> submitEthWork(nonce, powHash, mixDigest);
-    match response {
-        string result => {
-            io:println("The valid status for provided solution: " + result);
+    
+        io:println("-----------------Calling ethSubmitWork()--------------------");
+        response = ethereumClient -> ethSubmitWork(testnonce, testpowHash, testmixDigest);
+        if (response is string) {
+            string value = response;
+            io:println("The valid status for provided solution: " + value);
+        } else {
+            io:println(response);
         }
-        error e => io:println(e);
-    }
-}
+ }
 ```

@@ -416,7 +416,7 @@ function testGetEthEstimateGas() {
 function testGetEthBlockByHash() {
     io:println("----------------------Test case for get information about a block by hash.---------------------------");
     string result = "";
-    var ethereumRes = testEthereumClient->getEthBlockByHash(testBlockHash, boolean.create(testTransactionObjectStatus));
+    var ethereumRes = testEthereumClient->getEthBlockByHash(testBlockHash, boolean.convert(testTransactionObjectStatus));
     if (ethereumRes is string) {
         result = ethereumRes;
     } else {
@@ -429,7 +429,7 @@ function testGetEthBlockByHash() {
 function testGetEthBlockByNumber() {
     io:println("---------------------Test case for get information about a block by block number.--------------------");
     string result = "";
-    var ethereumRes = testEthereumClient->getEthBlockByNumber(testBlock, boolean.create(testTransactionObjectStatus));
+    var ethereumRes = testEthereumClient->getEthBlockByNumber(testBlock, boolean.convert(testTransactionObjectStatus));
     if (ethereumRes is string) {
         result = ethereumRes;
     } else {

@@ -8,7 +8,7 @@ The Ethereum connector allows you to access the Ethereum JSON RPC API through Ba
 
 |                          |    Version     |
 |:------------------:      |:--------------:|
-| Ballerina Language       |   0.985.0      |
+| Ballerina Language       |   0.990.0      |
 | JSON-RPC API Version     |   v2.0         |
 
 ### Starting Geth Client

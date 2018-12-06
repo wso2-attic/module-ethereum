@@ -68,7 +68,7 @@ if the request was successful, the response from `getWeb3ClientVersion` is a cur
 
 ```ballerina
 //getWeb3ClientVersion.
-var response = ethereumClient -> web3ClientVersion();
+var response = ethereumClient->web3ClientVersion();
 if (response is string) {
     string value = response.result;
     io:println("The web3 client version: " + value);
@@ -83,7 +83,7 @@ The `data` represents the data to convert into a SHA3 hash. if the request was s
 
 ```ballerina
 //getWeb3Sha3.
-var response = ethereumClient -> web3Sha3(testData);
+var response = ethereumClient->web3Sha3(testData);
 if (response is string) {
     string value = response;
     io:println("The data in the SHA3-256: " + value);
@@ -98,7 +98,7 @@ if the request was successful, the response from `getNetVersion` is a current ne
 
 ```ballerina
 //getNetVersion.
-var response = ethereumClient -> netVersion();
+var response = ethereumClient->netVersion();
 if (response is string) {
     string value = response;
     io:println("The current network id: " + value);
@@ -120,7 +120,7 @@ ethereum:EthereumConfiguration ethereumConfig = {
     networkId: "<network_id>"
 };
 
-public function main(string... args) {
+public function main() {
     ethereum:Client ethereumClient = new(ethereumConfig);
 
     string data = "<data to convert into a SHA3 hash>";
@@ -138,7 +138,7 @@ public function main(string... args) {
     string filterId;
 
     io:println("---------------------Calling web3ClientVersion()----------------------");
-        var response = ethereumClient -> web3ClientVersion();
+        var response = ethereumClient->web3ClientVersion();
         if (response is string) {
             string value = response;
             io:println("The web3 client version: " + value);
@@ -148,7 +148,7 @@ public function main(string... args) {
     
         string testData = "0x68656c6c6f20776f726c64";
         io:println("------------------------Calling web3Sha3()----------------------------");
-        response = ethereumClient -> web3Sha3(testData);
+        response = ethereumClient->web3Sha3(testData);
         if (response is string) {
             string value = response;
             io:println("The data in the SHA3-256: " + value);
@@ -157,7 +157,7 @@ public function main(string... args) {
         }
     
         io:println("-----------------------Calling netVersion()----------------------------");
-        response = ethereumClient -> netVersion();
+        response = ethereumClient->netVersion();
         if (response is string) {
             string value = response;
             io:println("The current network id: " + value);
@@ -166,7 +166,7 @@ public function main(string... args) {
         }
     
         io:println("-----------------------Calling netPeerCount()--------------------------");
-        response = ethereumClient -> netPeerCount();
+        response = ethereumClient->netPeerCount();
         if (response is string) {
             string value = response;
             io:println("The number of peers currently connected to the client: " + value);
@@ -175,7 +175,7 @@ public function main(string... args) {
         }
     
         io:println("--------------------Calling netListening()--------------------------");
-        response = ethereumClient -> netListening();
+        response = ethereumClient->netListening();
         if (response is boolean) {
             boolean value = response;
             io:println("The status for client is actively listening for network connections: " + value);
@@ -184,7 +184,7 @@ public function main(string... args) {
         }
     
         io:println("--------------------Calling ethProtocolVersion()----------------------");
-        response = ethereumClient -> ethProtocolVersion();
+        response = ethereumClient->ethProtocolVersion();
         if (response is string) {
             string value = response;
             io:println("The current ethereum protocol version: " + value);
@@ -193,7 +193,7 @@ public function main(string... args) {
         }
     
         io:println("-------------------------Calling ethSyncing()------------------------");
-        response = ethereumClient -> ethSyncing();
+        response = ethereumClient->ethSyncing();
         if (response is string) {
             string value = response;
             io:println("The sync status of an object with data: " + value);
@@ -202,7 +202,7 @@ public function main(string... args) {
         }
     
         io:println("----------------------Calling ethCoinbase()--------------------------");
-        response = ethereumClient -> ethCoinbase();
+        response = ethereumClient->ethCoinbase();
         if (response is string) {
             string value = response;
             io:println("The client coinbase address: " + value);
@@ -211,7 +211,7 @@ public function main(string... args) {
         }
     
         io:println("-----------------------Calling ethMining()------------------------");
-        response = ethereumClient -> ethMining();
+        response = ethereumClient->ethMining();
         if (response is string) {
             string value = response;
             io:println("The status for client is actively mining new blocks: " + value);
@@ -220,7 +220,7 @@ public function main(string... args) {
         }
     
         io:println("-----------------------Calling ethHashrate()------------------------");
-        response = ethereumClient -> ethHashrate();
+        response = ethereumClient->ethHashrate();
         if (response is string) {
             string value = response;
             io:println("The number of hashes per second that the node is mining with: " + value);
@@ -229,7 +229,7 @@ public function main(string... args) {
         }
     
         io:println("-----------------------Calling ethGasPrice()-------------------------");
-        response = ethereumClient -> ethGasPrice();
+        response = ethereumClient->ethGasPrice();
         if (response is string) {
             string value = response;
             io:println("The current price per gas in wei: " + value);
@@ -238,7 +238,7 @@ public function main(string... args) {
         }
     
         io:println("-----------------------Calling ethAccounts()-------------------------");
-        response = ethereumClient -> ethAccounts();
+        response = ethereumClient->ethAccounts();
         if (response is string) {
             string value = response;
             address = untaint value;
@@ -248,7 +248,7 @@ public function main(string... args) {
         }
     
         io:println("-----------------------Calling ethBlockNumber()---------------------");
-        response = ethereumClient -> ethBlockNumber();
+        response = ethereumClient->ethBlockNumber();
         if (response is string) {
             string value = response;
             io:println("The number of most recent block: " + value);
@@ -257,7 +257,7 @@ public function main(string... args) {
         }
     
         io:println("-----------------------Calling ethGetBalance()-----------------------");
-        response = ethereumClient -> ethGetBalance(address,testblock);
+        response = ethereumClient->ethGetBalance(address,testblock);
         if (response is string) {
             string value = response;
             address = untaint address;
@@ -267,7 +267,7 @@ public function main(string... args) {
         }
     
         io:println("-----------------------Calling ethGetStorageAt()---------------------");
-        response = ethereumClient -> ethGetStorageAt(address, testposition, testblock);
+        response = ethereumClient->ethGetStorageAt(address, testposition, testblock);
         if (response is string) {
             string value = response;
             io:println("The value from a storage position at a given address: " + value);
@@ -276,7 +276,7 @@ public function main(string... args) {
         }
     
         io:println("--------------------Calling ethGetTransactionCount()-----------------");
-        response = ethereumClient -> ethGetTransactionCount(address, testblock);
+        response = ethereumClient->ethGetTransactionCount(address, testblock);
         if (response is string) {
             string value = response;
             io:println("The number of transactions send from this address: " + value);
@@ -285,7 +285,7 @@ public function main(string... args) {
         }
     
         io:println("--------------Calling ethGetBlockTransactionCountByHash()-------------");
-        response = ethereumClient -> ethGetBlockTransactionCountByHash(testblockHash);
+        response = ethereumClient->ethGetBlockTransactionCountByHash(testblockHash);
         if (response is string) {
             string value = response;
             io:println("The number of transactions in this block: " + value);
@@ -294,7 +294,7 @@ public function main(string... args) {
         }
     
         io:println("------------Calling ethGetBlockTransactionCountByNumber()------------");
-        response = ethereumClient -> ethGetBlockTransactionCountByNumber(testblock);
+        response = ethereumClient->ethGetBlockTransactionCountByNumber(testblock);
         if (response is string) {
             string value = response;
             io:println("The number of transactions in this block: " + value);
@@ -303,7 +303,7 @@ public function main(string... args) {
         }
     
         io:println("----------------Calling ethGetUncleCountByBlockHash()----------------");
-        response = ethereumClient -> ethGetUncleCountByBlockHash(testblockHash);
+        response = ethereumClient->ethGetUncleCountByBlockHash(testblockHash);
         if (response is string) {
             string value = response;
             io:println("The number of uncles in this block: " + value);
@@ -312,7 +312,7 @@ public function main(string... args) {
         }
     
         io:println("---------------Calling ethGetUncleCountByBlockNumber()---------------");
-        response = ethereumClient -> ethGetUncleCountByBlockNumber(testblock);
+        response = ethereumClient->ethGetUncleCountByBlockNumber(testblock);
         if (response is string) {
             string value = response;
             io:println("The number of uncles in this block: " + value);
@@ -321,7 +321,7 @@ public function main(string... args) {
         }
     
         io:println("-----------------------Calling ethGetCode()-------------------------");
-        response = ethereumClient -> ethGetCode(address, testblock);
+        response = ethereumClient->ethGetCode(address, testblock);
         if (response is string) {
             string value = response;
             io:println("The code from the given address: " + value);
@@ -330,7 +330,7 @@ public function main(string... args) {
         }
     
         io:println("-----------------------Calling ethSign()---------------------------");
-        response = ethereumClient -> ethSign(address, testmessage);
+        response = ethereumClient->ethSign(address, testmessage);
         if (response is string) {
             string value = response;
             io:println("Signature: " + value);
@@ -340,7 +340,7 @@ public function main(string... args) {
     
         io:println("------------------Calling ethSendTransaction()---------------------");
         json testTransactionOptions = {"from": address , "data": testTransactionOptionsData };
-        response = ethereumClient -> ethSendTransaction(testTransactionOptions);
+        response = ethereumClient->ethSendTransaction(testTransactionOptions);
         if (response is string) {
             string value = response;
             io:println("The transaction hash: " + value);
@@ -349,7 +349,7 @@ public function main(string... args) {
         }
     
         io:println("----------------Calling ethSendRawTransaction()-------------------");
-        response = ethereumClient -> ethSendRawTransaction(testTransactionOptionsData);
+        response = ethereumClient->ethSendRawTransaction(testTransactionOptionsData);
         if (response is string) {
             string value = response;
             io:println("The transaction hash: " + value);
@@ -359,7 +359,7 @@ public function main(string... args) {
     
         io:println("-----------------------Calling ethCall()---------------------------");
         json testTransactionCallObject = {"to": testTransactionCallObjectTovalue };
-        response = ethereumClient -> ethCall(testTransactionCallObject, testblock);
+        response = ethereumClient->ethCall(testTransactionCallObject, testblock);
         if (response is string) {
             string value = response;
             io:println("The value of executed contract: " + value);
@@ -368,7 +368,7 @@ public function main(string... args) {
         }
     
         io:println("-----------------------Calling ethEstimateGas()-------------------");
-        response = ethereumClient -> ethEstimateGas({});
+        response = ethereumClient->ethEstimateGas({});
         if (response is string) {
             string value = response;
             io:println("The amount of gas used: " + value);
@@ -377,7 +377,7 @@ public function main(string... args) {
         }
     
         io:println("-----------------Calling ethGetBlockByHash()-------------------");
-        response = ethereumClient -> ethGetBlockByHash(testblockHash, testtransactionObjectStatus);
+        response = ethereumClient->ethGetBlockByHash(testblockHash, testtransactionObjectStatus);
         if (response is string) {
             string value = response;
             io:println("The block object: " + value);
@@ -386,7 +386,7 @@ public function main(string... args) {
         }
     
         io:println("-----------------Calling ethGetBlockByNumber()----------------");
-        response = ethereumClient -> ethGetBlockByNumber(testblock, testtransactionObjectStatus);
+        response = ethereumClient->ethGetBlockByNumber(testblock, testtransactionObjectStatus);
         if (response is string) {
             string value = response;
             io:println("The information about a block by hash: " + value);
@@ -395,7 +395,7 @@ public function main(string... args) {
         }
     
         io:println("---------------Calling ethGetTransactionByHash()----------------");
-        response = ethereumClient -> ethGetTransactionByHash(testblockHash);
+        response = ethereumClient->ethGetTransactionByHash(testblockHash);
         if (response is string) {
             string value = response;
             io:println("The information about a transaction requested by transaction hash: " + value);
@@ -404,7 +404,7 @@ public function main(string... args) {
         }
     
         io:println("--------Calling ethGetTransactionByBlockHashAndIndex()----------");
-        response = ethereumClient -> ethGetTransactionByBlockHashAndIndex(testblockHash, testposition);
+        response = ethereumClient->ethGetTransactionByBlockHashAndIndex(testblockHash, testposition);
         if (response is string) {
             string value = response;
             io:println("The information about a transaction by block hash and transaction index position: " + value);
@@ -413,7 +413,7 @@ public function main(string... args) {
         }
     
         io:println("--------Calling ethGetTransactionByBlockNumberAndIndex()--------");
-        response = ethereumClient -> ethGetTransactionByBlockNumberAndIndex(testblock, testposition);
+        response = ethereumClient->ethGetTransactionByBlockNumberAndIndex(testblock, testposition);
         if (response is string) {
             string value = response;
             io:println("The information about a transaction by block number and transaction index position: " + value);
@@ -422,7 +422,7 @@ public function main(string... args) {
         }
     
         io:println("-------------Calling ethGetTransactionReceipt()-----------------");
-        response = ethereumClient -> ethGetTransactionReceipt(testblockHash);
+        response = ethereumClient->ethGetTransactionReceipt(testblockHash);
         if (response is string) {
             string value = response;
             io:println("The receipt of a transaction by transaction hash: " + value);
@@ -431,7 +431,7 @@ public function main(string... args) {
         }
     
         io:println("----------Calling ethGetUncleByBlockHashAndIndex()--------------");
-        response = ethereumClient -> ethGetUncleByBlockHashAndIndex(testblockHash, testposition);
+        response = ethereumClient->ethGetUncleByBlockHashAndIndex(testblockHash, testposition);
         if (response is string) {
             string value = response;
             io:println("The information about a uncle of a block by hash and uncle index position: " + value);
@@ -440,7 +440,7 @@ public function main(string... args) {
         }
     
         io:println("----------Calling ethGetUncleByBlockNumberAndIndex()------------");
-        response = ethereumClient -> ethGetUncleByBlockNumberAndIndex(testblock, testposition);
+        response = ethereumClient->ethGetUncleByBlockNumberAndIndex(testblock, testposition);
         if (response is string) {
             string value = response;
             io:println("The information about a uncle of a block by number and uncle index position: " + value);
@@ -449,7 +449,7 @@ public function main(string... args) {
         }
     
         io:println("--------------Calling ethNewFilter()---------------------------");
-        response = ethereumClient -> ethNewFilter({});
+        response = ethereumClient->ethNewFilter({});
         if (response is string) {
             string value = response;
             testFilterID = untaint value;
@@ -459,7 +459,7 @@ public function main(string... args) {
         }
     
         io:println("------------------Calling ethNewBlockFilter()-----------------");
-        response = ethereumClient -> ethNewBlockFilter();
+        response = ethereumClient->ethNewBlockFilter();
         if (response is string) {
             string value = response;
             io:println("A filter id:" + value);
@@ -468,7 +468,7 @@ public function main(string... args) {
         }
     
         io:println("---------Calling ethNewPendingTransactionFilter()------------");
-        response = ethereumClient -> ethNewPendingTransactionFilter();
+        response = ethereumClient->ethNewPendingTransactionFilter();
         if (response is string) {
             string value = response;
             io:println("A filter id: " + value);
@@ -477,7 +477,7 @@ public function main(string... args) {
         }
     
         io:println("----------Calling ethGetFilterLogs()------------------------");
-        response = ethereumClient -> ethGetFilterLogs(testFilterID);
+        response = ethereumClient->ethGetFilterLogs(testFilterID);
         if (response is string) {
             string value = response;
             io:println("An array of all logs matching filter with given id: " + value);
@@ -486,7 +486,7 @@ public function main(string... args) {
         }
     
         io:println("-----------Calling ethGetFilterChanges()--------------------");
-        response = ethereumClient -> ethGetFilterChanges(testFilterID);
+        response = ethereumClient->ethGetFilterChanges(testFilterID);
         if (response is string) {
             string value = response;
             io:println("Array of log objects: " + value);
@@ -495,7 +495,7 @@ public function main(string... args) {
         }
     
         io:println("-------------Calling ethUninstallFilter()-------------------");
-        response = ethereumClient -> ethUninstallFilter(testFilterID);
+        response = ethereumClient->ethUninstallFilter(testFilterID);
         if (response is string) {
             string value = response;
             io:println("The status of uninstall the filter : " + value);
@@ -504,7 +504,7 @@ public function main(string... args) {
         }
     
         io:println("--------------------Calling ethGetLogs()--------------------");
-        response = ethereumClient -> ethGetLogs({});
+        response = ethereumClient->ethGetLogs({});
         if (response is string) {
             string value = response;
             io:println("An array of all logs matching a given filter object: " + value);
@@ -513,7 +513,7 @@ public function main(string... args) {
         }
     
         io:println("-----------------Calling ethGetWork()-----------------------");
-        response = ethereumClient -> ethGetWork();
+        response = ethereumClient->ethGetWork();
         if (response is string) {
             string value = response;
             io:println("The hash of the current block, the seedHash, and the boundary condition to be met (\"target\"):
@@ -523,7 +523,7 @@ public function main(string... args) {
         }
     
         io:println("-----------------Calling ethSubmitWork()--------------------");
-        response = ethereumClient -> ethSubmitWork(testnonce, testpowHash, testmixDigest);
+        response = ethereumClient->ethSubmitWork(testnonce, testpowHash, testmixDigest);
         if (response is string) {
             string value = response;
             io:println("The valid status for provided solution: " + value);

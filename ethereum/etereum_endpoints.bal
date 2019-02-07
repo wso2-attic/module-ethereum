@@ -311,7 +311,7 @@ public type Client client object {
     public remote function remoteProcedureCall(string method, json params) returns string|error;
 };
 
-remote function Client.getWeb3ClientVersion() returns string|error {
+public remote function Client.getWeb3ClientVersion() returns string|error {
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     WEB3_CLIENT_VERSION , EMPTY_PARAMS));
     if (httpResponse is http:Response) {
@@ -335,7 +335,7 @@ remote function Client.getWeb3ClientVersion() returns string|error {
     }
 }
 
-remote function Client.getWeb3Sha3(string data) returns string|error {
+public remote function Client.getWeb3Sha3(string data) returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId, WEB3_SHA3
     , [data]));
@@ -360,7 +360,7 @@ remote function Client.getWeb3Sha3(string data) returns string|error {
     }
 }
 
-remote function Client.getNetVersion() returns string|error {
+public remote function Client.getNetVersion() returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     NET_VERSION, EMPTY_PARAMS));
@@ -385,7 +385,7 @@ remote function Client.getNetVersion() returns string|error {
     }
 }
 
-remote function Client.getNetPeerCount() returns string|error {
+public remote function Client.getNetPeerCount() returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     NET_PEER_COUNT, EMPTY_PARAMS));
@@ -410,7 +410,7 @@ remote function Client.getNetPeerCount() returns string|error {
     }
 }
 
-remote function Client.getNetListening() returns boolean|error {
+public remote function Client.getNetListening() returns boolean|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     NET_LISTENING, EMPTY_PARAMS));
@@ -435,7 +435,7 @@ remote function Client.getNetListening() returns boolean|error {
     }
 }
 
-remote function Client.getEthProtocolVersion() returns string|error {
+public remote function Client.getEthProtocolVersion() returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     ETH_PROTOCOL_VERSION, EMPTY_PARAMS));
@@ -460,7 +460,7 @@ remote function Client.getEthProtocolVersion() returns string|error {
     }
 }
 
-remote function Client.getEthSyncing() returns string|error {
+public remote function Client.getEthSyncing() returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     ETH_SYNCING, EMPTY_PARAMS));
@@ -485,7 +485,7 @@ remote function Client.getEthSyncing() returns string|error {
     }
 }
 
-remote function Client.getEthCoinbase() returns string|error {
+public remote function Client.getEthCoinbase() returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     ETH_COINBASE, EMPTY_PARAMS));
@@ -510,7 +510,7 @@ remote function Client.getEthCoinbase() returns string|error {
     }
 }
 
-remote function Client.getEthMining() returns boolean|error {
+public remote function Client.getEthMining() returns boolean|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     ETH_MINING, EMPTY_PARAMS));
@@ -535,7 +535,7 @@ remote function Client.getEthMining() returns boolean|error {
     }
 }
 
-remote function Client.getEthHashrate() returns string|error {
+public remote function Client.getEthHashrate() returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     ETH_HASHRATE, EMPTY_PARAMS));
@@ -560,7 +560,7 @@ remote function Client.getEthHashrate() returns string|error {
     }
 }
 
-remote function Client.getEthGasPrice() returns string|error {
+public remote function Client.getEthGasPrice() returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion,
     self.networkId, ETH_GAS_PRICE, EMPTY_PARAMS));
@@ -585,7 +585,7 @@ remote function Client.getEthGasPrice() returns string|error {
     }
 }
 
-remote function Client.getEthAccounts() returns string|error {
+public remote function Client.getEthAccounts() returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     ETH_ACCOUNTS, EMPTY_PARAMS));
@@ -610,7 +610,7 @@ remote function Client.getEthAccounts() returns string|error {
     }
 }
 
-remote function Client.getEthBlockNumber() returns string|error {
+public remote function Client.getEthBlockNumber() returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     ETH_BLOCK_NUMBER, EMPTY_PARAMS));
@@ -635,7 +635,7 @@ remote function Client.getEthBlockNumber() returns string|error {
     }
 }
 
-remote function Client.getEthBalance(string address, string block) returns string|error {
+public remote function Client.getEthBalance(string address, string block) returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     ETH_GET_BALANCE, [address, block]));
@@ -660,7 +660,7 @@ remote function Client.getEthBalance(string address, string block) returns strin
     }
 }
 
-remote function Client.getEthStorageAt( string address, string position, string block)
+public remote function Client.getEthStorageAt( string address, string position, string block)
 returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
@@ -686,7 +686,7 @@ returns string|error {
     }
 }
 
-remote function Client.getEthTransactionCount(string address, string block) returns string|error {
+public remote function Client.getEthTransactionCount(string address, string block) returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     ETH_GET_TRANSACTION_COUNT, [address, block]));
@@ -711,7 +711,7 @@ remote function Client.getEthTransactionCount(string address, string block) retu
     }
 }
 
-remote function Client.getEthBlockTransactionCountByHash(string blockHash) returns string|error {
+public remote function Client.getEthBlockTransactionCountByHash(string blockHash) returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     ETH_GET_BLOCK_TRANSACTION_COUNT_BY_HASH, [blockHash]));
@@ -736,7 +736,7 @@ remote function Client.getEthBlockTransactionCountByHash(string blockHash) retur
     }
 }
 
-remote function Client.getEthBlockTransactionCountByNumber(string block) returns string|error {
+public remote function Client.getEthBlockTransactionCountByNumber(string block) returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     ETH_GET_BLOCK_TRANSACTION_COUNT_BY_NUMBER, [block]));
@@ -761,7 +761,7 @@ remote function Client.getEthBlockTransactionCountByNumber(string block) returns
     }
 }
 
-remote function Client.getEthUncleCountByBlockHash(string blockHash) returns string|error {
+public remote function Client.getEthUncleCountByBlockHash(string blockHash) returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     ETH_GET_UNCLE_COUNT_BY_BLOCK_HASH, [blockHash]));
@@ -786,7 +786,7 @@ remote function Client.getEthUncleCountByBlockHash(string blockHash) returns str
     }
 }
 
-remote function Client.getEthUncleCountByBlockNumber(string block) returns string|error {
+public remote function Client.getEthUncleCountByBlockNumber(string block) returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     ETH_GET_UNCLE_COUNT_BY_BLOCK_NUMBER, [block]));
@@ -811,7 +811,7 @@ remote function Client.getEthUncleCountByBlockNumber(string block) returns strin
     }
 }
 
-remote function Client.getEthCode(string address, string block) returns string|error {
+public remote function Client.getEthCode(string address, string block) returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     ETH_GET_CODE, [address, block]));
@@ -836,7 +836,7 @@ remote function Client.getEthCode(string address, string block) returns string|e
     }
 }
 
-remote function Client.getEthSign(string address, string message) returns string|error {
+public remote function Client.getEthSign(string address, string message) returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     ETH_SIGN, [address, message]));
@@ -861,7 +861,7 @@ remote function Client.getEthSign(string address, string message) returns string
     }
 }
 
-remote function Client.sendEthTransaction(json transactionObject) returns string|error {
+public remote function Client.sendEthTransaction(json transactionObject) returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     ETH_SEND_TRANSACTION, [transactionObject]));
@@ -886,7 +886,7 @@ remote function Client.sendEthTransaction(json transactionObject) returns string
     }
 }
 
-remote function Client.sendEthRawTransaction(string signedTransactionData) returns string|error {
+public remote function Client.sendEthRawTransaction(string signedTransactionData) returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     ETH_SEND_RAW_TRANSACTION, [signedTransactionData]));
@@ -911,7 +911,7 @@ remote function Client.sendEthRawTransaction(string signedTransactionData) retur
     }
 }
 
-remote function Client.getEthCall(json transactionCallObject, string block) returns string|error {
+public remote function Client.getEthCall(json transactionCallObject, string block) returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion,
     self.networkId, ETH_CALL, [transactionCallObject, block]));
@@ -936,7 +936,7 @@ remote function Client.getEthCall(json transactionCallObject, string block) retu
     }
 }
 
-remote function Client.getEthEstimateGas(json transactionCallObject) returns string|error {
+public remote function Client.getEthEstimateGas(json transactionCallObject) returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     ETH_ESTIMATE_GAS, [transactionCallObject]));
@@ -961,7 +961,7 @@ remote function Client.getEthEstimateGas(json transactionCallObject) returns str
     }
 }
 
-remote function Client.getEthBlockByHash(string blockHash, boolean transactionObjectStatus)
+public remote function Client.getEthBlockByHash(string blockHash, boolean transactionObjectStatus)
 returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
@@ -987,7 +987,7 @@ returns string|error {
     }
 }
 
-remote function Client.getEthBlockByNumber(string block, boolean transactionObjectStatus)
+public remote function Client.getEthBlockByNumber(string block, boolean transactionObjectStatus)
 returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
@@ -1013,7 +1013,7 @@ returns string|error {
     }
 }
 
-remote function Client.getEthTransactionByHash(string transactionHash) returns string|error {
+public remote function Client.getEthTransactionByHash(string transactionHash) returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion,
     self.networkId, ETH_GET_TRANSACTION_BY_HASH, [transactionHash]));
@@ -1038,7 +1038,7 @@ remote function Client.getEthTransactionByHash(string transactionHash) returns s
     }
 }
 
-remote function Client.getEthTransactionByBlockHashAndIndex(string blockHash, string  position)
+public remote function Client.getEthTransactionByBlockHashAndIndex(string blockHash, string  position)
 returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
@@ -1064,7 +1064,7 @@ returns string|error {
     }
 }
 
-remote function Client.getEthTransactionByBlockNumberAndIndex(string block, string  position)
+public remote function Client.getEthTransactionByBlockNumberAndIndex(string block, string  position)
 returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
@@ -1090,7 +1090,7 @@ returns string|error {
     }
 }
 
-remote function Client.getEthTransactionReceipt(string transactionHash) returns string|error {
+public remote function Client.getEthTransactionReceipt(string transactionHash) returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     ETH_GET_TRANSACTION_RECEIPT, [transactionHash]));
@@ -1115,7 +1115,7 @@ remote function Client.getEthTransactionReceipt(string transactionHash) returns 
     }
 }
 
-remote function Client.getEthUncleByBlockHashAndIndex(string blockHash, string position)
+public remote function Client.getEthUncleByBlockHashAndIndex(string blockHash, string position)
 returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
@@ -1141,7 +1141,7 @@ returns string|error {
     }
 }
 
-remote function Client.getEthUncleByBlockNumberAndIndex(string block, string position) returns string|error {
+public remote function Client.getEthUncleByBlockNumberAndIndex(string block, string position) returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     ETH_GET_UNCLE_BY_BLOCK_NUMBER_AND_INDEX, [block, position]));
@@ -1166,7 +1166,7 @@ remote function Client.getEthUncleByBlockNumberAndIndex(string block, string pos
     }
 }
 
-remote function Client.ethNewFilter(json filterOptions) returns string|error {
+public remote function Client.ethNewFilter(json filterOptions) returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     ETH_NEW_FILTER, [filterOptions]));
@@ -1191,7 +1191,7 @@ remote function Client.ethNewFilter(json filterOptions) returns string|error {
     }
 }
 
-remote function Client.ethNewBlockFilter() returns string|error {
+public remote function Client.ethNewBlockFilter() returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     ETH_NEW_BLOCK_FILTER, EMPTY_PARAMS));
@@ -1216,7 +1216,7 @@ remote function Client.ethNewBlockFilter() returns string|error {
     }
 }
 
-remote function Client.ethNewPendingTransactionFilter() returns string|error {
+public remote function Client.ethNewPendingTransactionFilter() returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     ETH_NEW__PENDING_TRANSACTION_FILTER, EMPTY_PARAMS));
@@ -1241,7 +1241,7 @@ remote function Client.ethNewPendingTransactionFilter() returns string|error {
     }
 }
 
-remote function Client.uninstallEthFilter(string filterId) returns string|error {
+public remote function Client.uninstallEthFilter(string filterId) returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     ETH_UNINSTALL_FILTER, [filterId]));
@@ -1266,7 +1266,7 @@ remote function Client.uninstallEthFilter(string filterId) returns string|error 
     }
 }
 
-remote function Client.getEthFilterChanges(string filterId) returns string|error {
+public remote function Client.getEthFilterChanges(string filterId) returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion,
     self.networkId, ETH_GET_FILTER_CHANGES, [filterId]));
@@ -1291,7 +1291,7 @@ remote function Client.getEthFilterChanges(string filterId) returns string|error
     }
 }
 
-remote function Client.getEthFilterLogs(string filterId) returns string|error {
+public remote function Client.getEthFilterLogs(string filterId) returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     ETH_GET_FILTER_LOGS, [filterId]));
@@ -1316,7 +1316,7 @@ remote function Client.getEthFilterLogs(string filterId) returns string|error {
     }
 }
 
-remote function Client.getEthLogs(json filterOptions) returns string|error {
+public remote function Client.getEthLogs(json filterOptions) returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     ETH_GET_LOGS, [filterOptions]));
@@ -1341,7 +1341,7 @@ remote function Client.getEthLogs(json filterOptions) returns string|error {
     }
 }
 
-remote function Client.getEthWork() returns string|error {
+public remote function Client.getEthWork() returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     ETH_GET_WORK, EMPTY_PARAMS));
@@ -1366,7 +1366,7 @@ remote function Client.getEthWork() returns string|error {
     }
 }
 
-remote function Client.submitEthWork(string nonce, string powHash, string mixDigest) returns string|error {
+public remote function Client.submitEthWork(string nonce, string powHash, string mixDigest) returns string|error {
 
     var httpResponse = self.ethereumClient -> post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     ETH_SUBMIT_WORK, [nonce, powHash, mixDigest]));
@@ -1391,7 +1391,7 @@ remote function Client.submitEthWork(string nonce, string powHash, string mixDig
     }
 }
 
-remote function Client.remoteProcedureCall(string method, json params) returns string|error {
+public remote function Client.remoteProcedureCall(string method, json params) returns string|error {
 
     var httpResponse = self.ethereumClient->post("/", constructRequest(self.jsonRpcVersion, self.networkId,
     method, params));
@@ -1416,14 +1416,14 @@ remote function Client.remoteProcedureCall(string method, json params) returns s
     }
 }
 
-function constructRequest (string jsonRPCVersion, int networkId, string method, json params) returns http:Request {
+public function constructRequest (string jsonRPCVersion, int networkId, string method, json params) returns http:Request {
     http:Request request = new;
     request.setHeader("Content-Type", "application/json");
     request.setJsonPayload({"jsonrpc":jsonRPCVersion, "id":networkId, "method":method, "params":params});
     return request;
 }
 
-function setResponseError(json jsonResponse) returns error {
+public function setResponseError(json jsonResponse) returns error {
     map<string> details = { message: jsonResponse["error"].message.toString() };
     error err = error(ETHEREUM_ERROR_CODE, details);
     return err;

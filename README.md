@@ -108,13 +108,11 @@ ethereum:EthereumConfiguration ethereumConfig = {
 ethereum:Client ethereumClient = new(ethereumConfig);
 
 public function main() {
-    
-    var response = ethereumClient->web3ClientVersion();
+    var response = ethereumClient->getWeb3ClientVersion();
     if (response is string) {
-        string value = response.result;
-        io:println("The web3 client version: " + value);
+        io:println("Web3 Client Version: ", response);
     } else {
-        io:println(response);
+        io:println("Error: ", response);
     }
 }
 ```

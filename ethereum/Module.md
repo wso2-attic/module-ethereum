@@ -88,14 +88,14 @@ if (response is string) {
 }
 ```
 
-The `getNetVersion()` remote function is used to get the current network id.
+The `getNetVersion()` remote function is used to get the current network ID.
 
-If the request was successful, the result from `getNetVersion()` is the current network id. If the request was unsuccessful, the result is an `error`. 
+If the request was successful, the result from `getNetVersion()` is the current network ID. If the request was unsuccessful, the result is an `error`. 
 
 ```ballerina
 var response = ethereumClient->getNetVersion();
 if (response is string) {
-    io:println("The current network id: ", response);
+    io:println("The current network ID: ", response);
 } else {
     io:println("Error: ", response);
 }
@@ -136,7 +136,7 @@ public function main() {
     io:println("-----------------------Calling getNetVersion()----------------------------");
     response = ethereumClient->getNetVersion();
     if (response is string) {
-        io:println("The current network id: ", response);
+        io:println("The current network ID: ", response);
     } else {
         io:println("Error: ", response);
     }

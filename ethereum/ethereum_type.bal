@@ -23,9 +23,9 @@ import ballerina/http;
 # + networkId - The network ID
 # + jsonRpcEndpoint - The URI of the Ethereum JSON - RPC server
 # + clientConfig - The HTTP client congiguration
-public type EthereumConfiguration record {
+public type EthereumConfiguration record {|
     string jsonRpcVersion = "";
     string networkId = "";
     string jsonRpcEndpoint= "";
     http:ClientEndpointConfig clientConfig = {};
-};
+|};

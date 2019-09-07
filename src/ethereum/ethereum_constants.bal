@@ -62,4 +62,8 @@ final string ETH_SUBMIT_HASHRATE = "eth_submitHashrate";
 final string EMPTY_PARAMS = "[]";
 
 // Error Codes
-final string ETHEREUM_ERROR_CODE = "(wso2/ethereum)EthereumError";
+final string ETHEREUM_ERROR_CODE = "[wso2/ethereum]EthereumError";
+const HTTP_RESPONSE_HANDLING_ERROR = "[wso2/ethereum]HttpResponseHandlingError";
+const HTTP_ERROR = "[wso2/ethereum]HTTPError";
+final string JSON_ACCESSING_ERROR_MSG = "Error occurred while accessing the JSON payload of the response.";
+const string HTTP_ERROR_MSG = "Error occurred while getting the HTTP response.";

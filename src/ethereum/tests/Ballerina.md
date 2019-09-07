@@ -2,13 +2,13 @@
 
 The Ethereum connector allows you to access the Ethereum JSON RPC API through Ballerina. The Ethereum connector actions are invoked using a Ballerina main function. The following diagram illustrates how Ballerina connects to the JSON RPC-enabled server, which in turn integrates with the Ethereum network.
 
-![Ballerina -Ethereum Connector Overview](../../BallerinaEthereumJSONRPC.png)
+![Ballerina -Ethereum Connector Overview](../../../BallerinaEthereumJSONRPC.png)
 
 ## Compatibility
 
 | Ballerina Language Version             | JSON-RPC API Version           |
 | ---------------------------------------| -------------------------------|
-|  0.991.0                               |   v2.0                        |
+|  1.0.0                                 |   v2.0                         |
 
 ### Starting Geth Client
 
@@ -45,7 +45,7 @@ You can use the `tests.bal` file to test all the connector actions by following 
     ballerina init
     ```
 
-2. Obtain the following variable's value and add these value in the module-ethereum/ballerina.conf file.
+2. Obtain the following variable's value and add these values to a `ballerina.conf` file.
     ```
     JSON_RPC_ENDPOINT = "The JSON RPC server URL"
     JSON_RPC_VERSION = "The JSON RPC version"
@@ -64,5 +64,5 @@ You can use the `tests.bal` file to test all the connector actions by following 
 
 4. Run the following command to execute the tests.
     ```
-    ballerina test ethereum --config ballerina.conf
+    ballerina test ethereum --b7a.config.file=path/to/ballerina.conf
     ```

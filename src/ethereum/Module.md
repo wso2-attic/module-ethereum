@@ -15,17 +15,20 @@ The Ethereum connector allows you to access the Ethereum JSON RPC API through Ba
 
 1. Download the Geth client from [https://geth.ethereum.org/downloads/](https://geth.ethereum.org/downloads/).
 
-2. Install the Geth Client. For more information, see [https://ethereum.github.io/go-ethereum/install/](https://ethereum.github.io/go-ethereum/install/).
+2. Install the Geth Client. For more information, see 
+[https://ethereum.github.io/go-ethereum/install/](https://ethereum.github.io/go-ethereum/install/).
 
-3. Check whether the installation is complete or not by starting the HTTP JSON-RPC. To do this, run the `geth` command in your command line.
+3. Check whether the installation is complete or not by starting the HTTP JSON-RPC. To do this, run the `geth` 
+command in your command line.
 
 ### Enabling JSON RPC Server
 
 1. Create a folder for chain data. Let's call that folder `<chaindata>`.
 
-2. Let’s create a private network by running the following command. Here, change the `<chaindata>` value to your actual folder path.
+2. Let’s create a private network by running the following command. Here, change the `<chaindata>` value to your actual 
+folder path.
     ````
-    geth --identity "testServer" --rpc --rpcport "8080" --rpccorsdomain "*" --datadir "<chaindata>/TestChain" --port "30304" --nodiscover --rpcapi "db,eth,net,web3,admin,shh" --networkid 1999 console --shh`
+    geth --identity "testServer" --rpc --rpcport "8080" --rpccorsdomain "*" --datadir "<chaindata>/TestChain" --port "30304" --nodiscover --rpcapi "db,eth,net,web3,admin,shh" --networkid 1999 console --shh
     ````
 3. To create the new account, use the following command in the Geth JavaScript console.
     ```

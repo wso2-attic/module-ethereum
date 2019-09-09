@@ -1,6 +1,7 @@
 [project]
 org-name = "wso2"
-version = "0.8.9"
+version = "0.9.0"
+license= ["Apache-2.0"]
 authors = ["WSO2"]
 keywords = ["ballerina", "ethereum", "client", "connector"]
 repository = "https://github.com/wso2-ballerina/module-ethereum"

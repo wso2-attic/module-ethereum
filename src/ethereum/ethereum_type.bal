@@ -14,17 +14,18 @@
 // specific language governing permissions and limitations
 // under the License.
 
-function resultToString(json jsonPayload) returns string {
-    string result = jsonPayload["result"] != null ? jsonPayload["result"].toString() : "";
-    return result;
-}
+import ballerina/http;
 
-function convertToString(json jsonPayload) returns string {
-    string result = jsonPayload["result"] != null ? jsonPayload["result"][0].toString() : "";
-    return result;
-}
-
-function jsonToBoolean(json jsonVal) returns boolean {
-    string stringVal = jsonVal["result"] != null ? jsonVal["result"].toString() : "";
-    return boolean.convert(stringVal);
-}
+# EthereumConfiguration is used to set up the Ethereum configuration. In order to use this connector, you need
+# to provide the valid JSON-RPC endpoint , version and network id.
+#
+# + jsonRpcVersion - JSON RPC version
+# + networkId - The network ID
+# + jsonRpcEndpoint - The URI of the Ethereum JSON - RPC server
+# + secureSocketConfig - The HTTPS client secure socket congiguration
+public type EthereumConfiguration record {|
+    string jsonRpcVersion = "";
+    string networkId = "";
+    string jsonRpcEndpoint= "";
+    http:ClientSecureSocket secureSocketConfig?;
+|};

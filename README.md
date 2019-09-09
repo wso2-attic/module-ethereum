@@ -33,7 +33,7 @@ RPC-enabled server, which in turn integrates with the Ethereum network.
 
 |                          |    Version     |
 |:------------------:      |:--------------:|
-| Ballerina Language       |   0.991.0      |
+| Ballerina Language       |   1.0.0        |
 | JSON-RPC API Version     |   v2.0         |
 
 ### Starting Geth Client
